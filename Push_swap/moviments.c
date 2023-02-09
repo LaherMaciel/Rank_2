@@ -35,9 +35,9 @@ void	ft_swap_swap(t_list *stack_a, t_list *stack_b)
 	ft_printf("ss"); 
 }
 
-// Take the first element at the top of 2 and put it at the top of 1. 
-// Do nothing if 2 is empty.
-// pa (stack b -> stack a) || pb (stack a -> stack b)
+// Take the first element at the top of the stack_2 and put it at the top of the stack_1. 
+// Do nothing if stack_2 is empty.
+// pa = stack b -> stack a ||  pb = stack a -> stack b
 void	ft_pass_to(t_list *stack_1, t_list *stack_2, char id)
 {
 	t_list	*tmp;
