@@ -12,7 +12,8 @@
 
 #include "push_swap.h"
 
-//Swap the first 2 elements at the top of stack. Do nothing if there is only one or no elements.
+// Swap the first 2 elements at the top of stack. 
+// Do nothing if there is only one or no elements.
 void	ft_swap(t_list *stack, char id)
 {
 	t_list	*tmp;
@@ -26,7 +27,7 @@ void	ft_swap(t_list *stack, char id)
 	stack->next->content = tmp; 
 }
 
-//ss -> sa and sb at the same time.
+// ss -> sa and sb at the same time.
 void	ft_swap_swap(t_list *stack_a, t_list *stack_b)
 {
 	ft_swap(t_list stack_a, 'A');
@@ -34,7 +35,8 @@ void	ft_swap_swap(t_list *stack_a, t_list *stack_b)
 	ft_printf("ss"); 
 }
 
-//Take the first element at the top of 2 and put it at the top of 1. Do nothing if 2 is empty.
+// Take the first element at the top of 2 and put it at the top of 1. 
+// Do nothing if 2 is empty.
 // pa (stack b -> stack a) || pb (stack a -> stack b)
 void	ft_pass_to(t_list *stack_1, t_list *stack_2, char id)
 {
@@ -51,7 +53,8 @@ void	ft_pass_to(t_list *stack_1, t_list *stack_2, char id)
 	stack_1 = tmp;
 }
 
-//Shift up all elements of the stack by 1. The first element becomes the last one.
+// Shift up all elements of the stack by 1. 
+// The first element becomes the last one.
 void	ft_rotate(t_list **stack, char id)
 {
 	t_list	*new_last;
@@ -67,7 +70,7 @@ void	ft_rotate(t_list **stack, char id)
 	new_last-> = NULL;
 }
 
-//rr -> ra and rb at the same time
+// rr -> ra and rb at the same time
 void	ft_rotate_rotate(t_list stack_1, t_list stack_2)
 {
 	ft_rotate(stack_1, 'A');
@@ -75,7 +78,8 @@ void	ft_rotate_rotate(t_list stack_1, t_list stack_2)
 	ft_printf("rr");
 }
 
-//Shift down all elements of the stack by 1. The last element becomes the first one.
+// Shift down all elements of the stack by 1. 
+// The last element becomes the first one.
 void	ft_reverse_rotate(t_list **stack, char id)
 {
 	t_list	*new_last;
@@ -94,7 +98,7 @@ void	ft_reverse_rotate(t_list **stack, char id)
 	new_last->next = NULL;
 }
 
-//rrr -> rra and rrb at the same time.
+// rrr -> rra and rrb at the same time.
 void	ft_reverrse_rotate_rotate(t_list stack_1, t_list stack_2)
 {
 	ft_reverrse_rotate(stack_1, 'A');
