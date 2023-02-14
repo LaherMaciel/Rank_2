@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/09 12:41:11 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/02/09 12:41:11 by lwencesl         ###   ########.fr       */
+/*   Created: 2022/11/16 21:35:04 by lwencesl          #+#    #+#             */
+/*   Updated: 2022/11/18 00:48:31 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+t_stack	*ft_lstmap(t_stack *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_stack	*stack_a;
-	t_stack	*print_stack;
+	t_stack	*temp;
+	t_stack	*new;
 
-	stack_a = create_stack(argc, argv);
-	print_stack = stack_a;
-	while (print_stack != NULL)
+	new = NULL;
+	while (lst)
 	{
-		printf("%d\n", *((int *) stack_a->content));
-		stack_a = stack_a->next;
+		temp = ft_lstnew(f(lst->content));
+		if (!temp)
+		{
+			ft_lstclear(&new, del);
+			return (NULL);
+		}
+		ft_lstadd_back(&new, temp);
+		lst = lst->next;
 	}
-	free(print_stack);
-	free(stack_a);
-	return (0);
+	return (new);
 }

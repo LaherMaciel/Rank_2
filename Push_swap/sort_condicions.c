@@ -10,38 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_push_swap.h"
-
-int	find_bigger(t_stack stack, int val)
-{
-	int	cont;
-
-	cont = 0;
-	while (!stack->next)
-	{
-		if (val > stack->content)
-		{
-			val = stack->content;
-			break ;
-		}
-		cont++;
-	}
-	return (cont);
-}
-
-int	find_val(t_stack stack, int val)
-{
-	int	cont;
-
-	cont = 0;
-	while (!stack->next)
-	{
-		if (val == stack->content)
-			break ;
-		cont++;
-	}
-	return (cont);
-}
+#include "push_swap.h"
 
 void	rotate_up_or_down(t_stack **stack_1, t_stack **stack_2, char id)
 {
@@ -65,7 +34,8 @@ void	rotate_up_or_down(t_stack **stack_1, t_stack **stack_2, char id)
 	ft_pass_to(stack_2, stack_1, id);
 }
 
-void	rotate_up_or_down_biggest(t_stack **stack_1, t_stack **stack_2, char id, int val)
+void	rotate_up_or_down_biggest(t_stack **stack_1,
+t_stack **stack_2, char id, int val)
 {
 	int	bigger_pos;
 	int	stack_size;
@@ -107,4 +77,5 @@ void	ft_smallest_on_top(t_stack **stack_1, int smallest, char id)
 			ft_rotate(stack_1, id);
 	}
 }
+
 

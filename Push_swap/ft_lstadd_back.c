@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/09 12:41:11 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/02/09 12:41:11 by lwencesl         ###   ########.fr       */
+/*   Created: 2022/11/15 16:53:57 by lwencesl          #+#    #+#             */
+/*   Updated: 2022/11/15 17:30:50 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+void	ft_lstadd_back(t_stack **lst, t_stack *new)
 {
-	t_stack	*stack_a;
-	t_stack	*print_stack;
+	t_stack	*temp;
 
-	stack_a = create_stack(argc, argv);
-	print_stack = stack_a;
-	while (print_stack != NULL)
+	if (!new)
+		return ;
+	if (!*lst)
 	{
-		printf("%d\n", *((int *) stack_a->content));
-		stack_a = stack_a->next;
+		*lst = new;
+		return ;
 	}
-	free(print_stack);
-	free(stack_a);
-	return (0);
+	temp = ft_lstlast(*lst);
+	temp->next = new;
 }

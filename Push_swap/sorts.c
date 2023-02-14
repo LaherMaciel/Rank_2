@@ -6,11 +6,11 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 14:10:07 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/02/09 21:33:07 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/02/12 11:41:35 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_push_swap.h"
+#include "push_swap.h"
 
 t_stack	*sort3(t_stack *stack, char id)
 {
@@ -19,7 +19,8 @@ t_stack	*sort3(t_stack *stack, char id)
 	out = 0;
 	while (out != 1)
 	{
-		if (stack->content > stack->next->content && stack > stack->next->next->content)
+		if (stack->content > stack->next->content
+			&& stack->content > stack->next->next->content)
 			ft_reverse_rotate(stack, id);
 		else if (stack->content > stack->next->content)
 			ft_swap(stack, id);
@@ -30,7 +31,7 @@ t_stack	*sort3(t_stack *stack, char id)
 		else
 			out = 1;
 	}
-	return	(stack);
+	return (stack);
 }
 
 t_stack	*sort_4_to_6(t_stack **stack_1, t_stack **stack_2)
@@ -55,7 +56,7 @@ t_stack	*sort_4_to_6(t_stack **stack_1, t_stack **stack_2)
 	else
 		smallest = stack_2->content;
 	merge(stack_1, stack_2, biggest_1);
-	return	(stack);
+	return (stack);
 }
 
 void	merge(t_stack **stack_1, t_stack **stack_2, int biggest_1)
@@ -65,9 +66,10 @@ void	merge(t_stack **stack_1, t_stack **stack_2, int biggest_1)
 	out = 0;
 	while (out != 2 && !stack_2)
 	{
-		if (stack_1->content  > stack_2->content)
+		if (stack_1->content > stack_2->content)
 			ft_pass_to(stack_2, stack_1, 'a');
-		else if (stack_1->content  < stack_2->content && biggest_1 > stack_2->content)
+		else if (stack_1->content < stack_2->content
+			&& biggest_1 > stack_2->content)
 			rotate_up_or_down(stack_1, stack_2, 'a');
 		else if (biggest_1 < stack_2->content)
 			rotate_up_or_down_biggest(stack_1, stack_2, 'a', biggest_1);

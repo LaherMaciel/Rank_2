@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
 // Swap the first 2 elements at the top of stack. 
 // Do nothing if there is only one or no elements.
@@ -27,21 +27,12 @@ void	ft_swap(t_stack *stack, char id)
 	stack->next->content = tmp;
 }
 
-// ss -> sa and sb at the same time.
-void	ft_swap_swap(t_stack *stack_a, t_stack *stack_b)
-{
-	ft_swap(stack_a, 'A');
-	ft_swap(stack_b, 'B');
-	ft_printf("ss");
-}
-
 // Take the first element at the top of the stack_2 and put it at the
 // top of the stack_1. Do nothing if stack_2 is empty.
 // pa = stack b -> stack a ||  pb = stack a -> stack b
 void	ft_pass_to(t_stack **stack_1, t_stack **stack_2, char id)
 {
 	t_stack	*tmp;
-	int		val;
 
 	if (!*stack_2 || !(*stack_2))
 		return ;
@@ -55,7 +46,25 @@ void	ft_pass_to(t_stack **stack_1, t_stack **stack_2, char id)
 
 // Shift up all elements of the stack by 1. 
 // The first element becomes the last one.
-void	ft_rotate(t_stack **stack, char id)
+void	ft_rotate(t_stack *stack, char id)
+{
+	t_stack	*new_last;
+	t_stack	*last;
+
+	if (!stack || !(stack)->next)
+		return ;
+	if (id == 'a' || id == 'b')
+		ft_printf("r%c", id);
+	new_last = stack;
+	stack = (stack)->next;
+	last = ft_lstlast(stack);
+	last->next = new_last;
+	new_last->next = NULL;
+}
+
+// Shift down all elements of the stack by 1. 
+// The last element becomes the first one.
+void	ft_reverse_rotate(t_stack **stack, char id)
 {
 	t_stack	*new_last;
 	t_stack	*last;
@@ -63,18 +72,14 @@ void	ft_rotate(t_stack **stack, char id)
 	if (!stack || !*stack || !(*stack)->next)
 		return ;
 	if (id == 'a' || id == 'b')
-		ft_printf("r%c", id);
+		ft_printf("rr%c", id);
 	new_last = *stack;
-	*stack = (*stack)->next;
-	last = ft_lstlast(stack);
-	last->next = new_last;
+	while (new_last->next->next != NULL)
+		new_last = new_last->next;
+	last = new_last->next;
+	last->next = *stack;
+	*stack = last;
 	new_last->next = NULL;
 }
 
-// rr -> ra and rb at the same time
-void	ft_rotate_rotate(t_stack *stack_1, t_stack *stack_2)
-{
-	ft_rotate(stack_1, 'A');
-	ft_rotate(stack_2, 'B');
-	ft_printf("rr");
-}
+

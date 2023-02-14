@@ -10,22 +10,25 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "/Users/Laher/OneDrive/Documents/INFORMATICA/42 Lisboa/My_Projectos/Rank_0/Libft/libft.h"
+#include "push_swap.h"
 
-t_stack	*criar_stack(int c, char *v)
+t_stack	*create_stack(int argc, char **argv)
 {
-	t_stack *head;
+	t_stack	*head;
 	t_stack	*stack;
+	int		val;
 	int		i;
 
-	if (c <= 1)
+	if (argc <= 1)
 		return (NULL);
-	head = ft_lstnew(v[1]);
+	val = (int) ft_atoi(argv[1]);
+	head = ft_lstnew(&val);
 	stack = head;
 	i = 2;
-	while (!v[i])
+	while (argv[i] != NULL)
 	{
-		stack->next = ft_lstnew(v[i]);
+		val = (int) ft_atoi(argv[i]);
+		stack->next = ft_lstnew(&val);
 		stack = stack->next;
 		i++;
 	}
@@ -34,13 +37,14 @@ t_stack	*criar_stack(int c, char *v)
 
 /*
 //recursive version just beacuse ;) 
-t_stack	*criar_stack(int c, char *v, int i)
+t_stack	*create_stack(int argc, char **argv, int i)
 {
 	t_stack	*stack;
 
-	if (c <= 1 || i >= c)
+	if (argc <= 1 || i >= argc)
 		return (NULL);
-	stack = ft_lstnew(v[i]);
-	stack->next = criar_stack(c, v, (i + 1));
+	stack = ft_lstnew(argv[i]);
+	stack->next = create_stack(argc, argv, (i + 1));
 	return (stack);
-}*/
+}
+*/

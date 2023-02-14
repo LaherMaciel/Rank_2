@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/09 12:41:11 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/02/09 12:41:11 by lwencesl         ###   ########.fr       */
+/*   Created: 2022/11/13 21:46:04 by marvin            #+#    #+#             */
+/*   Updated: 2022/11/14 18:29:20 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+t_stack	*ft_lstnew(void *content)
 {
-	t_stack	*stack_a;
-	t_stack	*print_stack;
+	t_stack	*new_list;
 
-	stack_a = create_stack(argc, argv);
-	print_stack = stack_a;
-	while (print_stack != NULL)
-	{
-		printf("%d\n", *((int *) stack_a->content));
-		stack_a = stack_a->next;
-	}
-	free(print_stack);
-	free(stack_a);
-	return (0);
+	new_list = (t_stack *) malloc(sizeof(t_stack));
+	if (!new_list)
+		return (NULL);
+	new_list->content = content;
+	new_list->next = NULL;
+	return (new_list);
 }
