@@ -1,0 +1,1 @@
+gcc -Wall -Werror -Wextra -fsanitize=address -fsanitize-address-use-after-scope main.c stack_work.c moviments.c moviments2.c ft_atoi.c ft_printf.c ft_printf_utils.c ft_lstnew.c && ./a.out 1 2 3 4 5 6 7 8 9   

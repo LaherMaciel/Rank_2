@@ -14,52 +14,58 @@
 
 // Swap the first 2 elements at the top of stack. 
 // Do nothing if there is only one or no elements.
-void	ft_swap(t_stack *stack, char id)
+void	ft_swap(t_stack **head, char id)
 {
 	t_stack	*tmp;
 
-	if (!stack || !stack->next)
+	if (*head == NULL || (*head)->next == NULL)
 		return ;
 	if (id == 'a' || id == 'b')
 		ft_printf("s%c", id);
-	tmp = stack->content;
-	stack->content = stack->next->content;
-	stack->next->content = tmp;
+	tmp = (*head)->next;
+	(*head)->next = tmp->next;
+	tmp->next = *head;
+	*head = tmp;
 }
 
 // Take the first element at the top of the stack_2 and put it at the
 // top of the stack_1. Do nothing if stack_2 is empty.
 // pa = stack b -> stack a ||  pb = stack a -> stack b
-void	ft_pass_to(t_stack **stack_1, t_stack **stack_2, char id)
+void	ft_pass_to(t_stack **src, t_stack **dest, char id)
 {
-	t_stack	*tmp;
+	t_stack	*new_node;
+	int		content;
 
-	if (!*stack_2 || !(*stack_2))
+	if (!*src || !(*src))
 		return ;
 	if (id == 'a' || id == 'b')
 		ft_printf("p%c", id);
-	tmp = *stack_2;
-	*stack_2 = (*stack_2)->next;
-	tmp->next = *stack_1;
-	*stack_1 = tmp;
+	content = pop(src);
+	new_node = (t_stack *) malloc(sizeof(t_stack));
+	new_node->content = content;
+	if (dest)
+		new_node->next = *dest;
+	*dest = new_node;
 }
 
 // Shift up all elements of the stack by 1. 
 // The first element becomes the last one.
-void	ft_rotate(t_stack *stack, char id)
+void	ft_rotate(t_stack **stack, char id)
 {
+	int		new_last_value;
 	t_stack	*new_last;
 	t_stack	*last;
 
-	if (!stack || !(stack)->next)
+	if (!*stack || !(*stack)->next)
 		return ;
 	if (id == 'a' || id == 'b')
 		ft_printf("r%c", id);
-	new_last = stack;
-	stack = (stack)->next;
-	last = ft_lstlast(stack);
+	new_last_value = pop(stack);
+	last = *stack;
+	while (last->next != NULL)
+		last = last->next;
+	new_last = ft_lstnew(new_last_value);
 	last->next = new_last;
-	new_last->next = NULL;
 }
 
 // Shift down all elements of the stack by 1. 

@@ -12,70 +12,84 @@
 
 #include "push_swap.h"
 
-void	rotate_up_or_down(t_stack **stack_1, t_stack **stack_2, char id)
+int	best_movs_build(void)
 {
-	int	bigger_pos;
-	int	stack_size;
-	int	i;
-
-	i = -1;
-	stack_size = ft_lstsize(stack_1) + 1;
-	bigger_pos = find_bigger(stack_1, stack_2->content);
-	if (bigger_pos > (stack_size / 2))
-	{
-		while (--stack_size >= bigger_pos)
-			ft_reverse_rotate(stack_1, id);
-	}
-	else
-	{
-		while (++i >= bigger_pos)
-			ft_rotate(stack_1, id);
-	}
-	ft_pass_to(stack_2, stack_1, id);
+	return (0);
 }
 
-void	rotate_up_or_down_biggest(t_stack **stack_1,
-t_stack **stack_2, char id, int val)
+int	*which_mov(int best_stack_a_mov, int best_stack_b_mov,
+int best_pa_mov, int best_pb_mov)
 {
-	int	bigger_pos;
-	int	stack_size;
+	int	smallest;
+	int	pos;
 	int	i;
 
-	i = -1;
-	stack_size = ft_lstsize(stack_1) + 1;
-	bigger_pos = find_val(stack_1, val);
-	if (bigger_pos > (stack_size / 2))
+	i = 0;
+	smallest = INT_MAX;
+	pos = 0;
+	while (i < 4)
 	{
-		while (--stack_size >= bigger_pos)
-			ft_reverse_rotate(stack_1, id);
+		if (best_stack_a_mov < smallest)
+			pos = 1;
+		if (best_stack_b_mov < smallest)
+			pos = 2;
+		if (best_pa_mov < smallest)
+			pos = 3;
+		if (best_pb_mov < smallest)
+			pos = 5;
 	}
-	else
-	{
-		while (++i >= bigger_pos)
-			ft_rotate(stack_1, id);
-	}
-	ft_pass_to(stack_2, stack_1, id);
+	return (0);
 }
 
-void	ft_smallest_on_top(t_stack **stack_1, int smallest, char id)
+int	sei_la(t_stack stack_a, t_stack stack_b)
 {
-	int	smallest_pos;
-	int	stack_size;
-	int	i;
+	int	sa = best_stack_ord_mov(stack_a);
+	int	sb = best_stack_ord_mov(stack_b);
+	int	pa = best_stack_p1p2_mov(stack_a);
+	int	pb = best_stack_p1p2_mov(stack_b);
 
-	i = -1;
-	stack_size = ft_lstsize(stack_1) + 1;
-	smallest_pos = find_val(stack_1, smallest);
-	if (smallest_pos > (stack_size / 2))
-	{
-		while (--stack_size >= smallest_pos)
-			ft_reverse_rotate(stack_1, id);
-	}
-	else
-	{
-		while (++i >= smallest_pos)
-			ft_rotate(stack_1, id);
-	}
+
 }
+
+/*
+if ((best_sa * best_sb) < 0)
+		return (0);
+	if ((best_sa * best_pb) < 0)
+		return (0);
+	if ((best_sb * best_pa_mov) < 0)
+		return (0);
+	if ((best_pa * best_pb) < 0)
+		return (0);
+*/
+
+/*
+					A	-7 & -4 = 6
+					B	3 & 4 = 3
+
+A 	B
+
+-9
+-8
+-7
+-5
+-4
+-3
+-2
+-1
+0
+1
+2
+3
+4
+5
+6
+7
+9
+8
+
+*/
+
+
+
 
 

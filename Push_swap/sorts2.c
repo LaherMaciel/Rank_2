@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 06:33:41 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/02/12 12:08:15 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/02/15 16:39:35 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ int	nr_movs(int val_pos, int stack_size)
 	if (val_pos > (stack_size / 2))
 		needed_movs = (stack_size + 1) - val_pos;
 	else
-		needed_movs = val_pos * (-1);
+		needed_movs = (val_pos + 1) * (-1);
 	return (needed_movs);
 }
 
 int	if_dif_signs(int val_pos1, int val_pos2,
-int stack_size1, int stack_size2)
+int stack_size1, int stack_size2 )
 {
 	int	sign1;
 	int	sign2;
@@ -49,11 +49,12 @@ int stack_size1, int stack_size2)
 		needed_movs2 = needed_movs2 * (-1);
 		sign2 = -1;
 	}
+
 	if (needed_movs1 < needed_movs2)
 		return ((needed_movs1 * sign1) + nr_movs(val_pos2
-				+ (needed_movs1 * sign2), stack_size2));
-	return ((needed_movs2 * sign2) + nr_movs(val_pos1
-			+ (needed_movs2 * sign1), stack_size1));
+				+ (needed_movs1 * sign1), stack_size2));
+	return ((needed_movs2 * sign2) + (nr_movs(val_pos1
+				+ (needed_movs2 * sign2), stack_size1)));
 }
 
 int	total_movs(int val_pos1, int val_pos2,
@@ -71,14 +72,14 @@ int stack_size1, int stack_size2)
 	else
 	{
 		if (needed_movs1 > needed_movs2)
-			total_movs_need = needed_movs1;
+			total_movs_need = needed_movs1 + (needed_movs1 - needed_movs2);
 		else
-			total_movs_need = needed_movs2;
+			total_movs_need = needed_movs2 + (needed_movs2 - needed_movs1);
 	}
 	return (total_movs_need);
 }
 
-int	*best_stack_ord_mov(t_stack stack, int *best_movs)
+int	*best_stack_ord_mov(t_stack *stack, int *best_movs)
 {
 	int	smallest;
 	int	movs;
@@ -90,7 +91,7 @@ int	*best_stack_ord_mov(t_stack stack, int *best_movs)
 	pos1 = 0;
 	pos2 = find_biggest(stack);
 	smallest = find_smallest(stack);
-	stack_size = ft_lstsize(&stack);
+	stack_size = ft_lstsize(stack);
 	while (pos2 != smallest)
 	{
 		pos1 = pos2;
@@ -109,10 +110,10 @@ int	*best_stack_ord_mov(t_stack stack, int *best_movs)
 int	*best_stack_p1p2_mov(t_stack *stack_1,
 		t_stack *stack_2, int *best_movs)
 {
-	int	*smallest;
-	int	*movs;
-	int	*pos1;
-	int	*pos2;
+	int	smallest;
+	int	movs;
+	int	pos1;
+	int	pos2;
 
 	movs = 0;
 	pos1 = 0;

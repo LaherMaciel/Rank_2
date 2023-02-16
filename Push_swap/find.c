@@ -6,65 +6,127 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 06:17:38 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/02/12 12:03:40 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/02/16 00:12:33 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	*find_smallest(t_stack *stack)
+void	all_positive(int *sa, int *sb, int *pa, int *pb)
 {
-	int	*val;
+	if (sa < 0)
+		*sa = *sa * (-1);
+	if (*sb < 0)
+		*sb = *sb * (-1);
+	if (pa < 0)
+		*pa = *pa * (-1);
+	if (pb < 0)
+		*pb = *pb * (-1);
+}
 
-	val = (int *) stack->content;
+int	find_snd_smallest(int sa, int sb, int pa, int pb)
+{
+	int	smallest;
+	
+	if (simple_compar(sa, sb) == 1)
+		smallest = 1
+}
+
+int	simple_compar(int a, int b, int smallest)
+{
+	if (a == smallest || b == smallest)
+		return (0);
+	if (a < b)
+		return (1);
+	return (2);
+}
+
+int	find_smallest_intsack(t_stack *stack)
+{
+	int	val;
+
+	val = stack->content;
 	while (!stack->next)
 	{
-		if (val < (int *) stack->content)
-			val = (int *) stack->content;
+		if (val < stack->content)
+			val = stack->content;
 		stack = stack->next;
 	}
 	return (val);
 }
 
-int	*find_smaller_then(t_stack *stack, int val)
+int	find_smaller_then(t_stack *head, int val)
 {
-	int	*next_smallest;
+	t_stack	*current;
+	int		next_smallest;
 
-	next_smallest = (int *) stack->content;
-	while (!stack->next)
+	current = head;
+	next_smallest = current->content;
+	while (!current->next)
 	{
-		if (next_smallest > (int *) stack->content
-			&& val < (int *) stack->content)
-			next_smallest = (int *) stack->content;
-		stack = stack->next;
+		if (current->content < next_smallest
+			&& current->content > val)
+			next_smallest = current->content;
+		current = current->next;
 	}
 	return (next_smallest);
 }
 
-int	*find_biggest(t_stack *stack)
+int	find_biggest(t_stack *head)
 {
-	int	*val;
+	t_stack	*current;
+	int		val;
 
-	val = (int) stack->content;
-	while (!stack->next)
+	current = head;
+	val = current->content;
+	while (!current)
 	{
-		if (val > (int *) stack->content)
-			val = (int *) stack->content;
-		stack = stack->next;
+		if (current->content > val)
+			val = current->content;
+		current = current->next;
 	}
 	return (val);
 }
 
-int	find_val(t_stack stack, int val)
+int	find_val(t_stack *head, int val)
 {
-	int	cont;
+	t_stack	*current;
+	int		cont;
 
 	cont = 0;
-	while (!stack->next)
+	current = head;
+	while (!current->next)
 	{
-		if (val == stack->content)
+		if (val == current->content)
 			break ;
 		cont++;
 	}
 	return (cont);
 }
+
+/*
+int	find_smallest_mov(int sa, int sb, int pa, int pb)
+{
+	int	pos;
+	int	smallest;
+
+	pos = 1;
+	smallest = sa;
+	if (sb < smallest)
+	{
+		smallest = sb;
+		pos = 2;
+	}
+	if (pa < smallest)
+	{
+		smallest = pa;
+		pos = 3;
+	}
+	if (pb < smallest)
+	{
+		smallest = pb;
+		pos = 4;
+	}
+	return (pos);
+}
+*/
