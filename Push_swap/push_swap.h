@@ -84,4 +84,13 @@ t_stack	*ft_lstmap(t_stack *lst, void *(*f)(void *), void (*del)(void *));
 //ft_printf
 int		ft_printf(const char *a, ...);
 
+//visualizer
+void	visualizer(t_stack **stack_a, t_stack **stack_b,
+			int argc, char *argv[]);
+void	p_movs(t_stack **stack_a, t_stack **stack_b, char *input);
+void	ss_movs(t_stack **stack_a, t_stack **stack_b, char *input);
+void	rr_movs(t_stack **stack_a, t_stack **stack_b, char *input);
+void	rrr_movs(t_stack **stack_a, t_stack **stack_b, char *input);
+void	print_tab(t_stack *stack_a, t_stack *stack_b);
+
 #endif // !FT_PUSH_SWAP.H
