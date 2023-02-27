@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 13:02:12 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/02/24 14:34:21 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/02/26 13:23:26 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,66 @@
 
 void	print_tab(t_stack *stack_a, t_stack *stack_b)
 {
-	ft_printf("------------------------");
-	ft_printf("|      A        B      |");
-	while ((stack_a)->next != NULL && (stack_b)->next != NULL)
+	int	cont;
+
+	cont = 0;
+	ft_printf("\n-----------------------------------------------------------------\n");
+	ft_printf("|	PS	|	NMA	A	|	NMB	B	|\n");
+	ft_printf("|---------------|-----------------------|-----------------------|\n");
+	while ((stack_a) != NULL && (stack_b) != NULL)
 	{
-		ft_printf("|      %d        %d      |", (stack_a)->content,
-			(stack_b)->content);
+		if ((ft_lstsize(stack_a)) >= cont && (ft_lstsize(stack_b)) >= cont)
+			ft_printf("|	%i	|	%i	%d	|	%i	%d	|\n", cont, (-cont),
+				(stack_a)->content, (-cont), (stack_b)->content);
+		if ((ft_lstsize(stack_a)) >= cont && (ft_lstsize(stack_b)) < cont)
+			ft_printf("|	%i	|	%i	%d	|	%i	%d	|\n", cont, (-cont),
+				(stack_a)->content, ft_lstsize(stack_b), (stack_b)->content);
+		if ((ft_lstsize(stack_a)) < cont && (ft_lstsize(stack_b)) < cont)
+			ft_printf("|	%i	|	%i	%d	|	%i	%d	|\n", cont,
+				ft_lstsize(stack_a), (stack_a)->content, ft_lstsize(stack_b),
+				(stack_b)->content);
+		if ((ft_lstsize(stack_a)) < cont && (ft_lstsize(stack_b)) >= cont)
+			ft_printf("|	%i	|	%i	%d	|	%i	%d	|\n", cont,
+				ft_lstsize(stack_a), (stack_a)->content, (-cont),
+				(stack_b)->content);
 		stack_a = stack_a->next;
 		stack_b = stack_b->next;
+		cont++;
 	}
-	while ((stack_a->next != NULL))
+	while ((stack_a != NULL))
 	{
-		ft_printf("|      %d               |", (stack_a)->content);
+		if (ft_lstsize(stack_a) >= cont)
+			ft_printf("|	%i	|	%i	%d	|			|\n", cont,
+				(-cont), (stack_a)->content);
+		if (ft_lstsize(stack_a) < cont)
+			ft_printf("|	%i	|	%i	%d	|			|\n", cont,
+				ft_lstsize(stack_a), (stack_a)->content);
+		cont++;
 		stack_a = stack_a->next;
 	}
-	while ((stack_b->next != NULL))
+	while ((stack_b != NULL))
 	{
-		ft_printf("|               %d      |", (stack_b)->content);
+		if (ft_lstsize(stack_b) >= cont)
+			ft_printf("|	%i	|			|	%i	%d	|\n", cont,
+				(-cont), (stack_b)->content);
+		if (ft_lstsize(stack_b) < cont)
+			ft_printf("|	%i	|			|	%i	%d	|\n", cont,
+				ft_lstsize(stack_b), (stack_b)->content);
+		cont++;
 		stack_b = stack_b->next;
 	}
-	ft_printf("|                      |");
-	ft_printf("------------------------");
+	ft_printf("-----------------------------------------------------------------\n");
 }
 
-void	visualizer(t_stack **stack_a, t_stack **stack_b, int argc, char *argv[])
+void	visualizer(t_stack **stack_a, t_stack **stack_b)
 {
-	char	input[4];
+	char	input[5];
+	int		cont;
 
 	input[0] = 's';
-	while (input[0] == 'p' || input[0] == 's' || input[0] == 'r')
+	cont = 0;
+	print_tab(*stack_a, *stack_b);
+	while (input[0] != 'e')
 	{
 		ft_printf("next  mov: ");
 		scanf("%s", input);
@@ -50,10 +81,18 @@ void	visualizer(t_stack **stack_a, t_stack **stack_b, int argc, char *argv[])
 			p_movs(stack_a, stack_b, input);
 		else if (input[0] == 's')
 			ss_movs(stack_a, stack_b, input);
-		else if (input[0] == 'r' && input[3] != '\0')
+		else if (input[0] == 'r' && input[2] != '\0')
 			rrr_movs(stack_a, stack_b, input);
 		else if (input[0] == 'r')
 			rr_movs(stack_a, stack_b, input);
+		else if (input[0] != 'p' || input[0] != 's'
+			|| input[0] != 'r' || input[0] != 'e')
+			ft_printf("ERROR: VALID INPUT -> ss," \
+					" sa, sb, rr, ra, rb, rrr, rra," \
+					" rrb, pa, pb e exit");
+		cont++;
 		print_tab(*stack_a, *stack_b);
+		ft_printf("%i\n", cont);
 	}
+	ft_printf("FIM DO PROGRAMA!\n");
 }

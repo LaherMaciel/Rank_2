@@ -6,24 +6,26 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 06:33:41 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/02/15 16:39:35 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/02/25 15:42:25 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	nr_movs(int val_pos, int stack_size)
+// receive the position and the stack and returns the number of
+//  movements needed to send the value in that position to the star of the stack
+int	nr_movs(int pos, int stack_size)
 {
 	int	needed_movs;
 
-	if (val_pos < 0)
-		val_pos = stack_size + val_pos;
-	else if (val_pos >= stack_size)
-		val_pos = val_pos - stack_size;
-	if (val_pos > (stack_size / 2))
-		needed_movs = (stack_size + 1) - val_pos;
+	if (pos < 0)
+		pos = stack_size + pos;
+	else if (pos >= stack_size)
+		pos = pos - stack_size;
+	if (pos > (stack_size / 2))
+		needed_movs = (stack_size + 1) - pos;
 	else
-		needed_movs = (val_pos + 1) * (-1);
+		needed_movs = (pos) * (-1);
 	return (needed_movs);
 }
 
@@ -79,7 +81,7 @@ int stack_size1, int stack_size2)
 	return (total_movs_need);
 }
 
-int	*best_stack_ord_mov(t_stack *stack, int *best_movs)
+void	best_stack_ord_mov(t_stack *stack, int (*best_movs)[3])
 {
 	int	smallest;
 	int	movs;
@@ -96,19 +98,24 @@ int	*best_stack_ord_mov(t_stack *stack, int *best_movs)
 	{
 		pos1 = pos2;
 		pos2 = find_smaller_then(stack, pos1);
-		movs = total_movs(pos1, pos2, stack_size, stack_size);
-		if (movs < best_movs[0] && pos2 != smallest)
+		if ((find_pos(stack, pos1) - find_pos(stack, pos2)) != 1
+			|| find_pos(stack, pos2) - find_pos(stack,
+				find_smaller_then(stack, pos2)) != 1)
 		{
-			best_movs[0] = movs;
-			best_movs[1] = pos1;
-			best_movs[2] = pos2;
+			movs = total_movs(find_pos(stack, pos1),
+					find_pos(stack, pos2), stack_size, stack_size);
+			if (movs < *best_movs[0] && pos2 != smallest && (movs != 0 || movs != 1))
+			{
+				(*best_movs)[0] = movs;
+				(*best_movs)[1] = pos1;
+				(*best_movs)[2] = pos2;
+			}
 		}
 	}
-	return (best_movs);
 }
 
-int	*best_stack_p1p2_mov(t_stack *stack_1,
-		t_stack *stack_2, int *best_movs)
+void	best_stack_p1p2_mov(t_stack *src,
+		t_stack *dst, int (*best_movs)[3])
 {
 	int	smallest;
 	int	movs;
@@ -117,19 +124,19 @@ int	*best_stack_p1p2_mov(t_stack *stack_1,
 
 	movs = 0;
 	pos1 = 0;
-	pos2 = find_biggest(stack_1);
-	smallest = find_smallest(stack_2);
+	pos2 = find_biggest(src);
+	smallest = find_smallest(dst);
 	while (pos2 != smallest)
 	{
-		pos1 = find_smaller_then(stack_1, pos1);
-		pos2 = find_smaller_then(stack_2, pos1);
-		movs = total_movs(pos1, pos2, ft_lstsize(stack_1), ft_lstsize(stack_2));
-		if (movs < best_movs[0] && pos2 != smallest)
+		pos1 = find_smaller_then(src, pos1);
+		pos2 = find_smaller_then(dst, pos1);
+		movs = total_movs(find_pos(src, pos1), find_pos(dst, pos2),
+				ft_lstsize(src), ft_lstsize(dst));
+		if (movs < best_movs[0][0] && pos2 != smallest)
 		{
-			best_movs[0] = movs;
-			best_movs[1] = pos1;
-			best_movs[2] = pos2;
+			(*best_movs)[0] = movs;
+			(*best_movs)[1] = pos1;
+			(*best_movs)[2] = pos2;
 		}
 	}
-	return (best_movs);
 }

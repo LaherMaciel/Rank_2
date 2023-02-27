@@ -6,14 +6,42 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 06:17:38 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/02/25 13:49:51 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/02/24 17:49:40 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// find and return the smallest value of the stack
-int	find_smallest(t_stack *stack)
+void	all_positive(int *sa, int *sb, int *pa, int *pb)
+{
+	if (sa < 0)
+		*sa = *sa * (-1);
+	if (*sb < 0)
+		*sb = *sb * (-1);
+	if (pa < 0)
+		*pa = *pa * (-1);
+	if (pb < 0)
+		*pb = *pb * (-1);
+}
+
+int	find_snd_smallest(int sa, int sb, int pa, int pb)
+{
+	int	smallest;
+	
+	if (simple_compar(sa, sb) == 1)
+		smallest = 1
+}
+
+int	simple_compar(int a, int b, int smallest)
+{
+	if (a == smallest || b == smallest)
+		return (0);
+	if (a < b)
+		return (1);
+	return (2);
+}
+
+int	find_smallest_intsack(t_stack *stack)
 {
 	int	val;
 
@@ -27,7 +55,6 @@ int	find_smallest(t_stack *stack)
 	return (val);
 }
 
-// find and return the value smaller, closest to 'val'
 int	find_smaller_then(t_stack *head, int val)
 {
 	t_stack	*current;
@@ -45,7 +72,6 @@ int	find_smaller_then(t_stack *head, int val)
 	return (next_smallest);
 }
 
-// find and return the biggest value of the stack
 int	find_biggest(t_stack *head)
 {
 	t_stack	*current;
@@ -62,7 +88,6 @@ int	find_biggest(t_stack *head)
 	return (val);
 }
 
-// return the position of the 'val'
 int	find_pos(t_stack *head, int val)
 {
 	t_stack	*current;
@@ -79,7 +104,6 @@ int	find_pos(t_stack *head, int val)
 	return (cont);
 }
 
-// return the val in the position 'pos'
 int	find_val(t_stack *head, int pos)
 {
 	t_stack	*current;
@@ -116,34 +140,5 @@ int	find_smallest_mov(int sa, int sb, int pa, int pb)
 		pos = 4;
 	}
 	return (pos);
-}
-
-int	find_snd_smallest(int sa, int sb, int pa, int pb)
-{
-	int	smallest;
-	
-	if (simple_compar(sa, sb) == 1)
-		smallest = 1
-}
-
-void	all_positive(int *sa, int *sb, int *pa, int *pb)
-{
-	if (sa < 0)
-		*sa = *sa * (-1);
-	if (*sb < 0)
-		*sb = *sb * (-1);
-	if (pa < 0)
-		*pa = *pa * (-1);
-	if (pb < 0)
-		*pb = *pb * (-1);
-}
-
-int	simple_compar(int a, int b, int smallest)
-{
-	if (a == smallest || b == smallest)
-		return (0);
-	if (a < b)
-		return (1);
-	return (2);
 }
 */
