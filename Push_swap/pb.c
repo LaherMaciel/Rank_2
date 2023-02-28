@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/25 12:58:43 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/02/28 18:42:51 by lwencesl         ###   ########.fr       */
+/*   Created: 2023/02/28 19:45:42 by lwencesl          #+#    #+#             */
+/*   Updated: 2023/02/28 22:33:05 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ char	*pb_decisions(int val_1, int val_2, int pos_1, int pos_2)
 	if (val_1 < val_2)
 		final_pos_2 = 1;
 	else
-		final_pos_1 = 0;
-	if ((stack_b == NULL) || ((pos_1 == 0 && pos_2 == final_pos_2)))
+		final_pos_2 = 0;
+	if (pos_1 == 0 && pos_2 == final_pos_2)
 		return ("pb");
 	else if (pos_1 < 0 && pos_2 < final_pos_2)
 		return ("rr");
@@ -31,14 +31,13 @@ char	*pb_decisions(int val_1, int val_2, int pos_1, int pos_2)
 	else if (pos_1 > 0)
 		return ("rra");
 	else if (pos_2 < final_pos_2)
-		return ("rb"); 
+		return ("rb");
 	else if (pos_2 > final_pos_2)
 		return ("rrb");
 	return (NULL);
 }
 
 /*
-
 char	*pb_decisions(t_stack *stack_a, t_stack *stack_b, int pos_1, int pos_2)
 {
 	if ((pos_1 == 0 && pos_2 == 0) || (stack_b == NULL))

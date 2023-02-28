@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 13:02:12 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/02/28 15:20:51 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/02/28 19:44:55 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,11 @@ void	print_tab(t_stack *stack_a, t_stack *stack_b)
 	int	cont;
 
 	cont = 0;
-	ft_printf("\n-----------------------------------------------------------------\n");
+	ft_printf("\n---------------------------------"\
+	"--------------------------------\n");
 	ft_printf("|	PS	|	NMA	A	|	NMB	B	|\n");
-	ft_printf("|---------------|-----------------------|-----------------------|\n");
+	ft_printf("|---------------|-------------"\
+	"----------|-----------------------|\n");
 	while ((stack_a) != NULL && (stack_b) != NULL)
 	{
 		if ((ft_lstsize(stack_a)) >= cont && (ft_lstsize(stack_b)) >= cont)
@@ -62,7 +64,8 @@ void	print_tab(t_stack *stack_a, t_stack *stack_b)
 		cont++;
 		stack_b = stack_b->next;
 	}
-	ft_printf("-----------------------------------------------------------------\n");
+	ft_printf("----------------------------------------"\
+		"-------------------------\n");
 }
 
 void	visualizer(t_stack **stack_a, t_stack **stack_b)
