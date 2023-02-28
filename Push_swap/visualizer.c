@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 13:02:12 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/02/26 13:23:26 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/02/28 15:20:51 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,14 +85,18 @@ void	visualizer(t_stack **stack_a, t_stack **stack_b)
 			rrr_movs(stack_a, stack_b, input);
 		else if (input[0] == 'r')
 			rr_movs(stack_a, stack_b, input);
-		else if (input[0] != 'p' || input[0] != 's'
-			|| input[0] != 'r' || input[0] != 'e')
+		else if (input[0] != 'p' && input[0] != 's'
+			&& input[0] != 'r' && input[0] != 'e')
 			ft_printf("ERROR: VALID INPUT -> ss," \
 					" sa, sb, rr, ra, rb, rrr, rra," \
-					" rrb, pa, pb e exit");
-		cont++;
-		print_tab(*stack_a, *stack_b);
-		ft_printf("%i\n", cont);
+					" rrb, pa, pb or exit\n");
+		if (input[0] == 'p' || input[0] == 's'
+			|| input[0] == 'r')
+		{
+			cont++;
+			print_tab(*stack_a, *stack_b);
+			ft_printf("%i\n", cont);
+		}
 	}
 	ft_printf("FIM DO PROGRAMA!\n");
 }
