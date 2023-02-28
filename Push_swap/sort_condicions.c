@@ -111,7 +111,6 @@ void	best_stack_p1p2_mov(t_stack *src,
 	smallest = find_smallest(src);
 	while (pos1 != smallest)
 	{
-		pos1 = find_smaller_then(src, pos1);
 		pos2 = find_smaller_then(dst, pos1);
 		movs = total_movs_p( src, dst, find_pos(stack, (pos_1)), find_pos(stack, (pos_2)))
 		if (movs < best_movs[0][0] && pos2 != smallest)
@@ -120,6 +119,6 @@ void	best_stack_p1p2_mov(t_stack *src,
 			(*best_movs)[1] = find_pos(stack, (pos_1));
 			(*best_movs)[2] = find_pos(stack, (pos_2));
 		}
+		pos1 = find_smaller_then(src, pos1);
 	}
 }
-
