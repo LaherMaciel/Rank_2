@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 15:23:57 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/02/28 19:59:15 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/02/28 23:56:21 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 void	p_decisison_cont_aux(int *pos_1, int *pos_2, int final_pos_2)
 {
-	if (pos_1 < 0 && *pos_2 < final_pos_2)
+	if (*pos_1 < 0 && *pos_2 < final_pos_2)
 	{
 		pos_1++;
 		pos_2++;
 	}
-	else if (pos_1 > 0 && *pos_2 > final_pos_2)
+	else if (*pos_1 > 0 && *pos_2 > final_pos_2)
 	{
 		pos_1--;
 		pos_2--;
 	}
-	else if (pos_1 < 0)
+	else if (*pos_1 < 0)
 		pos_1++;
-	else if (pos_1 > 0)
+	else if (*pos_1 > 0)
 		pos_1++;
 	else if (*pos_2 < final_pos_2)
 		pos_2++;
