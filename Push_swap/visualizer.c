@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 13:02:12 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/03/01 19:55:48 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/03/01 21:01:19 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	print_tab(t_stack *stack_a, t_stack *stack_b)
 	ft_printf("|	PS	|	NMA	A	|	NMB	B	|\n");
 	ft_printf("|---------------|-------------"\
 	"----------|-----------------------|\n");
-	while ((stack_a) != NULL && (stack_b) != NULL)
+	while (stack_a && stack_b)
 	{
 		if ((ft_lstsize(stack_a)) >= cont && (ft_lstsize(stack_b)) >= cont)
 			ft_printf("|	%i	|	%i	%d	|	%i	%d	|\n", cont, (-cont),
@@ -42,7 +42,7 @@ void	print_tab(t_stack *stack_a, t_stack *stack_b)
 		stack_b = stack_b->next;
 		cont++;
 	}
-	while ((stack_a != NULL))
+	while (stack_a)
 	{
 		if (ft_lstsize(stack_a) >= cont)
 			ft_printf("|	%i	|	%i	%d	|			|\n", cont,
@@ -53,7 +53,7 @@ void	print_tab(t_stack *stack_a, t_stack *stack_b)
 		cont++;
 		stack_a = stack_a->next;
 	}
-	while ((stack_b != NULL))
+	while (stack_b)
 	{
 		if (ft_lstsize(stack_b) >= cont)
 			ft_printf("|	%i	|			|	%i	%d	|\n", cont,
@@ -106,6 +106,7 @@ void	visualizer(t_stack **stack_a, t_stack **stack_b)
 
 void	visualizer2(t_stack **stack_a, t_stack **stack_b)
 {
+	ft_printf("visualizer2 in\n");
 	char	input[5];
 	int		cont;
 	int		done;
@@ -113,12 +114,11 @@ void	visualizer2(t_stack **stack_a, t_stack **stack_b)
 	input[0] = 's';
 	cont = 0;
 	done = 0;
-	print_tab(*stack_a, *stack_b);
+	//print_tab(*stack_a, *stack_b);
 	while (input[0] != 'e' || done == 0)
 	{
-		ft_printf("next  mov: ");
-		scanf("%s", input);
 		done = sort(stack_a, stack_b);
+		ft_printf("done = %i", done);
 		print_tab(*stack_a, *stack_a);
 		if (input[0] != 'p' && input[0] != 's'
 			&& input[0] != 'r' && input[0] != 'e')
@@ -132,6 +132,9 @@ void	visualizer2(t_stack **stack_a, t_stack **stack_b)
 			print_tab(*stack_a, *stack_b);
 			ft_printf("%i\n", cont);
 		}
+		ft_printf("next  mov: ");
+		scanf("%s", input);
 	}
+	ft_printf("visualizer2 out\n");
 	ft_printf("FIM DO PROGRAMA!\n");
 }

@@ -68,8 +68,8 @@ void	p_decisison_cont_aux(int *pos_1, int *pos_2, int final_pos_2);
 // sa && sa_cont
 char	*s_decisions(t_stack *stack, int pos_1, int pos_2, char id);
 int		s_decisions_cont(t_stack *stack, int pos_1, int pos_2);
-void	aux_1(int *pos_1, int *pos_2, int *cont, t_stack *stack);
-void	aux_2(int *pos_1, int *pos_2, t_stack *stack);
+void	aux_1(int *pos_1, int *pos_2, int *cont, int out);
+void	aux_2(int *pos_1, int *pos_2, int out);
 void	aux_3(int *pos_1, int *pos_2);
 
 // find

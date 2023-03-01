@@ -27,5 +27,6 @@ char	*ft_strjoin(char *s1, char s2)
 	sjoin[i] = s2;
 	i++;
 	sjoin[i] = '\0';
+	ft_printf("strjoin ok");
 	return (sjoin);
 }

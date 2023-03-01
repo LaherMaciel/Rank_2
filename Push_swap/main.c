@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 12:43:29 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/03/01 19:55:32 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/03/01 20:53:55 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	main(int argc, char *argv[])
 		pop(&stack_a);
 	while (stack_b != NULL)
 		pop(&stack_b);
+	ft_printf("ok");
 	return (0);
 }
 

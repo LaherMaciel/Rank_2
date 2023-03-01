@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 12:58:31 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/02/28 22:04:56 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/03/01 20:52:30 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ char	*s_decisions(t_stack *stack, int pos_1, int pos_2, char id)
 		return (ft_strjoin("r", id));
 	else if (pos_1 > 0)
 		return (ft_strjoin("rr", id));
+	ft_printf("s_decisions ok");
 	return (NULL);
 }
 

@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 21:55:56 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/03/01 20:00:42 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/03/01 22:15:56 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	*best_stack_sa_mov(t_stack *stack, int *best_movs)
 {
+	ft_printf("best_satck_sa_mov in\n");
 	int	smallest;
 	int	movs;
 	int	pos_1;
@@ -32,16 +33,22 @@ int	*best_stack_sa_mov(t_stack *stack, int *best_movs)
 		if (movs < best_movs[0] && pos_2 != smallest && movs != 0)
 		{
 			best_movs[0] = movs;
-			best_movs[1] = find_pos(stack, (pos_1));
-			best_movs[2] = find_pos(stack, (pos_2));
+			best_movs[1] = nr_movs(find_pos(stack, (pos_1)), ft_lstsize(stack));
+			best_movs[2] = nr_movs(find_pos(stack, (pos_2)), ft_lstsize(stack));
 		}
 	}
+	ft_printf("pos_1 = %i : pos_2 = %i", nr_movs(find_pos(stack, (pos_1)),
+			ft_lstsize(stack)), nr_movs(find_pos(stack, (pos_2)),
+			ft_lstsize(stack)));
+	ft_printf("best_stack_p_mov out\n");
+	ft_printf("best_satck_sa_mov out\n");
 	return (best_movs);
 }
 
 int	*best_stack_p_mov(t_stack *src,
 		t_stack *dst, int *best_movs)
 {
+	ft_printf("best_stack_p_mov in\n");
 	int	smallest;
 	int	movs;
 	int	pos_1;
@@ -59,10 +66,13 @@ int	*best_stack_p_mov(t_stack *src,
 		if (movs < best_movs[0] && pos_2 != smallest && movs != 0)
 		{
 			best_movs[0] = movs;
-			best_movs[1] = find_pos(src, (pos_1));
-			best_movs[2] = find_pos(dst, (pos_2));
+			best_movs[1] = nr_movs(find_pos(src, (pos_1)), ft_lstsize(src));
+			best_movs[2] = nr_movs(find_pos(dst, (pos_2)), ft_lstsize(dst));
 		}
 		pos_1 = find_smaller_then(src, pos_1);
 	}
+	ft_printf("pos_1 = %i : pos_2 = %i", nr_movs(find_pos(src, (pos_1)),
+			ft_lstsize(src)), nr_movs(find_pos(dst, (pos_2)), ft_lstsize(dst)));
+	ft_printf("best_stack_p_mov out\n");
 	return (best_movs);
 }
