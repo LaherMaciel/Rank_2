@@ -6,13 +6,13 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 21:55:56 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/02/28 21:57:58 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/03/01 18:29:23 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	best_stack_sa_mov(t_stack *stack, int best_movs[3])
+int	*best_stack_sa_mov(t_stack *stack, int *best_movs)
 {
 	int	smallest;
 	int	movs;
@@ -36,10 +36,11 @@ void	best_stack_sa_mov(t_stack *stack, int best_movs[3])
 			best_movs[2] = find_pos(stack, (pos_2));
 		}
 	}
+	return (best_movs);
 }
 
-void	best_stack_p_mov(t_stack *src,
-		t_stack *dst, int best_movs[3])
+int	*best_stack_p_mov(t_stack *src,
+		t_stack *dst, int *best_movs)
 {
 	int	smallest;
 	int	movs;
@@ -63,4 +64,5 @@ void	best_stack_p_mov(t_stack *src,
 		}
 		pos_1 = find_smaller_then(src, pos_1);
 	}
+	return (best_movs);
 }

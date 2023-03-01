@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 15:23:57 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/02/28 23:56:21 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/03/01 18:20:56 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	p_decisison_cont_aux(int *pos_1, int *pos_2, int final_pos_2)
 		pos_2--;
 }
 
-char	p_decisions_cont(int val_1, int val_2, int pos_1, int pos_2)
+int	p_decisions_cont(int val_1, int val_2, int pos_1, int pos_2)
 {
 	int	mov;
 	int	cont;

@@ -51,33 +51,32 @@ int		total_movs_s(t_stack *stack, int pos_1, int pos_2);
 int		total_movs_p(t_stack *src, t_stack *dst, int pos_1, int pos_2);
 
 // sort.c
-void	sort(t_stack **stack_1, t_stack **stack_2);
-void	sort_1(t_stack **stack_1, t_stack **stack_2);
-void	sort_2(t_stack **stack_1, t_stack **stack_2, char *id_1, char *id_2);
-void	best_stack_sa_mov(t_stack *stack, int best_movs[3]);
-void	best_stack_p_mov(t_stack *src, t_stack *dst, int best_movs[3]);
+int		sort(t_stack **stack_1, t_stack **stack_2);
+void	sort_1(t_stack **stack_1, t_stack **stack_2, char *sa, char *pb);
+void	sort_2(t_stack **stack_1, t_stack **stack_2);
+void	sort_3(t_stack **stack_1, t_stack **stack_2, char *id_1, char *id_2);
+int		sort_4(t_stack **stack_1, t_stack **stack_2, int *pb);
+int		*best_stack_sa_mov(t_stack *stack, int *best_movs);
+int		*best_stack_p_mov(t_stack *src, t_stack *dst, int *best_movs);
 
 // pa
-
-// pa_cont
+char	*pa_decisions(int val_1, int val_2, int pos_1, int pos_2);
 
 // pb
 char	*pb_decisions(int val_1, int val_2, int pos_1, int pos_2);
 
-// pb_cont
-char	p_decisions_cont(int val_1, int val_2, int pos_1, int pos_2);
+// p_cont
+int		p_decisions_cont(int val_1, int val_2, int pos_1, int pos_2);
 void	p_decisison_cont_aux(int *pos_1, int *pos_2, int final_pos_2);
 
 // sa
 char	*s_decisions(t_stack *stack, int pos_1, int pos_2, char id);
 
 // sa_cont
-char	s_decisions_cont(t_stack *stack, int pos_1, int pos_2);
+int		s_decisions_cont(t_stack *stack, int pos_1, int pos_2);
 void	aux_1(int *pos_1, int *pos_2, int *cont, t_stack *stack);
 void	aux_2(int *pos_1, int *pos_2, t_stack *stack);
 void	aux_3(int *pos_1, int *pos_2);
-
-// sb
 
 // find
 int		find_smallest(t_stack *stack);
@@ -91,15 +90,15 @@ long	ft_atoi(char *str);
 char	*ft_itoa(int n);
 size_t	ft_strlen(const char *a);
 t_stack	*ft_lstnew(int content);
-void	ft_lstadd_front(t_stack **lst, t_stack *new);
+void	ft_lstadd_front(t_stack **lst, t_stack *to_add);
 int		ft_lstsize(t_stack *lst);
 t_stack	*ft_lstlast(t_stack *lst);
-void	ft_lstadd_back(t_stack **lst, t_stack *new);
+void	ft_lstadd_back(t_stack **lst, t_stack *to_add);
 void	ft_lstdelone(t_stack *lst, void (*del)(void*));
 void	ft_lstclear(t_stack **lst, void (*del)(void*));
 void	ft_lstiter(t_stack *lst, void (*f)(void *));
 t_stack	*ft_lstmap(t_stack *lst, void *(*f)(void *), void (*del)(void *));
-char	*ft_strjoin(char const *s1, char s2);
+char	*ft_strjoin(char *s1, char s2);
 
 // ft_printf
 int		ft_printf(const char *a, ...);
