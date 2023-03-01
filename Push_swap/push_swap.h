@@ -51,28 +51,22 @@ int		total_movs_s(t_stack *stack, int pos_1, int pos_2);
 int		total_movs_p(t_stack *src, t_stack *dst, int pos_1, int pos_2);
 
 // sort.c
+int		*best_stack_sa_mov(t_stack *stack, int *best_movs);
+int		*best_stack_p_mov(t_stack *src, t_stack *dst, int *best_movs);
 int		sort(t_stack **stack_1, t_stack **stack_2);
 void	sort_1(t_stack **stack_1, t_stack **stack_2, int *sa, int *pb);
 void	sort_2(t_stack **stack_1, t_stack **stack_2);
 void	sort_3(t_stack **stack_1, t_stack **stack_2, char *id_1, char *id_2);
 int		sort_4(t_stack **stack_1, t_stack **stack_2, int *pb);
-int		*best_stack_sa_mov(t_stack *stack, int *best_movs);
-int		*best_stack_p_mov(t_stack *src, t_stack *dst, int *best_movs);
 
-// pa
+// pa, pb & p_cont
 char	*pa_decisions(int val_1, int val_2, int pos_1, int pos_2);
-
-// pb
 char	*pb_decisions(int val_1, int val_2, int pos_1, int pos_2);
-
-// p_cont
 int		p_decisions_cont(int val_1, int val_2, int pos_1, int pos_2);
 void	p_decisison_cont_aux(int *pos_1, int *pos_2, int final_pos_2);
 
-// sa
+// sa && sa_cont
 char	*s_decisions(t_stack *stack, int pos_1, int pos_2, char id);
-
-// sa_cont
 int		s_decisions_cont(t_stack *stack, int pos_1, int pos_2);
 void	aux_1(int *pos_1, int *pos_2, int *cont, t_stack *stack);
 void	aux_2(int *pos_1, int *pos_2, t_stack *stack);
@@ -105,6 +99,7 @@ int		ft_printf(const char *a, ...);
 
 // visualizer
 void	visualizer(t_stack **stack_a, t_stack **stack_b);
+void	visualizer2(t_stack **stack_a, t_stack **stack_b);
 void	p_movs(t_stack **stack_a, t_stack **stack_b, char *input);
 void	ss_movs(t_stack **stack_a, t_stack **stack_b, char *input);
 void	rr_movs(t_stack **stack_a, t_stack **stack_b, char *input);

@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 13:02:12 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/03/01 18:17:11 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/03/01 19:55:48 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,38 @@ void	visualizer(t_stack **stack_a, t_stack **stack_b)
 		else if (input[0] == 'r')
 			rr_movs(stack_a, stack_b, input);
 		else if (input[0] != 'p' && input[0] != 's'
+			&& input[0] != 'r' && input[0] != 'e')
+			ft_printf("ERROR: VALID INPUT -> ss," \
+					" sa, sb, rr, ra, rb, rrr, rra," \
+					" rrb, pa, pb or exit\n");
+		if (input[0] == 'p' || input[0] == 's'
+			|| input[0] == 'r')
+		{
+			cont++;
+			print_tab(*stack_a, *stack_b);
+			ft_printf("%i\n", cont);
+		}
+	}
+	ft_printf("FIM DO PROGRAMA!\n");
+}
+
+void	visualizer2(t_stack **stack_a, t_stack **stack_b)
+{
+	char	input[5];
+	int		cont;
+	int		done;
+
+	input[0] = 's';
+	cont = 0;
+	done = 0;
+	print_tab(*stack_a, *stack_b);
+	while (input[0] != 'e' || done == 0)
+	{
+		ft_printf("next  mov: ");
+		scanf("%s", input);
+		done = sort(stack_a, stack_b);
+		print_tab(*stack_a, *stack_a);
+		if (input[0] != 'p' && input[0] != 's'
 			&& input[0] != 'r' && input[0] != 'e')
 			ft_printf("ERROR: VALID INPUT -> ss," \
 					" sa, sb, rr, ra, rb, rrr, rra," \
