@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 19:16:34 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/03/01 18:30:45 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/03/01 18:33:28 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	sort_2(t_stack **stack_1, t_stack **stack_2)
 	}
 }
 
-void	sort_1(t_stack **stack_1, t_stack **stack_2, char *sa, char *pb)
+void	sort_1(t_stack **stack_1, t_stack **stack_2, int *sa, int *pb)
 {
 	if (ft_lstsize(*stack_1) > 3 && stack_2 == NULL && sa[0]
 		> nr_movs(find_pos(*stack_1, find_biggest(*stack_1)),

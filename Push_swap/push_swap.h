@@ -52,7 +52,7 @@ int		total_movs_p(t_stack *src, t_stack *dst, int pos_1, int pos_2);
 
 // sort.c
 int		sort(t_stack **stack_1, t_stack **stack_2);
-void	sort_1(t_stack **stack_1, t_stack **stack_2, char *sa, char *pb);
+void	sort_1(t_stack **stack_1, t_stack **stack_2, int *sa, int *pb);
 void	sort_2(t_stack **stack_1, t_stack **stack_2);
 void	sort_3(t_stack **stack_1, t_stack **stack_2, char *id_1, char *id_2);
 int		sort_4(t_stack **stack_1, t_stack **stack_2, int *pb);
