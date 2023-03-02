@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 15:23:57 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/03/02 01:22:04 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/03/02 04:36:14 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,10 @@ int	p_decisions_cont(int val_1, int val_2, int pos_1, int pos_2)
 	while (mov == 0)
 	{
 		if (pos_1 == 0 && pos_2 == final_pos_2)
-		{
 			mov = 1;
-			cont++;
-		}
 		p_decisison_cont_aux(&pos_1, &pos_2, final_pos_2);
-		if (mov == 0)
-			cont++;
-		ft_printf("pos_1 = %i : pos_2 = %i\n", pos_1, pos_2);
+		cont++;
+		ft_printf("pos_1->%i | pos_2->%i\ncont->%i", pos_1, pos_2, cont);
 	}
 	ft_printf("p_decisions_cont out\n");
 	return (cont);

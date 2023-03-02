@@ -6,15 +6,15 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 19:16:34 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/03/02 01:34:34 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/03/02 04:57:19 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	sort_4(t_stack **stack_1, t_stack **stack_2, int *mov)
+int	sort_5(t_stack **stack_1, t_stack **stack_2, int *mov)
 {
-	ft_printf("sort_4 in\n");
+	ft_printf("sort_5 in\n");
 	char	*id;
 
 	while (stack_2 != NULL)
@@ -31,30 +31,22 @@ int	sort_4(t_stack **stack_1, t_stack **stack_2, int *mov)
 		else if (id[0] == 'r')
 			rr_movs(stack_1, stack_2, id);
 	}
-	ft_printf("sort_4 out\n");
+	ft_printf("sort_5 out\n");
 	return (1);
 }
 
-int	sort_4(t_stack **stack, int *mov)
+void	sort_4(t_stack **stack, int *mov)
 {
-	ft_printf("sort_4 in\n");
 	char	*id;
-
-	while (stack != NULL)
-	{
-		best_stack_sa_mov(*stack, mov);
-		id = s_decisions(stack, mov[1], mov[2], 'a');
-		if (id[0] == 'p')
-			p_movs(stack, stack, id);
-		else if (id[0] == 's')
-			ss_movs(stack, stack, id);
-		else if (id[0] == 'r' && id[2] != '\0')
-			rrr_movs(stack, stack, id);
-		else if (id[0] == 'r')
-			rr_movs(stack, stack, id);
-	}
-	ft_printf("sort_4 out\n");
-	return (1);
+	id = sa_decisions(*stack, mov[1], mov[2]);
+	if (id[0] == 'p')
+		p_movs(stack, stack, id);
+	else if (id[0] == 's')
+		ss_movs(stack, stack, id);
+	else if (id[0] == 'r' && id[2] != '\0')
+		rrr_movs(stack, stack, id);
+	else if (id[0] == 'r')
+		rr_movs(stack, stack, id);
 }
 
 void	sort_3(t_stack **stack_1, t_stack **stack_2, char *id_1, char *id_2)
@@ -84,17 +76,15 @@ void	sort_3(t_stack **stack_1, t_stack **stack_2, char *id_1, char *id_2)
 void	sort_2(t_stack **stack_1, t_stack **stack_2)
 {
 	ft_printf("sort_2 in\n");
-	while (stack_2 == NULL)
-	{
-		if (nr_movs(find_pos(*stack_1, find_biggest(*stack_1)),
-				ft_lstsize(*stack_1)) > 0)
-			ft_reverse_rotate(stack_1, 'a');
-		else if (nr_movs(find_pos(*stack_1, find_biggest(*stack_1)),
-				ft_lstsize(*stack_1)) < 0)
-			ft_rotate(stack_1, 'a');
-		else
-			ft_pass_to(stack_1, stack_2, 'b');
-	}
+	if (nr_movs(find_pos(*stack_1, find_biggest(*stack_1)),
+			ft_lstsize(*stack_1)) > 0)
+		ft_reverse_rotate(stack_1, 'a');
+	else if (nr_movs(find_pos(*stack_1, find_biggest(*stack_1)),
+			ft_lstsize(*stack_1)) < 0)
+		ft_rotate(stack_1, 'a');
+	else
+		ft_pass_to(stack_1, stack_2, 'b');
+	ft_printf("\n");
 	ft_printf("sort_2 out\n");
 }
 
@@ -102,19 +92,11 @@ void	sort_1(t_stack **stack_1, t_stack **stack_2, int *sa, int *pb)
 {
 	ft_printf("sort_1 in\n");
 	ft_printf("sa[0] = %i > nr_movs biggest = %i\n", sa[0], (nr_movs(find_pos(*stack_1, find_biggest(*stack_1)), ft_lstsize(*stack_1))));
-	if (ft_lstsize(*stack_1) > 3 && stack_2 == NULL && sa[0]
-		> nr_movs(find_pos(*stack_1, find_biggest(*stack_1)),
-			ft_lstsize(*stack_1)))
-	{
-		ft_printf("sort_1 first if in\n");
-		ft_printf("sa[0] = %i\n nr_movs biggest = %i\n", sa[0], (nr_movs(find_pos(*stack_1, find_biggest(*stack_1)), ft_lstsize(*stack_1))));
-		sort_2(stack_1, stack_2);
-	}
-	else if (sa[0] < pb[0])
+	if (sa[0] < pb[0])
 	{
 		ft_printf("sort_1 second if in\n");
 		ft_printf("sa[0] = %i < pb[0] = %i\n", sa[0], pb[0]);
-		sort_3(stack_1, stack_2, s_decisions(*stack_1, sa[1], sa[2], 'a'),
+		sort_3(stack_1, stack_2, sa_decisions(*stack_1, sa[1], sa[2]),
 			pb_decisions(find_val(*stack_1, pb[1]),
 				find_val(*stack_2, pb[2]), pb[1], pb[2]));
 	}
@@ -124,7 +106,7 @@ void	sort_1(t_stack **stack_1, t_stack **stack_2, int *sa, int *pb)
 		ft_printf("sa[0] = %i > pb[0] = %i\n", sa[0], pb[0]);
 		sort_3(stack_1, stack_2, pb_decisions(find_val(*stack_1, pb[1]),
 				find_val(*stack_2, pb[2]), pb[1], pb[2]),
-			s_decisions(*stack_1, sa[1], sa[2], 'a'));
+			sa_decisions(*stack_1, sa[1], sa[2]));
 	}
 	ft_printf("sort_1 out\n");
 }
@@ -140,25 +122,33 @@ int	sort(t_stack **stack_1, t_stack **stack_2)
 	sa[0] = INT_MAX;
 	pb[0] = INT_MAX;
 	best_stack_sa_mov(*stack_1, sa);
-	ft_printf("best_stack_sa_mov out\n");
-	ft_printf("sa{%i, %i, %i};\n", sa[0], sa[1], sa[2]);
-	print_tab(*stack_1, *stack_2);
+	ft_printf("\nbest_stack_sa_mov out\n\n");
+	ft_printf("sa[ %i | pos1 -> %i val1 -> %i | pos2 -> %i val2 -> %i ];\n", sa[0], sa[1],
+			find_val(*stack_1, sa[1]), sa[2], find_val(*stack_1, sa[2]));
 	if (*stack_2 != NULL)
 	{
 		ft_printf("if in\n");
 		best_stack_p_mov(*stack_1, *stack_2, pb);
-		ft_printf("pb{%i, %i, %i};\n", pb[0], pb[1], pb[2]);
+		ft_printf("best_stack_p_mov out\n");
+		ft_printf("pb[ %i | pos1 -> %i val1 -> %i ];\n", pb[0], pb[1],
+			find_val(*stack_1, pb[1]));
 		if (sa[0] != INT_MAX)
 			sort_1(stack_1, stack_2, sa, pb);
 		if (sa[0] == INT_MAX)
 			done = sort_5(stack_1, stack_2, pb);
+	}
+	else if (ft_lstsize(*stack_1) > 3 && *stack_2 == NULL && sa[0]
+		> nr_movs(find_pos(*stack_1, find_biggest(*stack_1)),
+			ft_lstsize(*stack_1)))
+	{
+		ft_printf("sa[0] = %i nr_movs biggest = %i\n", sa[0], (nr_movs(find_pos(*stack_1, find_biggest(*stack_1)), ft_lstsize(*stack_1))));
+		sort_2(stack_1, stack_2);
 	}
 	else
 	{
 		ft_printf("else in\n");
 		sort_4(stack_1, sa);
 	}
-	print_tab(*stack_1, *stack_2);
-	ft_printf("sort out\n");
+	ft_printf("\nsort out\n");
 	return (done);
 }

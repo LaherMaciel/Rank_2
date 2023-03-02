@@ -17,7 +17,7 @@ char	*ft_strjoin(char *s1, char s2)
 	char	*sjoin;
 	size_t	i;
 
-	sjoin = (char *) malloc((ft_strlen(s1)) * sizeof(char) + 2);
+	sjoin = (char *) malloc(((ft_strlen(s1)) + 1) * sizeof(char) + 1);
 	if (!sjoin)
 		return (NULL);
 	i = -1;

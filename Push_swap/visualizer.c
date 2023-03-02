@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 13:02:12 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/03/01 21:01:19 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/03/02 02:19:54 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,33 +107,22 @@ void	visualizer(t_stack **stack_a, t_stack **stack_b)
 void	visualizer2(t_stack **stack_a, t_stack **stack_b)
 {
 	ft_printf("visualizer2 in\n");
-	char	input[5];
 	int		cont;
 	int		done;
 
-	input[0] = 's';
 	cont = 0;
 	done = 0;
-	//print_tab(*stack_a, *stack_b);
-	while (input[0] != 'e' || done == 0)
+	print_tab(*stack_a, *stack_b);
+	while (done == 0)
 	{
 		done = sort(stack_a, stack_b);
-		ft_printf("done = %i", done);
-		print_tab(*stack_a, *stack_a);
-		if (input[0] != 'p' && input[0] != 's'
-			&& input[0] != 'r' && input[0] != 'e')
-			ft_printf("ERROR: VALID INPUT -> ss," \
-					" sa, sb, rr, ra, rb, rrr, rra," \
-					" rrb, pa, pb or exit\n");
-		if (input[0] == 'p' || input[0] == 's'
-			|| input[0] == 'r')
+		ft_printf("done = %i\n\n", done);
+		if (done == 0)
 		{
 			cont++;
-			print_tab(*stack_a, *stack_b);
-			ft_printf("%i\n", cont);
 		}
-		ft_printf("next  mov: ");
-		scanf("%s", input);
+		print_tab(*stack_a, *stack_b);
+		ft_printf("%i\n", cont);
 	}
 	ft_printf("visualizer2 out\n");
 	ft_printf("FIM DO PROGRAMA!\n");

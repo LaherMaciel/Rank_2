@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 06:17:38 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/03/02 00:45:16 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/03/02 04:19:50 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	find_smallest(t_stack *head)
 	if (head == NULL)
 		return (0);
 	val = head->content;
-	while (head->next)
+	while (head)
 	{
 		if (head->content < val)
 			val = head->content;
@@ -30,7 +30,7 @@ int	find_smallest(t_stack *head)
 }
 
 // find and return the value smaller, closest to 'val'
-int	find_smaller_then(t_stack *head, int val)
+int	find_smaller_then(t_stack *head, int val, int smallest)
 {
 	t_stack	*current;
 	int		new_smaller;
@@ -38,7 +38,7 @@ int	find_smaller_then(t_stack *head, int val)
 	if (head == NULL)
 		return (0);
 	current = head;
-	new_smaller = INT_MIN;
+	new_smaller = smallest;
 	while (current)
 	{
 		if (current->content > new_smaller
@@ -94,7 +94,7 @@ int	find_val(t_stack *head, int pos)
 	t_stack	*current;
 	int		cont;
 
-	ft_printf("pos = %i\n", pos);
+//	ft_printf("pos = %i\n", pos);
 	if (head == NULL)
 		return (0);
 	if (pos < 0)
@@ -108,7 +108,7 @@ int	find_val(t_stack *head, int pos)
 		cont++;
 		current = current->next;
 	}
-	ft_printf("val = %i\n\n", current->content);
+//	ft_printf("val = %i\n\n", current->content);
 	return (current->content);
 }
 

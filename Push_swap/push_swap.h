@@ -57,7 +57,7 @@ int		sort(t_stack **stack_1, t_stack **stack_2);
 void	sort_1(t_stack **stack_1, t_stack **stack_2, int *sa, int *pb);
 void	sort_2(t_stack **stack_1, t_stack **stack_2);
 void	sort_3(t_stack **stack_1, t_stack **stack_2, char *id_1, char *id_2);
-int		sort_4(t_stack **stack, int *mov);
+void	sort_4(t_stack **stack, int *mov);
 int		sort_5(t_stack **stack_1, t_stack **stack_2, int *mov);
 
 // pa, pb & p_cont
@@ -67,12 +67,12 @@ int		p_decisions_cont(int val_1, int val_2, int pos_1, int pos_2);
 void	p_decisison_cont_aux(int *pos_1, int *pos_2, int final_pos_2);
 
 // sa && sa_cont
-char	*s_decisions(t_stack *stack, int pos_1, int pos_2, char id);
+char	*sa_decisions(t_stack *stack, int pos_1, int pos_2);
 int		s_decisions_cont(t_stack *stack, int pos_1, int pos_2);
 
 // find
 int		find_smallest(t_stack *stack);
-int		find_smaller_then(t_stack *stack, int val);
+int		find_smaller_then(t_stack *head, int val, int smallest);
 int		find_biggest(t_stack *stack);
 int		find_pos(t_stack *head, int val);
 int		find_val(t_stack *stack, int val);
@@ -82,14 +82,7 @@ long	ft_atoi(char *str);
 char	*ft_itoa(int n);
 size_t	ft_strlen(const char *a);
 t_stack	*ft_lstnew(int content);
-void	ft_lstadd_front(t_stack **lst, t_stack *to_add);
 int		ft_lstsize(t_stack *lst);
-t_stack	*ft_lstlast(t_stack *lst);
-void	ft_lstadd_back(t_stack **lst, t_stack *to_add);
-void	ft_lstdelone(t_stack *lst, void (*del)(void*));
-void	ft_lstclear(t_stack **lst, void (*del)(void*));
-void	ft_lstiter(t_stack *lst, void (*f)(void *));
-t_stack	*ft_lstmap(t_stack *lst, void *(*f)(void *), void (*del)(void *));
 char	*ft_strjoin(char *s1, char s2);
 
 // ft_printf
