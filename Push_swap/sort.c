@@ -6,13 +6,13 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 19:16:34 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/03/02 01:33:08 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/03/02 01:34:34 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	sort_5(t_stack **stack_1, t_stack **stack_2, int *mov)
+int	sort_4(t_stack **stack_1, t_stack **stack_2, int *mov)
 {
 	ft_printf("sort_4 in\n");
 	char	*id;
