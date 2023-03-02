@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 06:17:38 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/03/01 23:02:18 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/03/02 00:45:16 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,20 @@ int	find_smallest(t_stack *head)
 int	find_smaller_then(t_stack *head, int val)
 {
 	t_stack	*current;
-	int		next_smallest;
+	int		new_smaller;
 
 	if (head == NULL)
 		return (0);
 	current = head;
-	next_smallest = current->content;
+	new_smaller = INT_MIN;
 	while (current)
 	{
-		if (current->content > next_smallest
+		if (current->content > new_smaller
 			&& current->content < val)
-			next_smallest = current->content;
+			new_smaller = current->content;
 		current = current->next;
 	}
-	return (next_smallest);
+	return (new_smaller);
 }
 
 // find and return the biggest value of the stack
@@ -88,28 +88,6 @@ int	find_pos(t_stack *head, int val)
 	return (-1);
 }
 
-/*
-int	find_pos(t_stack *head, int val)
-{
-	ft_printf("find_pos in\n");
-	t_stack	*current;
-	int		cont;
-
-	if (head == NULL)
-		return (0);
-	cont = 0;
-	current = head;
-	while (current)
-	{
-		if (val == current->content)
-			break ;
-		cont++;
-	}
-	ft_printf("find_pos out\n");
-	return (cont);
-}
-*/
-
 // return the val in the position 'pos'
 int	find_val(t_stack *head, int pos)
 {
@@ -130,7 +108,7 @@ int	find_val(t_stack *head, int pos)
 		cont++;
 		current = current->next;
 	}
-	ft_printf("val = %i\n", current->content);
+	ft_printf("val = %i\n\n", current->content);
 	return (current->content);
 }
 

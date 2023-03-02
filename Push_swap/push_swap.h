@@ -57,7 +57,8 @@ int		sort(t_stack **stack_1, t_stack **stack_2);
 void	sort_1(t_stack **stack_1, t_stack **stack_2, int *sa, int *pb);
 void	sort_2(t_stack **stack_1, t_stack **stack_2);
 void	sort_3(t_stack **stack_1, t_stack **stack_2, char *id_1, char *id_2);
-int		sort_4(t_stack **stack_1, t_stack **stack_2, int *pb);
+int		sort_4(t_stack **stack, int *mov);
+int		sort_5(t_stack **stack_1, t_stack **stack_2, int *mov);
 
 // pa, pb & p_cont
 char	*pa_decisions(int val_1, int val_2, int pos_1, int pos_2);
@@ -68,9 +69,6 @@ void	p_decisison_cont_aux(int *pos_1, int *pos_2, int final_pos_2);
 // sa && sa_cont
 char	*s_decisions(t_stack *stack, int pos_1, int pos_2, char id);
 int		s_decisions_cont(t_stack *stack, int pos_1, int pos_2);
-void	aux_1(int *pos_1, int *pos_2, int *cont, int out);
-void	aux_2(int *pos_1, int *pos_2, int out);
-void	aux_3(int *pos_1, int *pos_2);
 
 // find
 int		find_smallest(t_stack *stack);
