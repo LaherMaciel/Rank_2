@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 19:16:34 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/03/02 04:57:19 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/03/02 20:40:44 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	sort_3(t_stack **stack_1, t_stack **stack_2, char *id_1, char *id_2)
 		ft_swap(stack_1, id_1[1]);
 	else if (id_1[0] == 'p' || id_1[0] == 'p')
 		ft_pass_to(stack_1, stack_2, id_1[1]);
-	ft_printf("sort_3 out\n");
+	ft_printf("\nsort_3 out\n");
 }
 
 void	sort_2(t_stack **stack_1, t_stack **stack_2)
@@ -85,13 +85,13 @@ void	sort_2(t_stack **stack_1, t_stack **stack_2)
 	else
 		ft_pass_to(stack_1, stack_2, 'b');
 	ft_printf("\n");
-	ft_printf("sort_2 out\n");
+	ft_printf("\nsort_2 out\n");
 }
 
 void	sort_1(t_stack **stack_1, t_stack **stack_2, int *sa, int *pb)
 {
 	ft_printf("sort_1 in\n");
-	ft_printf("sa[0] = %i > nr_movs biggest = %i\n", sa[0], (nr_movs(find_pos(*stack_1, find_biggest(*stack_1)), ft_lstsize(*stack_1))));
+	//ft_printf("sa[0] = %i > nr_movs biggest = %i\n", sa[0], (nr_movs(find_pos(*stack_1, find_biggest(*stack_1)), ft_lstsize(*stack_1))));
 	if (sa[0] < pb[0])
 	{
 		ft_printf("sort_1 second if in\n");
@@ -108,7 +108,7 @@ void	sort_1(t_stack **stack_1, t_stack **stack_2, int *sa, int *pb)
 				find_val(*stack_2, pb[2]), pb[1], pb[2]),
 			sa_decisions(*stack_1, sa[1], sa[2]));
 	}
-	ft_printf("sort_1 out\n");
+	ft_printf("\nsort_1 out\n");
 }
 
 int	sort(t_stack **stack_1, t_stack **stack_2)

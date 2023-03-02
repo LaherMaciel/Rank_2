@@ -73,6 +73,7 @@ int		s_decisions_cont(t_stack *stack, int pos_1, int pos_2);
 // find
 int		find_smallest(t_stack *stack);
 int		find_smaller_then(t_stack *head, int val, int smallest);
+int		find__then(t_stack *head, int val, int biggest);
 int		find_biggest(t_stack *stack);
 int		find_pos(t_stack *head, int val);
 int		find_val(t_stack *stack, int val);

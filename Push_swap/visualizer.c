@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 13:02:12 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/03/02 02:19:54 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/03/02 20:48:36 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,14 +113,12 @@ void	visualizer2(t_stack **stack_a, t_stack **stack_b)
 	cont = 0;
 	done = 0;
 	print_tab(*stack_a, *stack_b);
-	while (done == 0)
+	while (done == 0 &&  cont < 200)
 	{
 		done = sort(stack_a, stack_b);
 		ft_printf("done = %i\n\n", done);
 		if (done == 0)
-		{
 			cont++;
-		}
 		print_tab(*stack_a, *stack_b);
 		ft_printf("%i\n", cont);
 	}

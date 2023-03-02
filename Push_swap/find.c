@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 06:17:38 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/03/02 04:19:50 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/03/02 21:23:51 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,26 @@ int	find_smaller_then(t_stack *head, int val, int smallest)
 		current = current->next;
 	}
 	return (new_smaller);
+}
+
+// find and return the value smaller, closest to 'val'
+int	find__then(t_stack *head, int val, int biggest)
+{
+	t_stack	*current;
+	int		new_bigger;
+
+	if (head == NULL)
+		return (0);
+	current = head;
+	new_bigger = biggest;
+	while (current)
+	{
+		if (current->content < new_bigger
+			&& current->content > val)
+			new_bigger = current->content;
+		current = current->next;
+	}
+	return (new_bigger);
 }
 
 // find and return the biggest value of the stack

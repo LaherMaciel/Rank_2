@@ -69,15 +69,10 @@ int	total_movs_p(t_stack *src, t_stack *dst, int pos_1, int pos_2)
 	ft_printf("\ntotal_movs_P in\n");
 	int	nr_mov;
 
-	pos_1 = nr_movs(pos_1, ft_lstsize(src));
-	pos_2 = nr_movs(pos_2, ft_lstsize(dst));
 	if ((dst)->next == NULL)
-		nr_mov = p_decisions_cont(find_val(src, pos_1),
-			INT_MIN, pos_1, 0);
+		nr_mov = p_decisions_cont(find_val(src, pos_1), INT_MIN, pos_1, 0);
 	else
-		nr_mov = p_decisions_cont(find_val(src, pos_1),
-			find_val(dst, pos_2), pos_1, pos_2);
-	ft_printf("nr_movs->%i\n", nr_mov);
+		nr_mov = p_decisions_cont(find_val(src, pos_1), find_val(dst, pos_2), pos_1, pos_2);
 	ft_printf("\ntotal_movs_P out\n");
 	return (nr_mov);
 }

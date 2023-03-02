@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 21:55:56 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/03/02 05:08:46 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/03/02 21:59:47 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,51 @@ int	*best_stack_p_mov(t_stack *src,
 
 	cont = 0;
 	movs = 0;
+	smallest = find_smallest(src);
+	while (pos_1 > 0)
+	{
+		if (cont < (ft_lstsize(src) / 2))
+			pos_1 = cont * (-1);
+		else
+			pos_1 = ft_lstsize(src) - cont;
+		pos_2 = nr_movs(find_pos(dst, find__then(dst, pos_1, find_biggest(dst))), dst);
+		ft_printf("pos_1 -> %i, pos_2 -> %i\n", pos_1, pos_2);
+		ft_printf("pos_2->%i", pos_2);
+		movs = total_movs_p(src, dst, pos_1, pos_2);
+		ft_printf("pos_2->%i", pos_2);
+		ft_printf("after total_movs_p pb[ %i | pos_1 -> %i val1 -> %i | pos_2 -> %i val2 -> %i"\
+		"]\n\n", movs, pos_1, find_val(src, pos_1), pos_2, find_val(dst, pos_2));
+		if (movs < best_movs[0] && movs != 0 && pos_1 != smallest)
+		{
+			best_movs[0] = movs;
+			best_movs[1] = pos_1;
+			best_movs[2] = pos_2;
+			ft_printf("best_sa[ %i | pos1 -> %i val1 -> %i | pos2 -> %i val2 -> %i ];\n", best_movs[0], best_movs[1],
+			find_val(src, best_movs[1]), best_movs[2], find_val(dst, best_movs[2]));
+		}
+		cont++;
+		src = src->next;
+	}
+	ft_printf("cont = %i\n", cont);
+	return (best_movs);
+}
+/*
+int	*best_stack_p_mov(t_stack *src,
+		t_stack *dst, int *best_movs)
+{
+	ft_printf("best_stack_p_mov in\n");
+	int	smallest;
+	int	movs;
+	int	pos_1;
+	int	pos_2;
+	int	cont;
+
+	cont = 0;
+	movs = 0;
 	pos_1 = find_biggest(dst);
 	pos_2 = find_biggest(dst);
 	smallest = find_smallest(src);
-	while (pos_1 != smallest)
+	while (pos_1 != find_smaller_then(src, find_smallest(dst), smallest))
 	{
 		pos_1 = find_smaller_then(src, pos_2, smallest);
 		ft_printf("pos_1->%i | pos_2->%i;\n", pos_1, pos_2);
@@ -75,7 +116,7 @@ int	*best_stack_p_mov(t_stack *src,
 	ft_printf("cont = %i\n", cont);
 	return (best_movs);
 }
-/*
+
 int	*best_stack_p_mov(t_stack *src,
 		t_stack *dst, int *best_movs)
 {
