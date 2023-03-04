@@ -21,6 +21,5 @@ t_stack	*ft_lstnew(int content)
 		return (NULL);
 	new_list->content = content;
 	new_list->next = NULL;
-	ft_printf("\nlstnew ok\n");
 	return (new_list);
 }

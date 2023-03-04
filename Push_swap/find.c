@@ -49,8 +49,8 @@ int	find_smaller_then(t_stack *head, int val, int smallest)
 	return (new_smaller);
 }
 
-// find and return the value smaller, closest to 'val'
-int	find__then(t_stack *head, int val, int biggest)
+// find and return the value bigger, closest to 'val'
+int	find_bigger_then(t_stack *head, int val, int biggest)
 {
 	t_stack	*current;
 	int		new_bigger;
@@ -59,13 +59,15 @@ int	find__then(t_stack *head, int val, int biggest)
 		return (0);
 	current = head;
 	new_bigger = biggest;
+	//ft_printf("val -> %i	|	", val);
+	//print_stack(head);
 	while (current)
 	{
-		if (current->content < new_bigger
-			&& current->content > val)
+		if (current->content > val && current->content < new_bigger)
 			new_bigger = current->content;
 		current = current->next;
 	}
+	//ft_printf("in function find_bigger_then %i is bigger then -> %i\n", new_bigger, val);
 	return (new_bigger);
 }
 

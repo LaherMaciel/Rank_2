@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 12:58:31 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/03/02 02:48:02 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/03/04 00:13:15 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,10 +95,12 @@ int	s_decisions_cont(t_stack *stack, int pos_1, int pos_2)
 			pos_2 = (ft_lstsize(stack) / 2) - 1;
 			turn++;
 		}
-		cont++;
-		if (((pos_1 - 1) == pos_2) && out == 1)
+		if (out != 3)
+			cont++;
+		if ((((pos_1 - 1) == pos_2) || ((pos_1 == ((ft_lstsize(stack) / 2) * (-1)))
+				&& pos_2 == ((ft_lstsize(stack) / 2) - 1))) && out == 1)
 			out = 3;
-		else if (((pos_1 + 1) == pos_2) && out == 2)
+		else if ((((pos_1 + 1) == pos_2) || ((pos_1  - 1) * (-1) == pos_2)) && out == 2)
 			out = 3;
 	}
 	return (cont);
@@ -106,7 +108,14 @@ int	s_decisions_cont(t_stack *stack, int pos_1, int pos_2)
 
 char	*sa_decisions(t_stack *stack, int pos_1, int pos_2)
 {
-	ft_printf("s_decisions in\n");
+	int	aux;
+	//ft_printf("s_decisions in\n");
+	if (pos_2 == 0 && (pos_1 < -1 || pos_1 > 1))
+	{
+		aux = pos_1;
+		pos_1 = pos_2;
+		pos_2 = aux;
+	}
 	if (pos_2 > 0 && pos_1 == 0 && pos_2 != 1)
 		return ("rra");
 	else if (pos_2 < 0 && pos_1 == 0 && pos_2 != -1)
@@ -125,7 +134,7 @@ char	*sa_decisions(t_stack *stack, int pos_1, int pos_2)
 	}
 	else if (pos_1 <= 0 && (pos_1 + 1) != pos_2)
 		return ("ra");
-	else if (pos_1 > 0 && (pos_1 + 1) != pos_2)
+	else if (pos_1 > 0 && (pos_1 - 1) != pos_2)
 		return ("rra");
 	return (NULL);
 }

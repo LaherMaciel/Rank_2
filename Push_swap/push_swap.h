@@ -62,9 +62,10 @@ int		sort_5(t_stack **stack_1, t_stack **stack_2, int *mov);
 
 // pa, pb & p_cont
 char	*pa_decisions(int val_1, int val_2, int pos_1, int pos_2);
-char	*pb_decisions(int val_1, int val_2, int pos_1, int pos_2);
-int		p_decisions_cont(int val_1, int val_2, int pos_1, int pos_2);
+char	*pb_decisions(t_stack *src, t_stack *dst, int pos_1, int pos_2);
+int		p_decisions_cont(t_stack *src, t_stack *dst, int pos_1, int pos_2);
 void	p_decisison_cont_aux(int *pos_1, int *pos_2, int final_pos_2);
+int		find_media(t_stack *stack);
 
 // sa && sa_cont
 char	*sa_decisions(t_stack *stack, int pos_1, int pos_2);
@@ -73,7 +74,7 @@ int		s_decisions_cont(t_stack *stack, int pos_1, int pos_2);
 // find
 int		find_smallest(t_stack *stack);
 int		find_smaller_then(t_stack *head, int val, int smallest);
-int		find__then(t_stack *head, int val, int biggest);
+int		find_bigger_then(t_stack *head, int val, int biggest);
 int		find_biggest(t_stack *stack);
 int		find_pos(t_stack *head, int val);
 int		find_val(t_stack *stack, int val);
