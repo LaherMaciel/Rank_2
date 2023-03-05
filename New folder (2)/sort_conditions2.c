@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 21:55:56 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/03/05 13:02:29 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/03/04 01:10:04 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,7 @@ int	*best_stack_p_mov(t_stack *src,
 				//ft_printf("%i is bigger then -> %i\n", find_bigger_then(dst, find_val(src, pos_1), find_biggest(dst)), find_val(src, pos_1));
 				movs = total_movs_p(src, dst, pos_1, pos_2);
 			}
-			if (movs < best_movs[0] && (movs != 0 || (movs == 0 && dst == NULL))
-				&& (pos_1 != smallest || pos_1 != find_biggest(src) || pos_1 != find_bigger_then(src, smallest, find_biggest(src))))
+			if (movs < best_movs[0] && (movs != 0 || (movs == 0 && dst == NULL)) && pos_1 != smallest)
 			{
 				best_movs[0] = movs;
 				best_movs[1] = pos_1;
