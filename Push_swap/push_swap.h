@@ -42,6 +42,7 @@ t_stack	*store_integers_in_stack(int argc, char *argv[]);
 int		pop(t_stack **stack);
 void	push(t_stack **stack, int data);
 void	print_stack(t_stack *head);
+int		check_vals(int argc, char *argv[]);
 //t_stack	*create_stack(int argc, char **argv, int i);
 
 // sort_condictions
@@ -54,11 +55,10 @@ int		total_movs_p(t_stack *src, t_stack *dst, int pos_1, int pos_2);
 int		*best_stack_sa_mov(t_stack *stack, int *best_movs);
 int		*best_stack_p_mov(t_stack *src, t_stack *dst, int *best_movs);
 int		sort(t_stack **stack_1, t_stack **stack_2);
-void	sort_1(t_stack **stack_1, t_stack **stack_2, int *sa, int *pb);
-void	sort_2(t_stack **stack_1, t_stack **stack_2);
-void	sort_3(t_stack **stack_1, t_stack **stack_2, char *id_1, char *id_2);
-void	sort_4(t_stack **stack, int *mov);
-int		sort_5(t_stack **stack_1, t_stack **stack_2, int *mov);
+void	sort_1(t_stack **stack_1, t_stack **stack_2, int *pb);
+void	sort_2(t_stack **stack_1, t_stack **stack_2, char *id_1);
+void	sort_s_3(t_stack **stack, char id);
+void	sort_p(t_stack **stack_1, t_stack **stack_2);
 
 // pa, pb & p_cont
 char	*pa_decisions(int val_1, int val_2, int pos_1, int pos_2);

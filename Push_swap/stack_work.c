@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 12:26:41 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/02/24 14:28:52 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/03/06 10:10:04 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,22 @@ t_stack	*store_integers_in_stack(int argc, char *argv[])
 		push(&stack, num);
 	}
 	return (stack);
+}
+
+int	check_vals(int argc, char *argv[])
+{
+	int	i;
+	int	j;
+	int	val;
+
+	i = -1;
+	while (++i < argc)
+	{
+		j = -1;
+		val = ft_atoi(argv[i]);
+		while (++j < argc)
+			if (val == ft_atoi(argv[j]) && i != j)
+				return (0);
+	}
+	return (1);
 }
