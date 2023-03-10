@@ -21,7 +21,7 @@ void	ft_swap(t_stack **head, char id)
 	if (*head == NULL || (*head)->next == NULL)
 		return ;
 	if (id == 'a' || id == 'b')
-		ft_printf("s%c", id);
+		ft_printf("s%c\n", id);
 	tmp = (*head)->next;
 	(*head)->next = tmp->next;
 	tmp->next = *head;
@@ -39,7 +39,7 @@ void	ft_pass_to(t_stack **src, t_stack **dest, char id)
 	if (!*src || !(*src))
 		return ;
 	if (id == 'a' || id == 'b')
-		ft_printf("p%c", id);
+		ft_printf("p%c\n", id);
 	content = pop(src);
 	new_node = (t_stack *) malloc(sizeof(t_stack));
 	new_node->content = content;
@@ -59,7 +59,7 @@ void	ft_rotate(t_stack **stack, char id)
 	if (!*stack || !(*stack)->next)
 		return ;
 	if (id == 'a' || id == 'b')
-		ft_printf("r%c", id);
+		ft_printf("r%c\n", id);
 	new_last_value = pop(stack);
 	last = *stack;
 	while (last->next != NULL)
@@ -78,7 +78,7 @@ void	ft_reverse_rotate(t_stack **stack, char id)
 	if (!stack || !*stack || !(*stack)->next)
 		return ;
 	if (id == 'a' || id == 'b')
-		ft_printf("rr%c", id);
+		ft_printf("rr%c\n", id);
 	new_last = *stack;
 	while (new_last->next->next != NULL)
 		new_last = new_last->next;

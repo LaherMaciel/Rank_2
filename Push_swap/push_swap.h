@@ -39,10 +39,12 @@ void	ft_reverse_rotate_rotate(t_stack **stack_a, t_stack **stack_b);
 
 // List manipulation
 t_stack	*store_integers_in_stack(int argc, char *argv[]);
+t_stack	*store_integers_in_stack2(int len, int min, int max);
 int		pop(t_stack **stack);
 void	push(t_stack **stack, int data);
 void	print_stack(t_stack *head);
 int		check_vals(int argc, char *argv[]);
+int		check_vals2(t_stack *head, int num);
 //t_stack	*create_stack(int argc, char **argv, int i);
 
 // sort_condictions
@@ -53,15 +55,23 @@ int		total_movs_p(t_stack *src, t_stack *dst, int pos_1, int pos_2);
 
 // sort.c
 int		*best_stack_sa_mov(t_stack *stack, int *best_movs);
-int		*best_stack_p_mov(t_stack *src, t_stack *dst, int *best_movs);
-int		sort(t_stack **stack_1, t_stack **stack_2);
-void	sort_1(t_stack **stack_1, t_stack **stack_2, int *pb);
+int		best_stack_pb_mov_aux(t_stack *src, t_stack *dst, int *pos_1, int *pos_2);
+void	find_pos_1(t_stack *src, int *pos_1, int *cont);
+int		*best_stack_pb_mov(t_stack *src,
+		t_stack *dst, int *best_movs);
+int		best_stack_pa_mov_aux(t_stack *src, t_stack *dst,
+		int *pos_1, int *pos_2);
+int		*best_stack_pa_mov(t_stack *src,
+		t_stack *dst, int *best_movs);
+int		order(t_stack **stack_a, t_stack **stack_b);
+void		sort(t_stack **stack_1, t_stack **stack_2, int *cont);
+void	sort_1(t_stack **stack_1, t_stack **stack_2, char *id_1);
 void	sort_2(t_stack **stack_1, t_stack **stack_2, char *id_1);
-void	sort_s_3(t_stack **stack, char id);
-void	sort_p(t_stack **stack_1, t_stack **stack_2);
+void	sort_s_3(t_stack **stack, char id, int *cont);
+void	sort_p(t_stack **stack_1, t_stack **stack_2, int fase);
 
 // pa, pb & p_cont
-char	*pa_decisions(int val_1, int val_2, int pos_1, int pos_2);
+char	 *pa_decisions(t_stack *src, t_stack *dst, int pos_1, int pos_2);
 char	*pb_decisions(t_stack *src, t_stack *dst, int pos_1, int pos_2);
 int		p_decisions_cont(t_stack *src, t_stack *dst, int pos_1, int pos_2);
 void	p_decisison_cont_aux(int *pos_1, int *pos_2, int final_pos_2);

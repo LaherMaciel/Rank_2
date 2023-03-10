@@ -64,20 +64,51 @@ t_stack	*store_integers_in_stack(int argc, char *argv[])
 	return (stack);
 }
 
+t_stack	*store_integers_in_stack2(int len, int min, int max)
+{
+	t_stack	*stack;
+	int		num;
+
+	stack = NULL;
+	num = 0;
+	while (ft_lstsize(stack) < len)
+	{
+		num = rand() % (max - min + 1) + min;
+		if (check_vals2(stack, num) == 1)
+			push(&stack, num);
+	}
+	return (stack);
+}
+
+
 int	check_vals(int argc, char *argv[])
 {
 	int	i;
 	int	j;
 	int	val;
 
-	i = -1;
+	i = 0;
 	while (++i < argc)
 	{
-		j = -1;
+		j = 0;
 		val = ft_atoi(argv[i]);
 		while (++j < argc)
 			if (val == ft_atoi(argv[j]) && i != j)
 				return (0);
+	}
+	return (1);
+}
+
+int	check_vals2(t_stack *head, int num)
+{
+	t_stack	*stack;
+
+	stack = head;
+	while (stack)
+	{
+		if (num == stack->content)
+			return (0);
+		stack = stack->next;
 	}
 	return (1);
 }
