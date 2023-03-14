@@ -112,3 +112,20 @@ int	check_vals2(t_stack *head, int num)
 	}
 	return (1);
 }
+
+int	check_stack(t_stack *stack)
+{
+	t_stack	*current;
+	int		cont;
+
+	current = stack; 
+	cont = 0;
+	while (current)
+	{
+		if (current->content > current->next->content)
+			return (cont);
+		cont++;
+		current = current->next;
+	}
+	return (0);
+}

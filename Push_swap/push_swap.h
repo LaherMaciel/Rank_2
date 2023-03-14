@@ -31,7 +31,7 @@ typedef struct s_stack
 // Movs
 void	ft_swap(t_stack **head, char id);
 void	ft_swap_swap(t_stack **stack_a, t_stack **stack_b);
-void	ft_pass_to(t_stack **stack_1, t_stack **stack_2, char id);
+void	ft_pass_to(t_stack **src, t_stack **dest, char id);
 void	ft_rotate(t_stack **stack, char id);
 void	ft_rotate_rotate(t_stack **stack_a, t_stack **stack_b);
 void	ft_reverse_rotate(t_stack **stack, char id);
@@ -45,6 +45,7 @@ void	push(t_stack **stack, int data);
 void	print_stack(t_stack *head);
 int		check_vals(int argc, char *argv[]);
 int		check_vals2(t_stack *head, int num);
+int		check_stack(t_stack *stack);
 //t_stack	*create_stack(int argc, char **argv, int i);
 
 // sort_condictions
@@ -88,6 +89,7 @@ int		find_bigger_then(t_stack *head, int val, int biggest);
 int		find_biggest(t_stack *stack);
 int		find_pos(t_stack *head, int val);
 int		find_val(t_stack *stack, int val);
+int		find_above_media(t_stack *stack);
 
 // libft
 long	ft_atoi(char *str);

@@ -99,13 +99,14 @@ void	sort(t_stack **stack_a, t_stack **stack_b, int *cont)
 	int	sa_ord;
 	int	done;
 	int	stop;
+	int	nr;
 
 	stop = ft_lstsize(*stack_a) * 10;
 	sa_ord = 0;
 	done = 0;
-	while ((done == 0 || *stack_b) && *cont < stop)
+	while ((done == 0 || *stack_b)) // && *cont < stop
 	{
-		if ((*cont > stop - 10) || (stop < 10) || *cont < 10)
+		if ((*cont > stop - 10) || (stop < 10) || *cont < 10 || (ft_lstsize(*stack_a) <= 3))
 		{
 			print_tab(*stack_a, *stack_b);
 			ft_printf("\ncont -> %i\n", *cont);
@@ -117,7 +118,16 @@ void	sort(t_stack **stack_a, t_stack **stack_b, int *cont)
 			sa_ord = 1;
 		}
 		else if (sa_ord == 0)
-			sort_p(stack_a, stack_b, sa_ord);
+		{
+			nr = find_above_media(*stack_a);
+			ft_printf("nr = %i\n", nr);
+			if (nr > 0)
+				ft_reverse_rotate(stack_a, 'a');
+			else if (nr < 0)
+				ft_rotate(stack_a, 'a');
+			else
+				ft_pass_to(stack_a, stack_b, 'b');
+		}
 		else
 		{
 			//ft_printf("sort else\n");
@@ -138,6 +148,7 @@ int	order(t_stack **stack_a, t_stack **stack_b)
 	sort(stack_a, stack_b, &cont);
 	smallest = nr_movs(find_pos(*stack_a, find_smallest(*stack_a)), ft_lstsize(*stack_a));
 	//ft_printf("Smallest pos = %i\n", smallest);
+	print_tab(*stack_a, *stack_b);
 	while (smallest != 0)
 	{
 		//ft_printf("Smallest pos = %i\n", smallest);

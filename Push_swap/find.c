@@ -134,6 +134,63 @@ int	find_val(t_stack *head, int pos)
 	return (current->content);
 }
 
+int	find_media(t_stack *stack)
+{
+	t_stack	*current;
+	int		val;
+	int		cont;
+
+	if (stack == NULL)
+		return (0);
+	current = stack;
+	val = 0;
+	cont = 0;
+	while (current)
+	{
+		val += current->content;
+		current = current->next;
+		cont++;
+	}
+	ft_printf("Val = %i\n", val);
+	if (val < 0)
+		return ((val / cont) - (val / (cont * 2)));
+	return ((val / cont) + (val / (cont * 2)));
+}
+
+int	find_above_media(t_stack *stack)
+{
+	t_stack	*current;
+	int		media;
+	int		cont1;
+	int		cont2;
+
+	cont1 = 0;
+	cont2 = 0;
+	media = find_media(stack);
+	current = stack;
+	while (cont1 > (-ft_lstsize(stack)/2))
+	{
+		if (find_val(stack, cont1) >= media)
+			break ;
+		current = current->next;
+		cont1--;
+	}
+	while (cont2 < (ft_lstsize(stack)/2))
+	{
+		if (find_val(stack, cont2) >= media)
+			break ;
+		current = current->next;
+		cont2++;
+	}
+	ft_printf("media = %i\n	cont1 = %i	cont2 = %i\n", media, cont1, cont2);
+	if ((cont1 * (-1)) <= cont2)
+		return (cont1);
+	else if ((cont1 * (-1)) > cont2)	
+		return (cont2);
+	return (0);
+	
+}
+
 /*
 int	find_smallest_mov(int sa, int sb, int pa, int pb)
 {

@@ -33,6 +33,10 @@ int	main(int argc, char *argv[])
 			pop(&stack_b);
 		ft_printf("ok");
 	}
+	if (check_stack(stack_a) != 0)
+		ft_printf("Erro: val pos %i incorrect\n", check_stack(stack_a));
+	else
+		ft_printf("\nAll ok!\n");
 	return (0);
 }
 

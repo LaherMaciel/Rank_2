@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 19:45:42 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/03/09 16:45:52 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/03/14 18:55:40 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,24 +90,4 @@ int	p_decisions_cont(t_stack *src, t_stack *dst, int pos_1, int pos_2)
 	//ft_printf("print_out  pos_1->%i | pos_2->%i\ncont->%i\n", pos_1, pos_2, cont);
 	//ft_printf("val_1 -> %i, val_2 -> %i, pos_1 -> %i, pos_2 -> %i\n", val_1, val_2, pos_1, pos_2);
 	return (cont);
-}
-
-int	find_media(t_stack *stack)
-{
-	t_stack	*current;
-	int		val;
-	int		cont;
-
-	if (stack == NULL)
-		return (0);
-	current = stack;
-	val = 0;
-	cont = 0;
-	while (current)
-	{
-		val += current->content;
-		current = current->next;
-		cont++;
-	}
-	return (val/cont);
 }
