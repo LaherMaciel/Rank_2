@@ -44,7 +44,7 @@ int		pop(t_stack **stack);
 void	push(t_stack **stack, int data);
 void	print_stack(t_stack *head);
 int		check_vals(int argc, char *argv[]);
-int		check_vals2(t_stack *head, int num);
+int		double_number_error(t_stack *head, int num);
 int		check_stack(t_stack *stack);
 //t_stack	*create_stack(int argc, char **argv, int i);
 

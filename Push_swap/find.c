@@ -59,15 +59,12 @@ int	find_bigger_then(t_stack *head, int val, int biggest)
 		return (0);
 	current = head;
 	new_bigger = biggest;
-	//ft_printf("val -> %i	|	", val);
-	//print_stack(head);
 	while (current)
 	{
 		if (current->content > val && current->content < new_bigger)
 			new_bigger = current->content;
 		current = current->next;
 	}
-	//ft_printf("in function find_bigger_then %i is bigger then -> %i\n", new_bigger, val);
 	return (new_bigger);
 }
 
@@ -116,7 +113,6 @@ int	find_val(t_stack *head, int pos)
 	t_stack	*current;
 	int		cont;
 
-//	ft_printf("pos = %i\n", pos);
 	if (head == NULL)
 		return (0);
 	if (pos < 0)
@@ -130,7 +126,6 @@ int	find_val(t_stack *head, int pos)
 		cont++;
 		current = current->next;
 	}
-//	ft_printf("val = %i\n\n", current->content);
 	return (current->content);
 }
 
@@ -151,11 +146,6 @@ int	find_media(t_stack *stack)
 		current = current->next;
 		cont++;
 	}
-	/*
-	ft_printf("Val = %i\n", val);
-	if (val < 0)
-		return ((val / cont) - (val / (cont * 2)));
-	*/
 	return ((val / cont) + (val / (cont * 2)));
 }
 
@@ -170,77 +160,23 @@ int	find_above_media(t_stack *stack)
 	cont2 = 0;
 	media = find_media(stack);
 	current = stack;
-	while (cont1 > (-ft_lstsize(stack)/2))
+	while (cont1 > (-ft_lstsize(stack) / 2))
 	{
 		if (find_val(stack, cont1) >= media)
 			break ;
 		current = current->next;
 		cont1--;
 	}
-	while (cont2 < (ft_lstsize(stack)/2))
+	while (cont2 < (ft_lstsize(stack) / 2))
 	{
 		if (find_val(stack, cont2) >= media)
 			break ;
 		current = current->next;
 		cont2++;
 	}
-	//ft_printf("media = %i\n	cont1 = %i	cont2 = %i\n", media, cont1, cont2);
 	if ((cont1 * (-1)) <= cont2)
 		return (cont1);
-	else if ((cont1 * (-1)) > cont2)	
+	else if ((cont1 * (-1)) > cont2)
 		return (cont2);
 	return (0);
-	
 }
-
-/*
-int	find_smallest_mov(int sa, int sb, int pa, int pb)
-{
-	int	pos;
-	int	smallest;
-	pos = 1;
-	smallest = sa;
-	if (sb < smallest)
-	{
-		smallest = sb;
-		pos = 2;
-	}
-	if (pa < smallest)
-	{
-		smallest = pa;
-		pos = 3;
-	}
-	if (pb < smallest)
-	{
-		smallest = pb;
-		pos = 4;
-	}
-	return (pos);
-}
-int	find_snd_smallest(int sa, int sb, int pa, int pb)
-{
-	int	smallest;
-	
-	if (simple_compar(sa, sb) == 1)
-		smallest = 1
-}
-void	all_positive(int *sa, int *sb, int *pa, int *pb)
-{
-	if (sa < 0)
-		*sa = *sa * (-1);
-	if (*sb < 0)
-		*sb = *sb * (-1);
-	if (pa < 0)
-		*pa = *pa * (-1);
-	if (pb < 0)
-		*pb = *pb * (-1);
-}
-int	simple_compar(int a, int b, int smallest)
-{
-	if (a == smallest || b == smallest)
-		return (0);
-	if (a < b)
-		return (1);
-	return (2);
-}
-*/

@@ -74,58 +74,8 @@ t_stack	*store_integers_in_stack2(int len, int min, int max)
 	while (ft_lstsize(stack) < len)
 	{
 		num = rand() % (max - min + 1) + min;
-		if (check_vals2(stack, num) == 1)
+		if (double_number_error(stack, num) == 1)
 			push(&stack, num);
 	}
 	return (stack);
-}
-
-
-int	check_vals(int argc, char *argv[])
-{
-	int	i;
-	int	j;
-	int	val;
-
-	i = 0;
-	while (++i < argc)
-	{
-		j = 0;
-		val = ft_atoi(argv[i]);
-		while (++j < argc)
-			if (val == ft_atoi(argv[j]) && i != j)
-				return (0);
-	}
-	return (1);
-}
-
-int	check_vals2(t_stack *head, int num)
-{
-	t_stack	*stack;
-
-	stack = head;
-	while (stack)
-	{
-		if (num == stack->content)
-			return (0);
-		stack = stack->next;
-	}
-	return (1);
-}
-
-int	check_stack(t_stack *stack)
-{
-	t_stack	*current;
-	int		cont;
-
-	current = stack; 
-	cont = 0;
-	while (current)
-	{
-		if (current->content > current->next->content)
-			return (cont);
-		cont++;
-		current = current->next;
-	}
-	return (0);
 }
