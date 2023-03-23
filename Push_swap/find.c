@@ -151,9 +151,11 @@ int	find_media(t_stack *stack)
 		current = current->next;
 		cont++;
 	}
+	/*
 	ft_printf("Val = %i\n", val);
 	if (val < 0)
 		return ((val / cont) - (val / (cont * 2)));
+	*/
 	return ((val / cont) + (val / (cont * 2)));
 }
 
@@ -182,7 +184,7 @@ int	find_above_media(t_stack *stack)
 		current = current->next;
 		cont2++;
 	}
-	ft_printf("media = %i\n	cont1 = %i	cont2 = %i\n", media, cont1, cont2);
+	//ft_printf("media = %i\n	cont1 = %i	cont2 = %i\n", media, cont1, cont2);
 	if ((cont1 * (-1)) <= cont2)
 		return (cont1);
 	else if ((cont1 * (-1)) > cont2)	

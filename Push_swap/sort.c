@@ -120,7 +120,7 @@ void	sort(t_stack **stack_a, t_stack **stack_b, int *cont)
 		else if (sa_ord == 0)
 		{
 			nr = find_above_media(*stack_a);
-			ft_printf("nr = %i\n", nr);
+			//ft_printf("nr = %i\n", nr);
 			if (nr > 0)
 				ft_reverse_rotate(stack_a, 'a');
 			else if (nr < 0)
