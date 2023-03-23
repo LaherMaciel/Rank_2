@@ -101,7 +101,7 @@ void	sort(t_stack **stack_a, t_stack **stack_b, int *cont)
 	int	stop;
 	int	nr;
 
-	stop = ft_lstsize(*stack_a) * 10;
+	stop = ft_lstsize(*stack_a) * 5;
 	sa_ord = 0;
 	done = 0;
 	while ((done == 0 || *stack_b)) // && *cont < stop
