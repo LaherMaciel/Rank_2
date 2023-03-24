@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:05:00 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/03/23 14:27:57 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/03/24 13:00:49 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	check_stack(t_stack *stack)
 	t_stack	*current;
 	int		cont;
 
-	current = stack; 
+	current = stack;
 	cont = 0;
 	while (current)
 	{
