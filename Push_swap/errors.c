@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors..c                                          :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:05:00 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/03/24 13:00:49 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/03/26 15:20:34 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,6 @@ int	double_number_error(t_stack *head, int num)
 	}
 	return (1);
 }
-
-//check if the input is correct or valid
-void	command_input_error(void)
-{}
-
-//check if the numbers are bigger then INT_MAX or smaller then INT_MIN
-void	max_int_error(void)
-{}
 
 int	check_vals(int argc, char *argv[])
 {
@@ -69,3 +61,13 @@ int	check_stack(t_stack *stack)
 	}
 	return (0);
 }
+
+/*
+//check if the input is correct or valid
+void	command_input_error(void)
+{}
+
+//check if the numbers are bigger then INT_MAX or smaller then INT_MIN
+void	max_int_error(void)
+{}
+*/

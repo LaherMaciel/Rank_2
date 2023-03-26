@@ -68,7 +68,8 @@ void	print_tab(t_stack *stack_a, t_stack *stack_b)
 		"-------------------------\n");
 }
 
-/*void	visualizer(t_stack **stack_a, t_stack **stack_b)
+/*
+void	visualizer(t_stack **stack_a, t_stack **stack_b)
 {
 	char	input[5];
 	int		cont;
@@ -103,6 +104,7 @@ void	print_tab(t_stack *stack_a, t_stack *stack_b)
 	}
 	ft_printf("FIM DO PROGRAMA!\n");
 }
+*/
 
 void	visualizer2(t_stack **stack_a, t_stack **stack_b)
 {
@@ -125,4 +127,3 @@ void	visualizer2(t_stack **stack_a, t_stack **stack_b)
 	ft_printf("visualizer2 out\n");
 	ft_printf("FIM DO PROGRAMA!\n");
 }
-*/

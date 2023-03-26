@@ -20,7 +20,8 @@ int	main(int argc, char *argv[])
 
 	if (argc > 0)
 	{
-		stack_a = store_integers_in_stack2(ft_atoi(argv[1]), ft_atoi(argv[2]), ft_atoi(argv[3]));
+		stack_a = store_integers_in_stack2(ft_atoi(argv[1]),
+				ft_atoi(argv[2]), ft_atoi(argv[3]));
 		stack_b = NULL;
 		//ft_printf("stack size = %i\n", (ft_lstsize(stack_a) / 2));
 		movs = order(&stack_a, &stack_b);

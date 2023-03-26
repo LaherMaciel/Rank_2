@@ -98,6 +98,8 @@ size_t	ft_strlen(const char *a);
 t_stack	*ft_lstnew(int content);
 int		ft_lstsize(t_stack *lst);
 char	*ft_strjoin(char *s1, char s2);
+char	**ft_split(char const *s, char c);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
 
 // ft_printf
 int		ft_printf(const char *a, ...);

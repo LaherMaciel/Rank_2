@@ -50,12 +50,21 @@ void	print_stack(t_stack *head)
 t_stack	*store_integers_in_stack(int argc, char *argv[])
 {
 	t_stack	*stack;
+	char	**val;
 	int		num;
+	int		i;
 
 	stack = NULL;
 	num = 0;
 	while (argc-- > 0)
 	{
+		i = -1;
+		val = ft_split(argv[argc], ' ');
+		while (++i < ft_strlen(val))
+		{
+			if (!(val[i] >= 48 && **val[i] <= 57))
+				num = -1;
+		}
 		num = ft_atoi(argv[argc]);
 		if (num == 0 && argv[argc][0] != '0')
 			continue ;
