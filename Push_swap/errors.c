@@ -6,14 +6,26 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:05:00 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/03/26 15:20:34 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/03/30 22:10:59 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+int	commands_check_aux(char *val[], int i)
+{
+	if (((val[i][0] != 's' || val[i][0] != 'r' || val[i][0] != 'p')
+	&& (val[i][1] != 'r' || val[i][1] != 'a' || val[i][1] != 'b' || val[i][1] != 's' ))
+	&&
+		return (-3);
+	else if (ft_strlen(val[i]) > 2 && val[i][1] != 'r'
+	&& (val[i][2] != 'a' || val[i][2] != 'b' || val[i][2] != 'r'))
+		return (-3);
+	return (0);
+}
+
 //send an error message if the program recieves a number more then 1 time
-int	double_number_error(t_stack *head, int num)
+int	contains_this_values(t_stack *head, int num)
 {
 	t_stack	*stack;
 
@@ -23,6 +35,30 @@ int	double_number_error(t_stack *head, int num)
 		if (num == stack->content)
 			return (0);
 		stack = stack->next;
+	}
+	return (1);
+}
+
+int	contains_duplicate_values(t_stack *head)
+{
+	t_stack	*stack1;
+	t_stack	*stack2;
+	int		num;
+
+	if (head == NULL)
+		return (0);
+	stack1 = head;
+	while (stack1->next != NULL)
+	{
+		num = stack1->content;
+		stack2 = stack1->next;
+		while (stack2)
+		{
+			if (num == stack2->content)
+				return (0);
+			stack2 = stack2->next;
+		}
+		stack1 = stack1->next;
 	}
 	return (1);
 }

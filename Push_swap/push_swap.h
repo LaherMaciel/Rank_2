@@ -37,15 +37,19 @@ void	ft_rotate_rotate(t_stack **stack_a, t_stack **stack_b);
 void	ft_reverse_rotate(t_stack **stack, char id);
 void	ft_reverse_rotate_rotate(t_stack **stack_a, t_stack **stack_b);
 
+//ERRORS
+int		contains_this_values(t_stack *head, int num);
+int		contains_duplicate_values(t_stack *head);
+int		check_vals(int argc, char *argv[]);
+int		check_stack(t_stack *stack);
+
 // List manipulation
 t_stack	*store_integers_in_stack(int argc, char *argv[]);
 t_stack	*store_integers_in_stack2(int len, int min, int max);
+t_stack	*store_integers_in_stack3(int argc, char *argv[]);
 int		pop(t_stack **stack);
 void	push(t_stack **stack, int data);
 void	print_stack(t_stack *head);
-int		check_vals(int argc, char *argv[]);
-int		double_number_error(t_stack *head, int num);
-int		check_stack(t_stack *stack);
 //t_stack	*create_stack(int argc, char **argv, int i);
 
 // sort_condictions
@@ -98,10 +102,11 @@ size_t	ft_strlen(const char *a);
 t_stack	*ft_lstnew(int content);
 int		ft_lstsize(t_stack *lst);
 char	*ft_strjoin(char *s1, char s2);
-char	**ft_split(char const *s, char c);
+char	**ft_split(char const *str, char spliter);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_isalpha(int c);
 int		ft_isdigit(int i);
+int		ft_isprint(int a);
 
 // ft_printf
 int		ft_printf(const char *a, ...);

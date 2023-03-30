@@ -50,13 +50,13 @@ void	print_stack(t_stack *head)
 t_stack	*store_integers_in_stack(int argc, char *argv[])
 {
 	t_stack	*stack;
-	char	**val;
 	int		num;
 
 	stack = NULL;
 	num = 0;
 	while (argc-- > 0)
 	{
+		num = ft_atoi(argv[argc]);
 		if (num == 0 && argv[argc][0] != '0')
 			continue ;
 		push(&stack, num);
@@ -64,38 +64,41 @@ t_stack	*store_integers_in_stack(int argc, char *argv[])
 	return (stack);
 }
 
-void	auxfasdk(int argc, char *argv)
+t_stack	*store_integers_in_stack3(int argc, char *argv[])
 {
-	char	**val;
+	t_stack	*stack;
 	size_t	i;
-	int		isdig;
-	int		isal;
+	long	num;
+	int		skip;
 
-	isdig = 0;
-	isal = 0;
+	stack = NULL;
 	while (argc-- > 0)
 	{
 		i = -1;
-		val = ft_split(argv[argc], ' ');
-		while (++i < ft_strlen(*val))
+		skip = 2;
+		while (++i < ft_strlen(argv[argc]))
 		{
-			if (ft_isdigit(*val[i]))
-				isdig = 1;
-			if (ft_isalpha(*val[i]))
-				isal = 1;
+			if (ft_isdigit(argv[argc][i]) || (((argv[argc][i] == '-'
+			|| argv[argc][i] == '+') && i == 0)))
+				skip = 0;
+			else if (ft_isprint(argv[argc][i]) && skip == 0)
+				return (NULL);
 		}
-		if (isal == 1 && isdig == 1)
-			return (0);
-		if (isdig == 1)
-			
-		if (isal == 1)
-			
+		if (skip == 0)
+		{
+			num = ft_atoi(argv[argc]);
+			if (num > INT_MAX || num < INT_MIN)
+				return (NULL);
+			push(&stack, num);
+		}
+	}
+	return (stack);
 }
 
 t_stack	*store_integers_in_stack2(int len, int min, int max)
 {
-	t_stack	*stack;
 	int		num;
+	t_stack	*stack;
 
 	stack = NULL;
 	num = 0;
