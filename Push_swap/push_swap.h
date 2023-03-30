@@ -100,6 +100,8 @@ int		ft_lstsize(t_stack *lst);
 char	*ft_strjoin(char *s1, char s2);
 char	**ft_split(char const *s, char c);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
+int		ft_isalpha(int c);
+int		ft_isdigit(int i);
 
 // ft_printf
 int		ft_printf(const char *a, ...);

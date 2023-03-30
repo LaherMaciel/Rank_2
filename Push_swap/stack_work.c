@@ -52,25 +52,44 @@ t_stack	*store_integers_in_stack(int argc, char *argv[])
 	t_stack	*stack;
 	char	**val;
 	int		num;
-	int		i;
 
 	stack = NULL;
 	num = 0;
 	while (argc-- > 0)
 	{
-		i = -1;
-		val = ft_split(argv[argc], ' ');
-		while (++i < ft_strlen(val))
-		{
-			if (!(val[i] >= 48 && **val[i] <= 57))
-				num = -1;
-		}
-		num = ft_atoi(argv[argc]);
 		if (num == 0 && argv[argc][0] != '0')
 			continue ;
 		push(&stack, num);
 	}
 	return (stack);
+}
+
+void	auxfasdk(int argc, char *argv)
+{
+	char	**val;
+	size_t	i;
+	int		isdig;
+	int		isal;
+
+	isdig = 0;
+	isal = 0;
+	while (argc-- > 0)
+	{
+		i = -1;
+		val = ft_split(argv[argc], ' ');
+		while (++i < ft_strlen(*val))
+		{
+			if (ft_isdigit(*val[i]))
+				isdig = 1;
+			if (ft_isalpha(*val[i]))
+				isal = 1;
+		}
+		if (isal == 1 && isdig == 1)
+			return (0);
+		if (isdig == 1)
+			
+		if (isal == 1)
+			
 }
 
 t_stack	*store_integers_in_stack2(int len, int min, int max)

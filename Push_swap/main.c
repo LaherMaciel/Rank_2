@@ -23,7 +23,6 @@ int	main(int argc, char *argv[])
 		stack_a = store_integers_in_stack2(ft_atoi(argv[1]),
 				ft_atoi(argv[2]), ft_atoi(argv[3]));
 		stack_b = NULL;
-		//ft_printf("stack size = %i\n", (ft_lstsize(stack_a) / 2));
 		movs = order(&stack_a, &stack_b);
 		ft_printf("\n\nMAIN FINAL PRINT\n");
 		print_tab(stack_a, stack_b);
@@ -35,12 +34,15 @@ int	main(int argc, char *argv[])
 		ft_printf("ok");
 	}
 	if (check_stack(stack_a) != 0)
-		ft_printf("Erro: val pos %i incorrect\n", check_stack(stack_a));
+		ft_printf("KO\n", check_stack(stack_a));
 	else
-		ft_printf("\nAll ok!\n");
+		ft_printf("\nOK!\n");
 	return (0);
 }
 
+int	main_aux(int argc, char *argv)
+{
+}
 
 /*
 int	main(int argc, char *argv[])
