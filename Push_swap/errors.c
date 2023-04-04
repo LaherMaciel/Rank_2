@@ -6,23 +6,11 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:05:00 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/03/30 22:10:59 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/04/04 15:51:24 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	commands_check_aux(char *val[], int i)
-{
-	if (((val[i][0] != 's' || val[i][0] != 'r' || val[i][0] != 'p')
-	&& (val[i][1] != 'r' || val[i][1] != 'a' || val[i][1] != 'b' || val[i][1] != 's' ))
-	&&
-		return (-3);
-	else if (ft_strlen(val[i]) > 2 && val[i][1] != 'r'
-	&& (val[i][2] != 'a' || val[i][2] != 'b' || val[i][2] != 'r'))
-		return (-3);
-	return (0);
-}
 
 //send an error message if the program recieves a number more then 1 time
 int	contains_this_values(t_stack *head, int num)
