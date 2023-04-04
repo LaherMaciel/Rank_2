@@ -40,8 +40,43 @@ int	main(int argc, char *argv[])
 	return (0);
 }
 
-int	main_aux(int argc, char *argv)
+int	main2(int argc, char *argv)
 {
+	t_stack	*stack_a;
+	t_stack	*stack_b;
+	char	*commands;
+	int		movs;
+
+	if (argc > 0)
+	{
+		stack_a = store_integers_in_stack3(argc, argv);
+		commands = error_check(argc - 1, argv, stack_a);
+		if (commands != NULL)
+		{
+			if (ft_lstsize(stack_a) == argc)
+			{
+				stack_b = NULL;
+				movs = order(&stack_a, &stack_b);
+				ft_printf("\n\nMAIN FINAL PRINT\n");
+				print_tab(stack_a, stack_b);
+				ft_printf("NUMERO DE MOVIMENTOS FEITOS: %i\n", movs);
+				while (stack_a != NULL)
+					pop(&stack_a);
+				while (stack_b != NULL)
+					pop(&stack_b);
+				ft_printf("ok");
+			}
+			else if (ft_lstsize(stack_a) < argc)
+				ft_printf("Commands");
+		}
+		while (stack_a != NULL)
+			pop(&stack_a);
+		while (stack_b != NULL)
+			pop(&stack_b);
+	}
+	else
+		ft_printf("Proxy");
+	return (0);
 }
 
 /*

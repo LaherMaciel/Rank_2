@@ -42,6 +42,7 @@ int		contains_this_values(t_stack *head, int num);
 int		contains_duplicate_values(t_stack *head);
 int		check_vals(int argc, char *argv[]);
 int		check_stack(t_stack *stack);
+char	*error_check(int argc, char *argv[], t_stack *stack);
 
 // List manipulation
 t_stack	*store_integers_in_stack(int argc, char *argv[]);
@@ -60,14 +61,15 @@ int		total_movs_p(t_stack *src, t_stack *dst, int pos_1, int pos_2);
 
 // sort.c
 int		*best_stack_sa_mov(t_stack *stack, int *best_movs);
-int		best_stack_pb_mov_aux(t_stack *src, t_stack *dst, int *pos_1, int *pos_2);
+int		best_stack_pb_mov_aux(t_stack *src, t_stack *dst,
+			int *pos_1, int *pos_2);
 void	find_pos_1(t_stack *src, int *pos_1, int *cont);
 int		*best_stack_pb_mov(t_stack *src,
-		t_stack *dst, int *best_movs);
+			t_stack *dst, int *best_movs);
 int		best_stack_pa_mov_aux(t_stack *src, t_stack *dst,
-		int *pos_1, int *pos_2);
+			int *pos_1, int *pos_2);
 int		*best_stack_pa_mov(t_stack *src,
-		t_stack *dst, int *best_movs);
+			t_stack *dst, int *best_movs);
 int		order(t_stack **stack_a, t_stack **stack_b);
 void		sort(t_stack **stack_1, t_stack **stack_2, int *cont);
 void	sort_1(t_stack **stack_1, t_stack **stack_2, char *id_1);
@@ -99,9 +101,12 @@ int		find_above_media(t_stack *stack);
 long	ft_atoi(char *str);
 char	*ft_itoa(int n);
 size_t	ft_strlen(const char *a);
+char	*ft_strchr(const char *str, int c);
+int		ft_strncmp(const char *str1, const char *str2, size_t n);
 t_stack	*ft_lstnew(int content);
 int		ft_lstsize(t_stack *lst);
-char	*ft_strjoin(char *s1, char s2);
+char	*ft_strjoin(char *s1, char *s2);
+//char	*ft_strjoin(char *s1, char s2);
 char	**ft_split(char const *str, char spliter);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_isalpha(int c);
@@ -119,5 +124,8 @@ void	ss_movs(t_stack **stack_a, t_stack **stack_b, char *input);
 void	rr_movs(t_stack **stack_a, t_stack **stack_b, char *input);
 void	rrr_movs(t_stack **stack_a, t_stack **stack_b, char *input);
 void	print_tab(t_stack *stack_a, t_stack *stack_b);
+
+//Sort with user commands
+void	user_sort(t_stack **stack_a, t_stack **stack_b);
 
 #endif // !FT_PUSH_SWAP.H

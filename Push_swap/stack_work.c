@@ -95,6 +95,41 @@ t_stack	*store_integers_in_stack3(int argc, char *argv[])
 	return (stack);
 }
 
+/*
+Stack*	createStackFromArgs(int argc, char* argv[])
+{
+    Stack* stack = (Stack*) malloc(sizeof(Stack));
+    initialize(stack);
+
+    int argIndex = 1;
+
+    // Check if there are enough arguments to create a stack
+    if (argc - argIndex < 1) {
+        return NULL;
+    }
+
+    // Read stack values until the end of arguments or a non-integer argument is encountered
+    while (argIndex < argc) {
+        char* arg = argv[argIndex];
+        int value = atoi(arg);
+
+        if (value == 0 && strcmp(arg, "0") != 0) {
+            break;
+        }
+
+        push(stack, value);
+        argIndex++;
+    }
+
+    // Check if there are enough arguments to create a non-empty stack
+    if (isEmpty(stack)) {
+        return NULL;
+    }
+
+    return stack;
+}
+*/
+
 t_stack	*store_integers_in_stack2(int len, int min, int max)
 {
 	int		num;
