@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 21:16:17 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/04/06 09:54:14 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/04/06 10:02:33 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,8 @@ void	user_sort(t_stack **stack_a, t_stack **stack_b, char *command)
 			&& command[0] != 'p')
 			ft_printf("Can't do this movement, stack_b empty.\n");
 	}
-	if (command[0] == 'p')
-		p_movs(stack_a, stack_b, command);
-	else if (command[0] == 's')
-		ss_movs(stack_a, stack_b, command);
-	else if (command[0] == 'r' && ft_strlen(command) > 2)
-		rrr_movs(stack_a, stack_b, command);
-	else if (command[0] == 'r')
-		rr_movs(stack_a, stack_b, command);
-	else if (command[0] != 'p' && command[0] != 's'
-		&& command[0] != 'r' && command[0] != 'e')
+	sorting(stack_a, stack_b, command);
+	else if (commands_check(command) == 0)
 		ft_printf("ERROR: VALID INPUTS -> 'numbers', ss," \
 				" sa, sb, rr, ra, rb, rrr, rra," \
 				" rrb, pa, pb or exit\n");

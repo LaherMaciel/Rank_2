@@ -36,12 +36,14 @@ void	ft_rotate(t_stack **stack, char id);
 void	ft_rotate_rotate(t_stack **stack_a, t_stack **stack_b);
 void	ft_reverse_rotate(t_stack **stack, char id);
 void	ft_reverse_rotate_rotate(t_stack **stack_a, t_stack **stack_b);
+void	sorting(t_stack **stack_a, t_stack **stack_b, char *id_1);
 
 //ERRORS
 int		contains_this_values(t_stack *head, int num);
 int		contains_duplicate_values(t_stack *head);
 int		check_vals(int argc, char *argv[]);
 int		check_stack(t_stack *stack);
+int		commands_check(char *str);
 char	*error_check(int argc, char *argv[], t_stack *stack);
 const char	**valid_strings(void);
 

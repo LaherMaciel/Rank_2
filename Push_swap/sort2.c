@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 09:36:32 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/04/06 09:56:40 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/04/06 09:57:25 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	sort_p_2(t_stack **stack_1, t_stack **stack_2, int fase)
 			pb[1] = 0;
 		id = pa_decisions(*stack_1, *stack_2, pb[1], pb[2]);
 	}
-	sort_1(stack_a, stack_b, id);
+	sorting(stack_a, stack_b, id);
 }
 
 void	sort__2(t_stack **stack_a, t_stack **stack_b, int *cont)

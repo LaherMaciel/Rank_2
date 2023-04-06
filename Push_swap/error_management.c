@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 20:39:02 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/04/06 09:54:30 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/04/06 10:15:00 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,34 @@ void	commands_check_aux2(char **val, int i)
 		val[i] = ft_substr(val[i], 0, ft_strlen(val[i]) - 1);
 }
 
-int	commands_check_aux(char *str)
+int	commands_check(char *str)
 {
 	int			i;
 	const char	**valid_commands;
 
 	valid_commands = valid_strings();
 	i = -1;
-	while (valid_strings[++i] != NULL)
-		if (ft_strncmp(str, valid_strings[i], ft_strlen(str)))
+	while (valid_commands[++i] != NULL)
+		if (ft_strncmp(str, valid_commands[i], ft_strlen(str)))
 			return (1);
 	return (0);
 }
 
-char	*commands_check(int argc, char *argv[], int stacksize)
+char	*shortining_code(char **val, char **commands, int i)
+{
+	while (val[++i] != NULL)
+	{
+		commands_check_aux2(val, i);
+		if (commands_check(val[i]) == 0)
+		{
+			free(commands);
+			return (NULL);
+		}
+	}
+	return ("ok");
+}
+
+char	*command_check(int argc, char *argv[], int stacksize)
 {
 	char	**val;
 	char	*commands;
@@ -49,17 +63,13 @@ char	*commands_check(int argc, char *argv[], int stacksize)
 		{
 			val = ft_split(argv[stacksize], ' ');
 			i = -1;
-			while (val[++i] != NULL)
+			if (shortining_code(val, &commands, i) == NULL)
+				return (NULL);
+			else
 			{
-				commands_check_aux2(val, i);
-				if (commands_check_aux(val[i]) == 0)
-				{
-					free(commands);
-					return (NULL);
-				}
+				commands = ft_strjoin(commands, "  ");
+				commands = ft_strjoin(commands, *val);
 			}
-			commands = ft_strjoin(commands, ' ');
-			commands = ft_strjoin(commands, **val);
 		}
 		return (commands);
 	}
