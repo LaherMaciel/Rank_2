@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:05:00 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/04/04 17:55:15 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/04/06 09:25:21 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,25 @@ int	check_stack(t_stack *stack)
 		current = current->next;
 	}
 	return (0);
+}
+
+const char	**valid_strings(void)
+{
+	const char	**commands;
+
+	commands = malloc(11 * sizeof(char *));
+	commands[0] = "ss";
+	commands[1] = "sa";
+	commands[2] = "sb";
+	commands[3] = "pa";
+	commands[4] = "pb";
+	commands[5] = "rr";
+	commands[6] = "ra";
+	commands[7] = "rb";
+	commands[8] = "rrr";
+	commands[9] = "rra";
+	commands[10] = "rrb";
+	return (commands);
 }
 
 /*

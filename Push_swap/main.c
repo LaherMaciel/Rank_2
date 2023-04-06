@@ -12,6 +12,49 @@
 
 #include "push_swap.h"
 
+void	end_code(t_stack **stack_a, t_stack **stack_b, int cont)
+{
+	if (stack_a != NULL)
+	{
+		ft_printf("\n\nMAIN FINAL PRINT\n");
+		print_tab(*stack_a, *stack_b);
+		ft_printf("NUMERO DE MOVIMENTOS FEITOS: %i\n", cont);
+	}
+	while (stack_a != NULL)
+		pop(stack_a);
+	while (stack_b != NULL)
+		pop(stack_b);
+	ft_printf("FIM DO PROGRAMA!\n");
+}
+
+int	main(int argc, char *argv[])
+{
+	t_stack	*stack_a;
+	t_stack	*stack_b;
+	char	*commands;
+	int		cont;
+
+	cont = 0;
+	if (argc > 0)
+	{
+		stack_a = store_integers_in_stack3(argc, argv);
+		stack_b = NULL;
+		commands = error_check(argc - 1, argv, stack_a);
+		if (commands != NULL)
+		{
+			if (commands[0] == 'k' && commands[0] == 'o')
+				cont = auto_sort(&stack_a, &stack_b, &cont);
+			else
+				inputed_commands(&stack_a, &stack_b, commands, &cont);
+		}
+	}
+	else
+		proxy(&stack_a, &stack_b, &cont);
+	end_code(&stack_a, &stack_b, cont);
+	return (0);
+}
+
+/*
 int	main(int argc, char *argv[])
 {
 	t_stack	*stack_a;
@@ -39,45 +82,7 @@ int	main(int argc, char *argv[])
 		ft_printf("\nOK!\n");
 	return (0);
 }
-
-int	main2(int argc, char *argv)
-{
-	t_stack	*stack_a;
-	t_stack	*stack_b;
-	char	*commands;
-	int		movs;
-
-	if (argc > 0)
-	{
-		stack_a = store_integers_in_stack3(argc, argv);
-		commands = error_check(argc - 1, argv, stack_a);
-		if (commands != NULL)
-		{
-			if (ft_lstsize(stack_a) == argc)
-			{
-				stack_b = NULL;
-				movs = order(&stack_a, &stack_b);
-				ft_printf("\n\nMAIN FINAL PRINT\n");
-				print_tab(stack_a, stack_b);
-				ft_printf("NUMERO DE MOVIMENTOS FEITOS: %i\n", movs);
-				while (stack_a != NULL)
-					pop(&stack_a);
-				while (stack_b != NULL)
-					pop(&stack_b);
-				ft_printf("ok");
-			}
-			else if (ft_lstsize(stack_a) < argc)
-				ft_printf("Commands");
-		}
-		while (stack_a != NULL)
-			pop(&stack_a);
-		while (stack_b != NULL)
-			pop(&stack_b);
-	}
-	else
-		ft_printf("Proxy");
-	return (0);
-}
+*/
 
 /*
 int	main(int argc, char *argv[])

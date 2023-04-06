@@ -43,6 +43,7 @@ int		contains_duplicate_values(t_stack *head);
 int		check_vals(int argc, char *argv[]);
 int		check_stack(t_stack *stack);
 char	*error_check(int argc, char *argv[], t_stack *stack);
+const char	**valid_strings(void);
 
 // List manipulation
 t_stack	*store_integers_in_stack(int argc, char *argv[]);
@@ -52,6 +53,12 @@ int		pop(t_stack **stack);
 void	push(t_stack **stack, int data);
 void	print_stack(t_stack *head);
 //t_stack	*create_stack(int argc, char **argv, int i);
+
+// run_modes
+void	proxy(t_stack **stack_a, t_stack **stack_b, int *cont);
+void	inputed_commands(t_stack **stack_a,
+			t_stack **stack_b, char *command_list, int *cont);
+int		auto_sort(t_stack **stack_a, t_stack **stack_b, int *cont);
 
 // sort_condictions
 int		nr_movs(int pos, int stack_size);
@@ -70,15 +77,14 @@ int		best_stack_pa_mov_aux(t_stack *src, t_stack *dst,
 			int *pos_1, int *pos_2);
 int		*best_stack_pa_mov(t_stack *src,
 			t_stack *dst, int *best_movs);
-int		order(t_stack **stack_a, t_stack **stack_b);
-void		sort(t_stack **stack_1, t_stack **stack_2, int *cont);
+void	sort(t_stack **stack_1, t_stack **stack_2, int *cont);
 void	sort_1(t_stack **stack_1, t_stack **stack_2, char *id_1);
 void	sort_2(t_stack **stack_1, t_stack **stack_2, char *id_1);
 void	sort_s_3(t_stack **stack, char id, int *cont);
 void	sort_p(t_stack **stack_1, t_stack **stack_2, int fase);
 
 // pa, pb & p_cont
-char	 *pa_decisions(t_stack *src, t_stack *dst, int pos_1, int pos_2);
+char	*pa_decisions(t_stack *src, t_stack *dst, int pos_1, int pos_2);
 char	*pb_decisions(t_stack *src, t_stack *dst, int pos_1, int pos_2);
 int		p_decisions_cont(t_stack *src, t_stack *dst, int pos_1, int pos_2);
 void	p_decisison_cont_aux(int *pos_1, int *pos_2, int final_pos_2);
@@ -102,7 +108,7 @@ long	ft_atoi(char *str);
 char	*ft_itoa(int n);
 size_t	ft_strlen(const char *a);
 char	*ft_strchr(const char *str, int c);
-int		ft_strncmp(const char *str1, const char *str2, size_t n);
+int		ft_strncmp(char *str1, const char *str2, size_t n);
 t_stack	*ft_lstnew(int content);
 int		ft_lstsize(t_stack *lst);
 char	*ft_strjoin(char *s1, char *s2);
@@ -112,6 +118,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_isalpha(int c);
 int		ft_isdigit(int i);
 int		ft_isprint(int a);
+int		ft_tolower(int a);
 
 // ft_printf
 int		ft_printf(const char *a, ...);
@@ -126,6 +133,6 @@ void	rrr_movs(t_stack **stack_a, t_stack **stack_b, char *input);
 void	print_tab(t_stack *stack_a, t_stack *stack_b);
 
 //Sort with user commands
-void	user_sort(t_stack **stack_a, t_stack **stack_b);
+void	user_sort(t_stack **stack_a, t_stack **stack_b, char *command);
 
 #endif // !FT_PUSH_SWAP.H

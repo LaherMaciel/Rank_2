@@ -138,31 +138,3 @@ void	sort(t_stack **stack_a, t_stack **stack_b, int *cont)
 		//ft_printf("\ncont -> %i\n", *cont);
 	}
 }
-
-int	order(t_stack **stack_a, t_stack **stack_b)
-{
-	int	smallest;
-	int	cont;
-
-	cont = 0;
-	sort(stack_a, stack_b, &cont);
-	smallest = nr_movs(find_pos(*stack_a, find_smallest(*stack_a)), ft_lstsize(*stack_a));
-	//ft_printf("Smallest pos = %i\n", smallest);
-	print_tab(*stack_a, *stack_b);
-	while (smallest != 0)
-	{
-		//ft_printf("Smallest pos = %i\n", smallest);
-		if (smallest > 0)
-		{
-			ft_reverse_rotate(stack_a, 'a');
-			smallest--;
-		}
-		else if (smallest < 0)
-		{
-			ft_rotate(stack_a, 'a');
-			smallest++;
-		}
-		cont++;
-	}
-	return (cont);
-}

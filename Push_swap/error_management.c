@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 20:39:02 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/04/04 21:43:01 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/04/06 09:25:40 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,12 @@ void	commands_check_aux2(char **val, int i)
 		val[i] = ft_substr(val[i], 0, ft_strlen(val[i]) - 1);
 }
 
-int	commands_check_aux(const char *str)
+int	commands_check_aux(char *str)
 {
-	const char	*valid_strings[11];
 	int			i;
+	const char	**valid_commands;
 
-	valid_strings[0] = "ss";
-	valid_strings[1] = "sa";
-	valid_strings[2] = "sb";
-	valid_strings[3] = "pa";
-	valid_strings[4] = "pb";
-	valid_strings[5] = "rr";
-	valid_strings[6] = "ra";
-	valid_strings[7] = "rb";
-	valid_strings[8] = "rrr";
-	valid_strings[9] = "rra";
-	valid_strings[10] = "rrb";
+	valid_commands = valid_strings();
 	i = -1;
 	while (valid_strings[++i] != NULL)
 		if (ft_strncmp(str, valid_strings[i], ft_strlen(str)))
@@ -71,8 +61,9 @@ char	*commands_check(int argc, char *argv[], int stacksize)
 			commands = ft_strjoin(commands, ' ');
 			commands = ft_strjoin(commands, **val);
 		}
+		return (commands);
 	}
-	return (commands);
+	return ("ko");
 }
 
 char	*error_check(int argc, char *argv[], t_stack *stack)
@@ -91,5 +82,7 @@ char	*error_check(int argc, char *argv[], t_stack *stack)
 		ft_printf("Error");
 		return (NULL);
 	}
+	if (commands[0] == 'k' && commands[1] == 'o')
+		return ("ko");
 	return (commands);
 }
