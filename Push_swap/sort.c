@@ -138,3 +138,4 @@ void	sort(t_stack **stack_a, t_stack **stack_b, int *cont)
 		//ft_printf("\ncont -> %i\n", *cont);
 	}
 }
+

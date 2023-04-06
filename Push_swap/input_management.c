@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 21:16:17 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/04/06 08:48:49 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/04/06 09:54:14 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,3 +78,4 @@ void	rrr_movs(t_stack **stack_a, t_stack **stack_b, char *command)
 	if (command[2] == 'b')
 		ft_reverse_rotate(stack_b, 'b');
 }
+

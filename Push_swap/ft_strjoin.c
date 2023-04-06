@@ -54,3 +54,4 @@ char	*ft_strjoin(char *s1, char *s2)
 	sjoin[i] = '\0';
 	return (sjoin);
 }
+

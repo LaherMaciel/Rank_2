@@ -145,3 +145,4 @@ t_stack	*store_integers_in_stack2(int len, int min, int max)
 	}
 	return (stack);
 }
+

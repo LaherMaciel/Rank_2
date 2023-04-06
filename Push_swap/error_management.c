@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 20:39:02 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/04/06 09:25:40 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/04/06 09:54:30 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,3 +86,4 @@ char	*error_check(int argc, char *argv[], t_stack *stack)
 		return ("ko");
 	return (commands);
 }
+
