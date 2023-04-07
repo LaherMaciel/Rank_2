@@ -12,16 +12,8 @@
 
 #include "push_swap.h"
 
-void	print_tab(t_stack *stack_a, t_stack *stack_b)
+int	shortining(t_stack *stack_a, t_stack *stack_b, int cont)
 {
-	int	cont;
-
-	cont = 0;
-	ft_printf("\n---------------------------------"\
-	"--------------------------------\n");
-	ft_printf("|	PS	|	NMA	A	|	NMB	B	|\n");
-	ft_printf("|---------------|-------------"\
-	"----------|-----------------------|\n");
 	while (stack_a && stack_b)
 	{
 		if ((ft_lstsize(stack_a)) >= cont && (ft_lstsize(stack_b)) >= cont)
@@ -42,6 +34,11 @@ void	print_tab(t_stack *stack_a, t_stack *stack_b)
 		stack_b = stack_b->next;
 		cont++;
 	}
+	return (cont);
+}
+
+void	shortining2(t_stack *stack_a, t_stack *stack_b, int cont)
+{
 	while (stack_a)
 	{
 		if (ft_lstsize(stack_a) >= cont)
@@ -64,6 +61,19 @@ void	print_tab(t_stack *stack_a, t_stack *stack_b)
 		cont++;
 		stack_b = stack_b->next;
 	}
+}
+
+void	print_tab(t_stack *stack_a, t_stack *stack_b)
+{
+	int	cont;
+
+	ft_printf("\n---------------------------------"\
+	"--------------------------------\n");
+	ft_printf("|	PS	|	NMA	A	|	NMB	B	|\n");
+	ft_printf("|---------------|-------------"\
+	"----------|-----------------------|\n");
+	cont = shortining(stack_a, stack_b, 0);
+	shortining2(stack_a, stack_b, cont);
 	ft_printf("----------------------------------------"\
 		"-------------------------\n");
 }
@@ -117,7 +127,7 @@ void	visualizer2(t_stack **stack_a, t_stack **stack_b)
 	print_tab(*stack_a, *stack_b);
 	while (done == 0 && cont < 200)
 	{
-		done = sort(stack_a, stack_b);
+		sort(stack_a, stack_b, &cont);
 		ft_printf("\ndone = %i\n\n", done);
 		if (done == 0)
 			cont++;

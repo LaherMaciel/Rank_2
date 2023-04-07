@@ -16,8 +16,6 @@ void	sort_1(t_stack **stack_1, t_stack **stack_2, char *id_1)
 {
 	if (!stack_2)
 		return ;
-	//print_stack(*stack_1);
-	//ft_printf("id = %s\n", id_1);
 	if (id_1[0] == 'r' && id_1[1] == 'r'
 		&& id_1[2] == 'r' && ft_strlen(id_1) == 3)
 		ft_reverse_rotate_rotate(stack_1, stack_2);
@@ -45,9 +43,6 @@ void	sort_p(t_stack **stack_1, t_stack **stack_2, int fase)
 	{
 		best_stack_pb_mov(*stack_1, *stack_2, pb);
 		id = pb_decisions(*stack_1, *stack_2, pb[1], pb[2]);
-		/*ft_printf("BEST pb[ %i | pos1 -> %i val1 -> %i | "\
-			"pos2 -> %i val2 -> %i ];\n", pb[0], pb[1],
-			find_val(*stack_1, pb[1]), pb[2], find_val(*stack_2, pb[2]));*/
 	}
 	else
 	{
@@ -55,13 +50,9 @@ void	sort_p(t_stack **stack_1, t_stack **stack_2, int fase)
 		if (ft_lstsize(*stack_1) == 1 && ft_lstsize(*stack_2) > 3 && pb[1] == 1)
 			pb[1] = 0;
 		id = pa_decisions(*stack_1, *stack_2, pb[1], pb[2]);
-		/*ft_printf("BEST pa[ %i | pos1 -> %i val1 -> %i | "\
-			"pos2 -> %i val2 -> %i ];\n", pb[0], pb[1],
-			find_val(*stack_1, pb[1]), pb[2], find_val(*stack_2, pb[2]));*/
 	}
-	//ft_printf("id = %s\n", id);
-	if ((id[0] == 'r' && id[1] == 'b') || (id[0] == 'r' && id[1]
-		== 'r' && id[2] == 'b') || (id[0] == 'p' && id[0] == 'a'))
+	if ((id[0] == 'r' && id[1] == 'b') || (id[0] == 'r'
+			&& id[1] == 'r' && id[2] == 'b') || (id[0] == 'p' && id[0] == 'a'))
 		sort_1(stack_2, stack_1, id);
 	else
 		sort_1(stack_1, stack_2, id);
@@ -82,9 +73,11 @@ void	sort_s_3(t_stack **stack, char id, int *cont)
 		else if (((*stack)->content < (*stack)->next->content)
 			&& ((*stack)->content > (*stack)->next->next->content))
 			ft_reverse_rotate(stack, id);
-		else if (((*stack)->content > (*stack)->next->content) && ((*stack)->content > (*stack)->next->next->content))
+		else if (((*stack)->content > (*stack)->next->content)
+			&& ((*stack)->content > (*stack)->next->next->content))
 			ft_rotate(stack, id);
-		else if (((*stack)->content < (*stack)->next->content) && ((*stack)->next->content > (*stack)->next->next->content))
+		else if (((*stack)->content < (*stack)->next->content)
+			&& ((*stack)->next->content > (*stack)->next->next->content))
 			ft_reverse_rotate(stack, id);
 		else if (((*stack)->content > (*stack)->next->content))
 			ft_swap(stack, id);
@@ -104,23 +97,22 @@ void	sort(t_stack **stack_a, t_stack **stack_b, int *cont)
 	stop = ft_lstsize(*stack_a) * 5;
 	sa_ord = 0;
 	done = 0;
-	while ((done == 0 || *stack_b)) // && *cont < stop
+	while ((done == 0 || *stack_b))
 	{
-		if ((*cont > stop - 10) || (stop < 10) || *cont < 10 || (ft_lstsize(*stack_a) <= 3))
+		if ((*cont > stop - 10) || (stop < 10)
+			|| *cont < 10 || (ft_lstsize(*stack_a) <= 3))
 		{
 			print_tab(*stack_a, *stack_b);
 			ft_printf("\ncont -> %i\n", *cont);
 		}
 		if (ft_lstsize(*stack_a) <= 3 && sa_ord == 0)
 		{
-			//ft_printf("sort if (sort_s_3) in\n");
 			sort_s_3(stack_a, 'a', cont);
 			sa_ord = 1;
 		}
 		else if (sa_ord == 0)
 		{
-			nr = find_above_media(*stack_a);
-			//ft_printf("nr = %i\n", nr);
+			nr = find_above_media(*stack_a, 0, 0);
 			if (nr > 0)
 				ft_reverse_rotate(stack_a, 'a');
 			else if (nr < 0)
@@ -130,12 +122,9 @@ void	sort(t_stack **stack_a, t_stack **stack_b, int *cont)
 		}
 		else
 		{
-			//ft_printf("sort else\n");
 			sort_p(stack_b, stack_a, sa_ord);
 			done = 1;
 		}
 		*cont = *cont + 1;
-		//ft_printf("\ncont -> %i\n", *cont);
 	}
 }
-

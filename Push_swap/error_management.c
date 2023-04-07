@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 20:39:02 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/04/06 10:15:00 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/04/06 11:04:21 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	commands_check_aux2(char **val, int i)
 
 int	commands_check(char *str)
 {
-	int			i;
-	const char	**valid_commands;
+	int		i;
+	char	**valid_commands;
 
 	valid_commands = valid_strings();
 	i = -1;
@@ -96,4 +96,3 @@ char	*error_check(int argc, char *argv[], t_stack *stack)
 		return ("ko");
 	return (commands);
 }
-

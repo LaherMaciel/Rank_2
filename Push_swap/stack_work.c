@@ -47,7 +47,7 @@ void	print_stack(t_stack *head)
 	ft_printf ("\n");
 }
 
-t_stack	*store_integers_in_stack(int argc, char *argv[])
+/*t_stack	*store_integers_in_stack(int argc, char *argv[])
 {
 	t_stack	*stack;
 	int		num;
@@ -62,75 +62,48 @@ t_stack	*store_integers_in_stack(int argc, char *argv[])
 		push(&stack, num);
 	}
 	return (stack);
+}*/
+
+char	*shortining(t_stack **stack, int argc, char *argv[])
+{	
+	size_t	i;
+	long	num;
+	int		skip;
+
+	i = -1;
+	skip = 2;
+	while (++i < ft_strlen(argv[argc]))
+	{
+		if (ft_isdigit(argv[argc][i]) || (((argv[argc][i] == '-'
+		|| argv[argc][i] == '+') && i == 0)))
+			skip = 0;
+		else if (ft_isprint(argv[argc][i]) && skip == 0)
+			return (NULL);
+	}
+	if (skip == 0)
+	{
+		num = ft_atoi(argv[argc]);
+		if (num > INT_MAX || num < INT_MIN)
+			return (NULL);
+		push(stack, num);
+	}
+	return ("ok");
 }
 
 t_stack	*store_integers_in_stack3(int argc, char *argv[])
 {
 	t_stack	*stack;
-	size_t	i;
-	long	num;
-	int		skip;
 
 	stack = NULL;
 	while (argc-- > 0)
 	{
-		i = -1;
-		skip = 2;
-		while (++i < ft_strlen(argv[argc]))
-		{
-			if (ft_isdigit(argv[argc][i]) || (((argv[argc][i] == '-'
-			|| argv[argc][i] == '+') && i == 0)))
-				skip = 0;
-			else if (ft_isprint(argv[argc][i]) && skip == 0)
-				return (NULL);
-		}
-		if (skip == 0)
-		{
-			num = ft_atoi(argv[argc]);
-			if (num > INT_MAX || num < INT_MIN)
-				return (NULL);
-			push(&stack, num);
-		}
+		if (shortining(&stack, argc, argv) == NULL)
+			return (NULL);
 	}
 	return (stack);
 }
 
-/*
-Stack*	createStackFromArgs(int argc, char* argv[])
-{
-    Stack* stack = (Stack*) malloc(sizeof(Stack));
-    initialize(stack);
-
-    int argIndex = 1;
-
-    // Check if there are enough arguments to create a stack
-    if (argc - argIndex < 1) {
-        return NULL;
-    }
-
-    // Read stack values until the end of arguments or a non-integer argument is encountered
-    while (argIndex < argc) {
-        char* arg = argv[argIndex];
-        int value = atoi(arg);
-
-        if (value == 0 && strcmp(arg, "0") != 0) {
-            break;
-        }
-
-        push(stack, value);
-        argIndex++;
-    }
-
-    // Check if there are enough arguments to create a non-empty stack
-    if (isEmpty(stack)) {
-        return NULL;
-    }
-
-    return stack;
-}
-*/
-
-t_stack	*store_integers_in_stack2(int len, int min, int max)
+/*t_stack	*store_integers_in_stack2(int len, int min, int max)
 {
 	int		num;
 	t_stack	*stack;
@@ -144,5 +117,4 @@ t_stack	*store_integers_in_stack2(int len, int min, int max)
 			push(&stack, num);
 	}
 	return (stack);
-}
-
+}*/

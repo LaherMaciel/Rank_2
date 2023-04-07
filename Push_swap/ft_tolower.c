@@ -18,4 +18,3 @@ int	ft_tolower(int a)
 		a = a + 32;
 	return (a);
 }
-

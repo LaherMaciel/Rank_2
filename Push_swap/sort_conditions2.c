@@ -59,7 +59,8 @@ int	*best_stack_pb_mov(t_stack *src,
 		movs = best_stack_pa_mov_aux(src, dst, &pos_1, &pos_2);
 		if (find_val(src, pos_1) <= find_media(src))
 		{
-			if (movs < best_movs[0] && (movs != 0 || (movs == 0 && dst == NULL)))
+			if (movs < best_movs[0] && (movs != 0
+					|| (movs == 0 && dst == NULL)))
 			{
 				best_movs[0] = movs;
 				best_movs[1] = pos_1;
@@ -111,7 +112,8 @@ int	*best_stack_pa_mov(t_stack *src,
 		movs = best_stack_pa_mov_aux(src, dst, &pos_1, &pos_2);
 		if (find_val(src, pos_1) <= find_media(src))
 		{
-			if (movs < best_movs[0] && (movs != 0 || (movs == 0 && dst == NULL)))
+			if (movs < best_movs[0] && (movs != 0
+					|| (movs == 0 && dst == NULL)))
 			{
 				best_movs[0] = movs;
 				best_movs[1] = pos_1;

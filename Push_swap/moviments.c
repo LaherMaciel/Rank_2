@@ -87,5 +87,3 @@ void	ft_reverse_rotate(t_stack **stack, char id)
 	*stack = last;
 	new_last->next = NULL;
 }
-
-

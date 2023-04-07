@@ -6,11 +6,30 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 21:01:28 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/04/06 09:53:49 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/04/06 10:31:39 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
+
+void	user_sort(t_stack **stack_a, t_stack **stack_b, char *command)
+{
+	int	i;
+
+	i = -1;
+	while (command[i] != '\0')
+	{
+		if (ft_strncmp(command, "pa", 2) == 0 && stack_a == NULL)
+			ft_printf("Can't do this movement, stack_a empty.\n");
+		if (ft_strncmp(command, "pb", 2) == 0 && stack_b == NULL)
+			ft_printf("Can't do this movement, stack_b empty.\n");
+	}
+	sorting(stack_a, stack_b, command);
+	else if (commands_check(command) == 0)
+		ft_printf("ERROR: VALID INPUTS -> 'numbers', ss," \
+				" sa, sb, rr, ra, rb, rrr, rra," \
+				" rrb, pa, pb or exit\n");
+}
 
 // if the user dont introduz nothing | main
 void	proxy(t_stack **stack_a, t_stack **stack_b, int *cont)
@@ -25,7 +44,7 @@ void	proxy(t_stack **stack_a, t_stack **stack_b, int *cont)
 	while (ft_strncmp(command, "exit", 4) != 0)
 	{
 		ft_printf("\n>");
-		scanf(%s, command);
+		scanf("%s", command);
 		if (is_digit(command[0]) == 1)
 		{
 			val = ft_atoi(command);

@@ -45,7 +45,7 @@ int		check_vals(int argc, char *argv[]);
 int		check_stack(t_stack *stack);
 int		commands_check(char *str);
 char	*error_check(int argc, char *argv[], t_stack *stack);
-const char	**valid_strings(void);
+char	**valid_strings(void);
 
 // List manipulation
 t_stack	*store_integers_in_stack(int argc, char *argv[]);
@@ -103,7 +103,7 @@ int		find_bigger_then(t_stack *head, int val, int biggest);
 int		find_biggest(t_stack *stack);
 int		find_pos(t_stack *head, int val);
 int		find_val(t_stack *stack, int val);
-int		find_above_media(t_stack *stack);
+int		find_above_media(t_stack *stack, int cont1, int cont2);
 
 // libft
 long	ft_atoi(char *str);
