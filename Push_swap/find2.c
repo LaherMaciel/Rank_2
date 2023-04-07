@@ -6,11 +6,11 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 10:34:41 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/04/06 10:36:47 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/04/07 15:49:37 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap.h"
+#include "push_swap.h"
 
 // return the val in the position 'pos'
 int	find_val(t_stack *head, int pos)

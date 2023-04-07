@@ -6,11 +6,11 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 21:01:28 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/04/06 10:31:39 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/04/07 16:46:25 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap.h"
+#include "push_swap.h"
 
 void	user_sort(t_stack **stack_a, t_stack **stack_b, char *command)
 {
@@ -25,7 +25,7 @@ void	user_sort(t_stack **stack_a, t_stack **stack_b, char *command)
 			ft_printf("Can't do this movement, stack_b empty.\n");
 	}
 	sorting(stack_a, stack_b, command);
-	else if (commands_check(command) == 0)
+	if (commands_check(command) == 0)
 		ft_printf("ERROR: VALID INPUTS -> 'numbers', ss," \
 				" sa, sb, rr, ra, rb, rrr, rra," \
 				" rrb, pa, pb or exit\n");
@@ -37,7 +37,7 @@ void	proxy(t_stack **stack_a, t_stack **stack_b, int *cont)
 	char	command[100];
 	int		val;
 
-	command[0] = a;
+	command[0] = 'a';
 	val = 0;
 	ft_printf("Introduz numbers to store them in the first stack,\
 		or command to swap the numbers or 'exit' to end the program.\n");
@@ -45,7 +45,7 @@ void	proxy(t_stack **stack_a, t_stack **stack_b, int *cont)
 	{
 		ft_printf("\n>");
 		scanf("%s", command);
-		if (is_digit(command[0]) == 1)
+		if (ft_isdigit(command[0]) == 1)
 		{
 			val = ft_atoi(command);
 			push(stack_a, val);
@@ -62,11 +62,10 @@ void	proxy(t_stack **stack_a, t_stack **stack_b, int *cont)
 void	inputed_commands(t_stack **stack_a,
 		t_stack **stack_b, char *command_list, int *cont)
 {
-	char	*commands;
+	char	**commands;
 	int		i;
 
 	commands = ft_split(command_list, ' ');
-	free(command_list);
 	i = -1;
 	while (commands[++i] != NULL)
 	{
@@ -76,11 +75,11 @@ void	inputed_commands(t_stack **stack_a,
 }
 
 // if the user introduz just the numbers | main
-int	auto_sort(t_stack **stack_a, t_stack **stack_b, int *cont)
+void	auto_sort(t_stack **stack_a, t_stack **stack_b, int *cont)
 {
 	int	smallest;
 
-	sort(stack_a, stack_b, &cont);
+	sort(stack_a, stack_b, cont);
 	smallest = nr_movs(find_pos(*stack_a,
 				find_smallest(*stack_a)), ft_lstsize(*stack_a));
 	print_tab(*stack_a, *stack_b);
@@ -98,5 +97,4 @@ int	auto_sort(t_stack **stack_a, t_stack **stack_b, int *cont)
 		}
 		cont++;
 	}
-	return (cont);
 }

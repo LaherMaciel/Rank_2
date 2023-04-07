@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 20:39:02 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/04/06 11:04:21 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/04/07 15:47:53 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	*shortining_code(char **val, char **commands, int i)
 	return ("ok");
 }
 
-char	*command_check(int argc, char *argv[], int stacksize)
+char	*check_commands(int argc, char *argv[], int stacksize)
 {
 	char	**val;
 	char	*commands;
@@ -84,7 +84,7 @@ char	*error_check(int argc, char *argv[], t_stack *stack)
 	i = 1;
 	if (stack == NULL || (contains_duplicate_values(stack) == 0))
 		i = 0;
-	commands = commands_check(argc, argv, ft_lstsize(stack));
+	commands = check_commands(argc, argv, ft_lstsize(stack));
 	if (commands == NULL)
 		i = 0;
 	if (i == 0)

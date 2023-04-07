@@ -60,7 +60,7 @@ void	print_stack(t_stack *head);
 void	proxy(t_stack **stack_a, t_stack **stack_b, int *cont);
 void	inputed_commands(t_stack **stack_a,
 			t_stack **stack_b, char *command_list, int *cont);
-int		auto_sort(t_stack **stack_a, t_stack **stack_b, int *cont);
+void	auto_sort(t_stack **stack_a, t_stack **stack_b, int *cont);
 
 // sort_condictions
 int		nr_movs(int pos, int stack_size);
@@ -86,6 +86,7 @@ void	sort_s_3(t_stack **stack, char id, int *cont);
 void	sort_p(t_stack **stack_1, t_stack **stack_2, int fase);
 
 // pa, pb & p_cont
+char	*p_decisions(t_stack *src, t_stack *dst, int pos_1, int pos_2);
 char	*pa_decisions(t_stack *src, t_stack *dst, int pos_1, int pos_2);
 char	*pb_decisions(t_stack *src, t_stack *dst, int pos_1, int pos_2);
 int		p_decisions_cont(t_stack *src, t_stack *dst, int pos_1, int pos_2);
