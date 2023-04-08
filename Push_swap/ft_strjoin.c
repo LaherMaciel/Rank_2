@@ -39,13 +39,14 @@ char	*ft_strjoin(char *s1, char *s2)
 	size_t	i;
 	size_t	j;
 
+	/*if (!s1 || !s2)
+		return (NULL);*/
 	sjoin = (char *) malloc((ft_strlen(s1) + ft_strlen(s2)) * sizeof(char) + 1);
 	if (!sjoin)
 		return (NULL);
 	i = -1;
 	while (s1[++i] != '\0')
 		sjoin[i] = s1[i];
-	free(s1);
 	j = -1;
 	while (s2[++j] != '\0')
 	{
