@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:05:00 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/04/06 10:33:48 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/04/09 15:01:37 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ char	**valid_strings(void)
 {
 	char	**commands;
 
-	commands = malloc(11 * sizeof(char *));
+	commands = (char **) malloc(11 * sizeof(char *));
 	commands[0] = "ss";
 	commands[1] = "sa";
 	commands[2] = "sb";

@@ -14,12 +14,15 @@
 
 void	end_code(t_stack **stack_a, t_stack **stack_b, int cont)
 {
+	/*
 	if (stack_a != NULL)
 	{
 		ft_printf("\n\nMAIN FINAL PRINT\n");
 		print_tab(*stack_a, *stack_b);
-		ft_printf("NUMERO DE MOVIMENTOS FEITOS: %i\n", cont);
+		
 	}
+	*/
+	ft_printf("NUMERO DE MOVIMENTOS FEITOS: %i\n", cont);
 	while (stack_a != NULL)
 		pop(stack_a);
 	while (stack_b != NULL)
@@ -35,15 +38,16 @@ int	main(int argc, char *argv[])
 	int		cont;
 
 	cont = 0;
-	if (argc > 0)
+	if (argc > 1)
 	{
 		stack_a = store_integers_in_stack3(argc, argv);
 		stack_b = NULL;
 		commands = error_check(argc - 1, argv, stack_a);
+		ft_printf("%s\n\n", commands);
 		if (commands != NULL)
 		{
-			if (commands[0] == 'k' && commands[0] == 'o')
-				cont = auto_sort(&stack_a, &stack_b, &cont);
+			if (commands[0] == 'k' && commands[1] == 'o')
+				auto_sort(&stack_a, &stack_b, &cont);
 			else
 				inputed_commands(&stack_a, &stack_b, commands, &cont);
 		}

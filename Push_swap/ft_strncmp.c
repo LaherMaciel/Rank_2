@@ -19,8 +19,6 @@ int	ft_strncmp(char *str1, const char *str2, size_t n)
 	a = 0;
 	while (a < n && (str1[a] || str2[a]))
 	{
-		if (str1[a] + 32 == str2[a])
-			str1[a] = ft_tolower(str1[a]);
 		if (str1[a] != str2[a])
 			return ((unsigned char)str1[a] - (unsigned char)str2[a]);
 		a++;
