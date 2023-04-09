@@ -6,7 +6,11 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 09:36:32 by lwencesl          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/04/09 14:51:58 by lwencesl         ###   ########.fr       */
+=======
+/*   Updated: 2023/04/07 16:33:30 by lwencesl         ###   ########.fr       */
+>>>>>>> 77d3a4825b90f372e4fdecbf1384558a55f8bd75
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +42,7 @@ void	sorting(t_stack **stack_a, t_stack **stack_b, char *id_1)
 		ft_reverse_rotate(stack_b, 'b');
 }
 
+<<<<<<< HEAD
 void	sort_s_3(t_stack **stack, char id, int *cont)
 {
 	int	out;
@@ -67,6 +72,8 @@ void	sort_s_3(t_stack **stack, char id, int *cont)
 	}
 }
 
+=======
+>>>>>>> 77d3a4825b90f372e4fdecbf1384558a55f8bd75
 void	sort_p(t_stack **stack_a, t_stack **stack_b, int fase)
 {
 	int		pb[4];
@@ -90,10 +97,18 @@ void	sort_p(t_stack **stack_a, t_stack **stack_b, int fase)
 	sorting(stack_a, stack_b, id);
 }
 
+<<<<<<< HEAD
 int	sort_cut(t_stack **stack_a, t_stack **stack_b, int *sa_ord, int *cont)
 {
 	int	nr;
 
+=======
+int	sort_cut(t_stack **stack_a, t_stack **stack_b, int *nr, int *cont)
+{
+	int	sa_ord;
+
+	sa_ord = 0;
+>>>>>>> 77d3a4825b90f372e4fdecbf1384558a55f8bd75
 	if (ft_lstsize(*stack_a) <= 3 && sa_ord == 0)
 	{
 		sort_s_3(stack_a, 'a', cont);
@@ -101,15 +116,55 @@ int	sort_cut(t_stack **stack_a, t_stack **stack_b, int *sa_ord, int *cont)
 	}
 	else if (sa_ord == 0)
 	{
+<<<<<<< HEAD
 		nr = find_above_media(*stack_a, 0, 0);
 		if (nr > 0)
 			ft_reverse_rotate(stack_a, 'a');
 		else if (nr < 0)
+=======
+		*nr = find_above_media(*stack_a, 0, 0);
+		if (*nr > 0)
+			ft_reverse_rotate(stack_a, 'a');
+		else if (*nr < 0)
+>>>>>>> 77d3a4825b90f372e4fdecbf1384558a55f8bd75
 			ft_rotate(stack_a, 'a');
 		else
 			ft_pass_to(stack_a, stack_b, 'b');
 	}
+<<<<<<< HEAD
 	return (nr);
+=======
+	return (sa_ord);
+}
+
+void	sort_s_3(t_stack **stack, char id, int *cont)
+{
+	int	out;
+
+	out = 0;
+	if (!stack)
+		return ;
+	while (out != 1)
+	{
+		if ((*stack)->content > (*stack)->next->content
+			&& (*stack)->next->content > (*stack)->next->next->content)
+			ft_rotate(stack, id);
+		else if (((*stack)->content < (*stack)->next->content)
+			&& ((*stack)->content > (*stack)->next->next->content))
+			ft_reverse_rotate(stack, id);
+		else if (((*stack)->content > (*stack)->next->content)
+			&& ((*stack)->content > (*stack)->next->next->content))
+			ft_rotate(stack, id);
+		else if (((*stack)->content < (*stack)->next->content)
+			&& ((*stack)->next->content > (*stack)->next->next->content))
+			ft_reverse_rotate(stack, id);
+		else if (((*stack)->content > (*stack)->next->content))
+			ft_swap(stack, id);
+		else
+			out = 1;
+		cont++;
+	}
+>>>>>>> 77d3a4825b90f372e4fdecbf1384558a55f8bd75
 }
 
 void	sort(t_stack **stack_a, t_stack **stack_b, int *cont)
@@ -130,10 +185,15 @@ void	sort(t_stack **stack_a, t_stack **stack_b, int *cont)
 			print_tab(*stack_a, *stack_b);
 			ft_printf("\ncont -> %i\n", *cont);
 		}
+<<<<<<< HEAD
 		nr = sort_cut(stack_a, stack_b, &sa_ord, cont);
 		if (ft_lstsize(*stack_a) > 3 && sa_ord != 0)
+=======
+		sa_ord = sort_cut(stack_a, stack_b, &nr, cont);
+		if (ft_lstsize(*stack_a) > 3 && sa_ord == 1)
+>>>>>>> 77d3a4825b90f372e4fdecbf1384558a55f8bd75
 		{
-			sort_1(stack_b, stack_a, sa_ord);
+			sort_p(stack_b, stack_a, sa_ord);
 			done = 1;
 		}
 		*cont = *cont + 1;

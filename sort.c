@@ -87,6 +87,29 @@ void	sort_s_3(t_stack **stack, char id, int *cont)
 	}
 }
 
+int	sort_cut(t_stack **stack_a, t_stack **stack_b, int *nr, int *cont)
+{
+	int	sa_ord;
+
+	sa_ord = 0;
+	if (ft_lstsize(*stack_a) <= 3 && sa_ord == 0)
+	{
+		sort_s_3(stack_a, 'a', cont);
+		sa_ord = 1;
+	}
+	else if (sa_ord == 0)
+	{
+		*nr = find_above_media(*stack_a, 0, 0);
+		if (*nr > 0)
+			ft_reverse_rotate(stack_a, 'a');
+		else if (*nr < 0)
+			ft_rotate(stack_a, 'a');
+		else
+			ft_pass_to(stack_a, stack_b, 'b');
+	}
+	return (sa_ord);
+}
+
 void	sort(t_stack **stack_a, t_stack **stack_b, int *cont)
 {
 	int	sa_ord;
@@ -105,22 +128,8 @@ void	sort(t_stack **stack_a, t_stack **stack_b, int *cont)
 			print_tab(*stack_a, *stack_b);
 			ft_printf("\ncont -> %i\n", *cont);
 		}
-		if (ft_lstsize(*stack_a) <= 3 && sa_ord == 0)
-		{
-			sort_s_3(stack_a, 'a', cont);
-			sa_ord = 1;
-		}
-		else if (sa_ord == 0)
-		{
-			nr = find_above_media(*stack_a, 0, 0);
-			if (nr > 0)
-				ft_reverse_rotate(stack_a, 'a');
-			else if (nr < 0)
-				ft_rotate(stack_a, 'a');
-			else
-				ft_pass_to(stack_a, stack_b, 'b');
-		}
-		else
+		sa_ord = sort_cut(stack_a, stack_b, &nr, cont);
+		if (ft_lstsize(*stack_a) > 3 && sa_ord == 1)
 		{
 			sort_p(stack_b, stack_a, sa_ord);
 			done = 1;

@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int	shortining(t_stack *stack_a, t_stack *stack_b, int cont)
+int	print_tab_cut(t_stack *stack_a, t_stack *stack_b, int cont)
 {
 	while (stack_a && stack_b)
 	{
@@ -37,7 +37,7 @@ int	shortining(t_stack *stack_a, t_stack *stack_b, int cont)
 	return (cont);
 }
 
-void	shortining2(t_stack *stack_a, t_stack *stack_b, int cont)
+void	print_tab_cut2(t_stack *stack_a, t_stack *stack_b, int cont)
 {
 	while (stack_a)
 	{
@@ -72,8 +72,8 @@ void	print_tab(t_stack *stack_a, t_stack *stack_b)
 	ft_printf("|	PS	|	NMA	A	|	NMB	B	|\n");
 	ft_printf("|---------------|-------------"\
 	"----------|-----------------------|\n");
-	cont = shortining(stack_a, stack_b, 0);
-	shortining2(stack_a, stack_b, cont);
+	cont = print_tab_cut(stack_a, stack_b, 0);
+	print_tab_cut2(stack_a, stack_b, cont);
 	ft_printf("----------------------------------------"\
 		"-------------------------\n");
 }

@@ -60,7 +60,7 @@ void	print_stack(t_stack *head);
 void	proxy(t_stack **stack_a, t_stack **stack_b, int *cont);
 void	inputed_commands(t_stack **stack_a,
 			t_stack **stack_b, char *command_list, int *cont);
-int		auto_sort(t_stack **stack_a, t_stack **stack_b, int *cont);
+void	auto_sort(t_stack **stack_a, t_stack **stack_b, int *cont);
 
 // sort_condictions
 int		nr_movs(int pos, int stack_size);
