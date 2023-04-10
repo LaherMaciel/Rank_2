@@ -43,6 +43,7 @@ int		contains_this_values(t_stack *head, int num);
 int		contains_duplicate_values(t_stack *head);
 int		check_vals(int argc, char *argv[]);
 int		check_stack(t_stack *stack);
+char	*check_commands(int argc, char *argv[], int stacksize);
 int		commands_check(char *str);
 char	*error_check(int argc, char *argv[], t_stack *stack);
 char	**valid_strings(void);

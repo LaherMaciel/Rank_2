@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 21:01:28 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/04/10 06:34:29 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/04/10 15:20:18 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	user_sort(t_stack **stack_a, t_stack **stack_b, char *command)
 	int	i;
 
 	i = -1;
-	while (command[i] != '\0')
+	while (command[++i] != '\0')
 	{
 		if (ft_strncmp(command, "pa", 2) == 0 && stack_a == NULL)
 			ft_printf("Can't do this movement, stack_a empty.\n");
@@ -40,13 +40,14 @@ void	proxy(t_stack **stack_a, t_stack **stack_b, int *cont)
 	command[0] = 'a';
 	val = 0;
 	ft_printf("Introduz numbers to store them in the first stack,\
-		or command to swap the numbers or 'exit' to end the program.\n");
+ or command to swap the numbers or 'exit' to end the program.\n");
 	while (ft_strncmp(command, "exit", 4) != 0)
 	{
 		ft_printf("\n>");
 		scanf("%s", command);
 		if (ft_isdigit(command[0]) == 1)
 		{
+			//val = ft_split(, ' ');
 			val = ft_atoi(command);
 			push(stack_a, val);
 		}
@@ -55,6 +56,8 @@ void	proxy(t_stack **stack_a, t_stack **stack_b, int *cont)
 			user_sort(stack_a, stack_b, command);
 			cont++;
 		}
+		//print_stack(*stack_a);
+		//print_stack(*stack_b);
 	}
 }
 

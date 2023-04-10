@@ -6,21 +6,35 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 20:39:02 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/04/10 07:15:48 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/04/10 14:55:51 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+/*
 void	commands_check_aux2(char **val, int i)
 {
-	if ((ft_strchr(val[i], '[') || ft_strchr(val[i], ','))
-		&& ft_strchr(val[i], ']'))
+	if (ft_isalpha(val[i][0]) == 0
+	&& (ft_isalpha(val[i][ft_strlen(val[i]) - 1] == 0)
+	|| ft_isalpha(val[i][ft_strlen(val[i])] == 0)) 
 		val[i] = ft_substr(val[i], 1, ft_strlen(val[i]) - 2);
+	else if (ft_strchr(val[i], ']') || ft_strchr(val[i], ','))
+		val[i] = ft_substr(val[i], 0, ft_strlen(val[i]) - 1);
+	else if (ft_strchr(val[i], '[') || )
+		val[i] = ft_substr(val[i], 1, ft_strlen(val[i]) - 1);
+}
+*/
+
+void	commands_check_aux2(char **val, int i)
+{
+	if (ft_strchr(val[i], '[')
+		&& (ft_strchr(val[i], ']') || ft_strchr(val[i], ',')))
+		val[i] = ft_substr(val[i], 1, ft_strlen(val[i]) - 2);
+	else if (ft_strchr(val[i], ']') || ft_strchr(val[i], ','))
+		val[i] = ft_substr(val[i], 0, ft_strlen(val[i]) - 1);
 	else if (ft_strchr(val[i], '[') || ft_strchr(val[i], ','))
 		val[i] = ft_substr(val[i], 1, ft_strlen(val[i]) - 1);
-	else if (ft_strchr(val[i], ']'))
-		val[i] = ft_substr(val[i], 0, ft_strlen(val[i]) - 1);
 }
 
 int	commands_check(char *str)
@@ -36,7 +50,7 @@ int	commands_check(char *str)
 			break ;
 		else if (ft_strncmp(str, valid_commands[i], ft_strlen(str)) == 0)
 		{
-			free(valid_commands);
+			//free(valid_commands);
 			return (1);
 		}
 	}
@@ -44,13 +58,17 @@ int	commands_check(char *str)
 	return (0);
 }
 
-char	*check_commands_cut(char **val, int i)
+char	*check_commands_cut(char **val)
 {
+	int	i;
+
+	i = -1;
 	while (val[++i] != NULL)
 	{
 		commands_check_aux2(val, i);
 		if (commands_check(val[i]) == 0)
 			return (NULL);
+		//ft_printf("check_commands_cut = %s\n", val[i]);
 	}
 	return ("ok");
 }
@@ -67,17 +85,16 @@ char	*check_commands(int argc, char *argv[], int stacksize)
 		while (argv[++stacksize] != NULL)
 		{
 			val = ft_split(argv[stacksize], ' ');
-			i = -1;
-			if (check_commands_cut(val, i) == NULL)
+			if (check_commands_cut(val) == NULL)
 			{
 				free(val);
 				return (NULL);
 			}
-			else
+			i = -1;
+			while (val[++i])
 			{
-				commands = ft_strjoin(commands, *val);
+				commands = ft_strjoin(commands, val[i]);
 				commands = ft_strjoin(commands, "  ");
-				ft_printf("commands = %s\n", commands);
 			}
 		}
 		free(val);
