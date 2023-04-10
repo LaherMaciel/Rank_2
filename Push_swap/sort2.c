@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 09:36:32 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/04/10 06:38:54 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/04/10 06:47:54 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	sort_p(t_stack **stack_a, t_stack **stack_b, int fase)
 	sorting(stack_a, stack_b, id);
 }
 
-int	sort_cut(t_stack **stack_a, t_stack **stack_b, int *sa_ord, int *cont)
+void	sort_cut(t_stack **stack_a, t_stack **stack_b, int *sa_ord, int *cont)
 {
 	int	nr;
 
@@ -110,36 +110,6 @@ int	sort_cut(t_stack **stack_a, t_stack **stack_b, int *sa_ord, int *cont)
 		else
 			ft_pass_to(stack_a, stack_b, 'b');
 	}
-	return (nr);
-}
-
-void	sort_s_3(t_stack **stack, char id, int *cont)
-{
-	int	out;
-
-	out = 0;
-	if (!stack)
-		return ;
-	while (out != 1)
-	{
-		if ((*stack)->content > (*stack)->next->content
-			&& (*stack)->next->content > (*stack)->next->next->content)
-			ft_rotate(stack, id);
-		else if (((*stack)->content < (*stack)->next->content)
-			&& ((*stack)->content > (*stack)->next->next->content))
-			ft_reverse_rotate(stack, id);
-		else if (((*stack)->content > (*stack)->next->content)
-			&& ((*stack)->content > (*stack)->next->next->content))
-			ft_rotate(stack, id);
-		else if (((*stack)->content < (*stack)->next->content)
-			&& ((*stack)->next->content > (*stack)->next->next->content))
-			ft_reverse_rotate(stack, id);
-		else if (((*stack)->content > (*stack)->next->content))
-			ft_swap(stack, id);
-		else
-			out = 1;
-		cont++;
-	}
 }
 
 void	sort(t_stack **stack_a, t_stack **stack_b, int *cont)
@@ -147,7 +117,6 @@ void	sort(t_stack **stack_a, t_stack **stack_b, int *cont)
 	int	sa_ord;
 	int	done;
 	int	stop;
-	int	nr;
 
 	stop = ft_lstsize(*stack_a) * 5;
 	done = 0;
@@ -160,7 +129,7 @@ void	sort(t_stack **stack_a, t_stack **stack_b, int *cont)
 			print_tab(*stack_a, *stack_b);
 			ft_printf("\ncont -> %i\n", *cont);
 		}
-		nr = sort_cut(stack_a, stack_b, &sa_ord, cont);
+		sort_cut(stack_a, stack_b, &sa_ord, cont);
 		if (ft_lstsize(*stack_a) > 3 && sa_ord != 0)
 		{
 			sort_p(stack_b, stack_a, sa_ord);
