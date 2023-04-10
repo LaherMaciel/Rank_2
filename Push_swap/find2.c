@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 10:34:41 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/04/07 15:49:37 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/04/10 06:34:38 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,3 +81,4 @@ int	find_above_media(t_stack *stack, int cont1, int cont2)
 		return (cont2);
 	return (0);
 }
+

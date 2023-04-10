@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 09:36:32 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/04/10 06:32:13 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/04/10 06:34:17 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,3 +168,4 @@ void	sort(t_stack **stack_a, t_stack **stack_b, int *cont)
 		*cont = *cont + 1;
 	}
 }
+
