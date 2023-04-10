@@ -12,23 +12,21 @@
 
 #include "push_swap.h"
 
+/*
 void	end_code(t_stack **stack_a, t_stack **stack_b, int cont)
 {
-	/*
+	
 	if (stack_a != NULL)
 	{
 		ft_printf("\n\nMAIN FINAL PRINT\n");
 		print_tab(*stack_a, *stack_b);
 		
 	}
-	*/
+	
 	ft_printf("NUMERO DE MOVIMENTOS FEITOS: %i\n", cont);
-	while (stack_a != NULL)
-		pop(stack_a);
-	while (stack_b != NULL)
-		pop(stack_b);
 	ft_printf("FIM DO PROGRAMA!\n");
 }
+*/
 
 int	main(int argc, char *argv[])
 {
@@ -54,7 +52,12 @@ int	main(int argc, char *argv[])
 	}
 	else
 		proxy(&stack_a, &stack_b, &cont);
-	end_code(&stack_a, &stack_b, cont);
+	//end_code(&stack_a, &stack_b, cont);
+	while (stack_a != NULL)
+		pop(&stack_a);
+	while (stack_b != NULL)
+		pop(&stack_b);
+	ft_printf("FIM DO PROGRAMA!\n");
 	return (0);
 }
 

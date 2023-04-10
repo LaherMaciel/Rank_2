@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 20:39:02 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/04/10 06:34:43 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/04/10 07:15:48 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,21 @@ int	commands_check(char *str)
 
 	valid_commands = valid_strings();
 	i = -1;
-	while (valid_commands[++i] != NULL)
+	while (++i < 11)
 	{
 		if (ft_strlen(str) < 2)
-			return (0);
+			break ;
 		else if (ft_strncmp(str, valid_commands[i], ft_strlen(str)) == 0)
+		{
+			free(valid_commands);
 			return (1);
+		}
 	}
+	free(valid_commands);
 	return (0);
 }
 
-char	*shortining_code(char **val, int i)
+char	*check_commands_cut(char **val, int i)
 {
 	while (val[++i] != NULL)
 	{
@@ -64,8 +68,11 @@ char	*check_commands(int argc, char *argv[], int stacksize)
 		{
 			val = ft_split(argv[stacksize], ' ');
 			i = -1;
-			if (shortining_code(val, i) == NULL)
+			if (check_commands_cut(val, i) == NULL)
+			{
+				free(val);
 				return (NULL);
+			}
 			else
 			{
 				commands = ft_strjoin(commands, *val);
@@ -73,6 +80,7 @@ char	*check_commands(int argc, char *argv[], int stacksize)
 				ft_printf("commands = %s\n", commands);
 			}
 		}
+		free(val);
 		return (commands);
 	}
 	return ("ko");
