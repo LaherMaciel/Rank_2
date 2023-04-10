@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 09:36:32 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/04/10 06:34:17 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/04/10 06:38:54 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,10 +94,11 @@ int	sort_cut(t_stack **stack_a, t_stack **stack_b, int *sa_ord, int *cont)
 {
 	int	nr;
 
+	nr = 0;
 	if (ft_lstsize(*stack_a) <= 3 && sa_ord == 0)
 	{
 		sort_s_3(stack_a, 'a', cont);
-		sa_ord = 1;
+		*sa_ord = 1;
 	}
 	else if (sa_ord == 0)
 	{
@@ -168,4 +169,3 @@ void	sort(t_stack **stack_a, t_stack **stack_b, int *cont)
 		*cont = *cont + 1;
 	}
 }
-
