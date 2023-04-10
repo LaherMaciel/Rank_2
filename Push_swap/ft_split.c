@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-size_t	ft_pos_search(const char *str, int spliter)
+size_t	ft_pos_search(const char *str, int c)
 {
 	size_t	a;
 	size_t	len;
@@ -20,12 +20,12 @@ size_t	ft_pos_search(const char *str, int spliter)
 	a = -1;
 	len = ft_strlen(str);
 	while (++a <= len)
-		if (str[a] == spliter)
+		if (str[a] == c)
 			return (a);
 	return (-1);
 }
 
-size_t	ft_skip(const char *str, int spliter)
+size_t	ft_skip(const char *str, int c)
 {
 	size_t	a;
 	size_t	len;
@@ -33,12 +33,12 @@ size_t	ft_skip(const char *str, int spliter)
 	a = -1;
 	len = ft_strlen(str);
 	while (++a < len)
-		if (str[a] != spliter)
+		if (str[a] != c)
 			return (a);
 	return (-1);
 }
 
-size_t	find_size(const char *str, char spliter)
+size_t	find_size(const char *s, char c)
 {
 	size_t	start;
 	size_t	sep;
@@ -50,18 +50,18 @@ size_t	find_size(const char *str, char spliter)
 	sep = 0;
 	while (sep != (size_t) -1)
 	{
-		sk = ft_skip(str + (start + sep), spliter);
+		sk = ft_skip(s + (start + sep), c);
 		if (sk != (size_t) - 1)
 			start = start + sep + sk;
 		else if (sk == (size_t) - 1)
 			break ;
-		sep = ft_pos_search((str + start), spliter);
+		sep = ft_pos_search((s + start), c);
 		i++;
 	}
 	return (i);
 }
 
-char	**ft_terminator(const char *str, char spliter, char **splited)
+char	**ft_terminator(const char *s, char c, char **splited)
 {
 	size_t	start;
 	size_t	sep;
@@ -73,32 +73,31 @@ char	**ft_terminator(const char *str, char spliter, char **splited)
 	sep = 0;
 	while (sep != (size_t) -1)
 	{
-		sk = ft_skip(str + (start + sep), spliter);
+		sk = ft_skip(s + (start + sep), c);
 		if (sk != (size_t) - 1)
 			start = start + sep + sk;
 		else if (sk == (size_t) - 1)
 			break ;
-		sep = ft_pos_search((str + start), spliter);
+		sep = ft_pos_search((s + start), c);
 		if (sep != (size_t) - 1)
-			splited[i] = ft_substr(str, start, sep);
+			splited[i] = ft_substr(s, start, sep);
 		else if (sep == (size_t) - 1)
-			splited[i] = ft_substr(str, start, ft_strlen(str + start));
+			splited[i] = ft_substr(s, start, ft_strlen(s + start));
 		i++;
 	}
 	splited[i] = NULL;
 	return (splited);
 }
 
-char	**ft_split(char const *str, char spliter)
+char	**ft_split(char const *s, char c)
 {
 	char	**splited;
 
-	if (!str)
+	if (!s)
 		splited = (char **) malloc(sizeof(char *));
 	else
-		splited = (char **) malloc((find_size(str,
-						spliter) + 1) * sizeof(char *));
+		splited = (char **) malloc((find_size(s, c) + 1) * sizeof(char *));
 	if (!splited)
 		return (NULL);
-	return (ft_terminator(str, spliter, splited));
+	return (ft_terminator(s, c, splited));
 }
