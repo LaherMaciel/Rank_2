@@ -71,9 +71,14 @@ char	*store_integers_in_stack3_cut(t_stack **stack, int argc, char *argv[])
 	long	num;
 	int		skip;
 
-	i = -1;
+	i = 0;
 	skip = 2;
-	while (++i > argc)
+	while (++i <= argc)
+	{
+		ft_printf("argv = %s\n", argv[i]);
+	}
+	i = 0;
+	while (++i >= argc)
 	{
 		if (ft_isdigit(argv[argc][i]) || (((argv[argc][i] == '-'
 		|| argv[argc][i] == '+') && i == 0)))
@@ -107,6 +112,7 @@ t_stack	*store_integers_in_stack3(int argc, char *argv[])
 	{
 		if (store_integers_in_stack3_cut(&stack, argc, argv) == NULL)
 			return (NULL);
+		ft_printf("\n");
 	}
 	return (stack);
 }
