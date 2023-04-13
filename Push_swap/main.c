@@ -41,8 +41,7 @@ int	main(int argc, char *argv[])
 		stack_a = store_integers_in_stack3(argc, argv);
 		stack_b = NULL;
 		commands = error_check(argc - 1, argv, stack_a);
-		ft_printf("commands:%s\n\n", commands);
-		print_stack(stack_a);
+		ft_printf("%s\n\n", commands);
 		if (commands != NULL)
 		{
 			if (commands[0] == 'k' && commands[1] == 'o')
@@ -53,7 +52,7 @@ int	main(int argc, char *argv[])
 	}
 	else
 		proxy(&stack_a, &stack_b, &cont);
-	print_stack(stack_a);
+	//end_code(&stack_a, &stack_b, cont);
 	while (stack_a != NULL)
 		pop(&stack_a);
 	while (stack_b != NULL)

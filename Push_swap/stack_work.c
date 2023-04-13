@@ -64,7 +64,7 @@ void	print_stack(t_stack *head)
 	return (stack);
 }*/
 
-char	*shortining(t_stack **stack, int argc, char *argv[])
+char	*store_integers_in_stack3_cut(t_stack **stack, int argc, char *argv[])
 {	
 	size_t	i;
 	long	num;
@@ -72,7 +72,7 @@ char	*shortining(t_stack **stack, int argc, char *argv[])
 
 	i = -1;
 	skip = 2;
-	while (++i < ft_strlen(argv[argc]))
+	while (++i < ft_strlen(argv[argc]) - 1)
 	{
 		if (ft_isdigit(argv[argc][i]) || (((argv[argc][i] == '-'
 		|| argv[argc][i] == '+') && i == 0)))
@@ -97,7 +97,7 @@ t_stack	*store_integers_in_stack3(int argc, char *argv[])
 	stack = NULL;
 	while (argc-- > 0)
 	{
-		if (shortining(&stack, argc, argv) == NULL)
+		if (store_integers_in_stack3_cut(&stack, argc, argv) == NULL)
 			return (NULL);
 	}
 	return (stack);

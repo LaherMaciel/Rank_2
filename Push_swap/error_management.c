@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_management.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lwencesl <laherwpayotmaciel@gmail.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 20:39:02 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/04/10 14:55:51 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/04/10 13:09:26 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,18 @@ char	*check_commands(int argc, char *argv[], int stacksize)
 				commands = ft_strjoin(commands, val[i]);
 				commands = ft_strjoin(commands, "  ");
 			}
+			/*
+			else
+			{
+				ft_printf("commands + val = %s + %s\n", commands, *val);
+				commands = ft_strjoin(commands, val[i]);
+				ft_printf("commands + '  ' = %s\n", commands);
+				commands = ft_strjoin(commands, "  ");
+				ft_printf("commands = %s\n", commands);
+			}
+			*/
 		}
+		ft_printf("commands = %s\n", commands);
 		free(val);
 		return (commands);
 	}
