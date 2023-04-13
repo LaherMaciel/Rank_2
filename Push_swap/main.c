@@ -39,6 +39,7 @@ int	main(int argc, char *argv[])
 	if (argc > 1)
 	{
 		stack_a = store_integers_in_stack3(argc, argv);
+		print_stack(stack_a);
 		stack_b = NULL;
 		commands = error_check(argc - 1, argv, stack_a);
 		ft_printf("%s\n\n", commands);

@@ -64,21 +64,28 @@ void	print_stack(t_stack *head)
 	return (stack);
 }*/
 
+// verifica todos os caracteres de cada string
 char	*store_integers_in_stack3_cut(t_stack **stack, int argc, char *argv[])
 {	
-	size_t	i;
+	int	i;
 	long	num;
 	int		skip;
 
 	i = -1;
 	skip = 2;
-	while (++i < ft_strlen(argv[argc]) - 1)
+	while (++i > argc)
 	{
 		if (ft_isdigit(argv[argc][i]) || (((argv[argc][i] == '-'
 		|| argv[argc][i] == '+') && i == 0)))
+		{
+			ft_printf("int = %i\n", ft_atoi(argv[i]));
 			skip = 0;
+		}
 		else if (ft_isprint(argv[argc][i]) && skip == 0)
+		{
+			ft_printf("string = %s\n", argv[i]);
 			return (NULL);
+		}
 	}
 	if (skip == 0)
 	{
@@ -90,12 +97,13 @@ char	*store_integers_in_stack3_cut(t_stack **stack, int argc, char *argv[])
 	return ("ok");
 }
 
+// Corre por todas as strings do argv
 t_stack	*store_integers_in_stack3(int argc, char *argv[])
 {
 	t_stack	*stack;
 
 	stack = NULL;
-	while (argc-- > 0)
+	while (--argc > 0)
 	{
 		if (store_integers_in_stack3_cut(&stack, argc, argv) == NULL)
 			return (NULL);
