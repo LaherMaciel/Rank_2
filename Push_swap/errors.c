@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: laher_maciel <laher_maciel@student.42.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:05:00 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/04/10 07:05:59 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/04/14 18:41:25 by laher_maciel     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ char	**valid_strings(void)
 	char	**commands;
 
 	commands = (char **) malloc(11 * sizeof(char *));
+	if (!commands)
+		return (NULL);
 	commands[0] = "ss";
 	commands[1] = "sa";
 	commands[2] = "sb";
