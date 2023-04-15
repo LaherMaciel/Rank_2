@@ -6,7 +6,7 @@
 /*   By: laher_maciel <laher_maciel@student.42.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 09:36:32 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/04/15 01:41:35 by laher_maciel     ###   ########.fr       */
+/*   Updated: 2023/04/15 03:34:25 by laher_maciel     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,17 +128,17 @@ void	sort(t_stack **stack_a, t_stack **stack_b, int *cont)
 		/*if ((*cont > stop - 10) || (stop < 10)
 			|| *cont < 10 || (ft_lstsize(*stack_a) <= 3))
 		{
-		}*/
+		}
+		*/
 		print_tab(*stack_a, *stack_b);
-		ft_printf("\ncont -> %i\n", *cont);
+		ft_printf("cont -> %i\n", *cont);
 		sort_cut(stack_a, stack_b, &sa_ord, cont);
 		if (ft_lstsize(*stack_a) > 2 && sa_ord != 0)
 		{
 			sort_p(stack_a, stack_b, sa_ord);
 			done = 1;
 		}
-		if (ft_lstsize(*stack_a) > 10)
-			ft_printf("\nhere\n");
 		*cont = *cont + 1;
 	}
+	ft_printf("\nout\n");
 }
