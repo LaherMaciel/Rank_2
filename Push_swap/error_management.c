@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_management.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lwencesl <laherwpayotmaciel@gmail.com>     +#+  +:+       +#+        */
+/*   By: laher_maciel <laher_maciel@student.42.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 20:39:02 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/04/10 13:09:26 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/04/15 01:13:05 by laher_maciel     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ char	*check_commands(int argc, char *argv[], int stacksize)
 			}
 			*/
 		}
-		ft_printf("commands = %s\n", commands);
+		//ft_printf("commands = %s\n", commands);
 		free(val);
 		return (commands);
 	}
@@ -121,7 +121,10 @@ char	*error_check(int argc, char *argv[], t_stack *stack)
 
 	i = 1;
 	if (stack == NULL || (contains_duplicate_values(stack) == 0))
+	{
+		ft_printf("stack == NULL ou valores dublicados");
 		i = 0;
+	}
 	commands = check_commands(argc, argv, ft_lstsize(stack));
 	if (commands == NULL)
 		i = 0;

@@ -71,7 +71,7 @@ char	*store_integers_in_stack3_cut(t_stack **stack, int argc, char *argv[])
 	long	num;
 	int		skip;
 
-	ft_printf("argv[argc] = %s\n", argv[argc]);
+	//ft_printf("argv[argc] = %s\n", argv[argc]);
 	skip = 2;
 	i = -1;
 	while (argv[argc][++i] != '\0')
@@ -79,20 +79,20 @@ char	*store_integers_in_stack3_cut(t_stack **stack, int argc, char *argv[])
 		if (ft_isdigit(argv[argc][i]) || (((argv[argc][i] == '-'
 		|| argv[argc][i] == '+') && i == 0)))
 		{
-			ft_printf("%i", argv[argc][i] - 48);
+			//ft_printf("%i", argv[argc][i] - 48);
 			skip = 0;
 		}
 		else if (ft_isprint(argv[argc][i]) && skip == 0)
 		{
-			ft_printf("isprint = %s\n", argv[argc][i]);
+			//ft_printf("isprint = %s\n", argv[argc][i]);
 			return (NULL);
 		}
 	}
-	ft_printf("\n");
+	//ft_printf("\n");
 	if (skip == 0)
 	{
 		num = ft_atoi(argv[argc]);
-		ft_printf("num = %i\n", num);
+		//ft_printf("num = %i\n", num);
 		if (num > INT_MAX || num < INT_MIN)
 			return (NULL);
 		push(stack, num);
@@ -110,7 +110,7 @@ t_stack	*store_integers_in_stack3(int argc, char *argv[])
 	{
 		if (store_integers_in_stack3_cut(&stack, argc, argv) == NULL)
 			return (NULL);
-		ft_printf("\n");
+		//ft_printf("\n");
 	}
 	return (stack);
 }

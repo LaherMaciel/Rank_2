@@ -12,21 +12,16 @@
 
 #include "push_swap.h"
 
-/*
 void	end_code(t_stack **stack_a, t_stack **stack_b, int cont)
 {
-	
 	if (stack_a != NULL)
 	{
 		ft_printf("\n\nMAIN FINAL PRINT\n");
 		print_tab(*stack_a, *stack_b);
-		
 	}
-	
 	ft_printf("NUMERO DE MOVIMENTOS FEITOS: %i\n", cont);
 	ft_printf("FIM DO PROGRAMA!\n");
 }
-*/
 
 int	main(int argc, char *argv[])
 {
@@ -36,14 +31,16 @@ int	main(int argc, char *argv[])
 	int		cont;
 
 	cont = 0;
+	stack_a = NULL;
+	stack_b = NULL;
+	commands = NULL;
 	if (argc > 1)
 	{
 		stack_a = store_integers_in_stack3(argc, argv);
-		print_stack(stack_a);
-		stack_b = NULL;
+		//print_stack(stack_a);
 		commands = error_check(argc - 1, argv, stack_a);
-		ft_printf("%s\n\n", commands);
-		if (commands != NULL)
+		//ft_printf("%s\n\n", commands);
+		if (commands != NULL && check_order_ok(stack_a) == 0)
 		{
 			if (commands[0] == 'k' && commands[1] == 'o')
 				auto_sort(&stack_a, &stack_b, &cont);
@@ -52,13 +49,18 @@ int	main(int argc, char *argv[])
 		}
 	}
 	else
-		proxy(&stack_a, &stack_b, &cont);
-	//end_code(&stack_a, &stack_b, cont);
+		proxy(&stack_a, &stack_b, cont);
+	end_code(&stack_a, &stack_b, cont);
+	if (commands != NULL && (check_order_ok(stack_a) == 0
+			|| stack_b != NULL))
+		ft_printf("\nKO\n");
+	else if (check_order_ok(stack_a) == 1)
+		ft_printf("\nOK\n");
 	while (stack_a != NULL)
 		pop(&stack_a);
 	while (stack_b != NULL)
 		pop(&stack_b);
-	ft_printf("FIM DO PROGRAMA!\n");
+	//ft_printf("FIM DO PROGRAMA!\n");
 	return (0);
 }
 

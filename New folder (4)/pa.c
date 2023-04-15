@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pa.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 16:05:21 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/04/06 10:53:16 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/04/14 23:52:53 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,19 @@ char	*pa_decisions(t_stack *src, t_stack *dst, int pos_1, int pos_2)
 	else
 		final_pos_2 = 0;
 	if (pos_1 == 0 && pos_2 == final_pos_2)
-		return ((char *) "pb");
+		return ((char *) "pa");
 	else if (pos_1 < 0 && pos_2 < final_pos_2)
 		return ((char *) "rr");
 	else if (pos_1 > 0 && pos_2 > final_pos_2)
 		return ((char *) "rrr");
 	else if (pos_1 < 0)
-		return ((char *) "ra");
-	else if (pos_1 > 0)
-		return ((char *) "rra");
-	else if (pos_2 < final_pos_2)
 		return ((char *) "rb");
-	else if (pos_2 > final_pos_2)
+	else if (pos_1 > 0)
 		return ((char *) "rrb");
+	else if (pos_2 < final_pos_2)
+		return ((char *) "ra");
+	else if (pos_2 > final_pos_2)
+		return ((char *) "rra");
 	return (NULL);
 }
 

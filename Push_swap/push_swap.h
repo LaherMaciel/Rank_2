@@ -58,7 +58,7 @@ void	print_stack(t_stack *head);
 //t_stack	*create_stack(int argc, char **argv, int i);
 
 // run_modes
-void	proxy(t_stack **stack_a, t_stack **stack_b, int *cont);
+void	proxy(t_stack **stack_a, t_stack **stack_b, int cont);
 void	inputed_commands(t_stack **stack_a,
 			t_stack **stack_b, char *command_list, int *cont);
 void	auto_sort(t_stack **stack_a, t_stack **stack_b, int *cont);
@@ -137,6 +137,7 @@ void	rrr_movs(t_stack **stack_a, t_stack **stack_b, char *input);
 void	print_tab(t_stack *stack_a, t_stack *stack_b);
 
 //Sort with user commands
-void	user_sort(t_stack **stack_a, t_stack **stack_b, char *command);
+int		user_sort(t_stack **stack_a, t_stack **stack_b, char *command);
+int		check_order_ok(t_stack *stack);
 
 #endif // !FT_PUSH_SWAP.H
