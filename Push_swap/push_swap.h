@@ -45,7 +45,7 @@ int		check_vals(int argc, char *argv[]);
 int		check_stack(t_stack *stack);
 char	*check_commands(int argc, char *argv[], int stacksize);
 int		commands_check(char *str);
-char	*error_check(int argc, char *argv[], t_stack *stack);
+char	*error_check(t_stack *stack);
 char	**valid_strings(void);
 
 // List manipulation

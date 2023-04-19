@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 20:39:02 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/04/19 17:58:54 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/04/19 17:55:43 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,7 @@ char	*error_check_checker(int argc, char *argv[], t_stack *stack)
 	return (commands);
 }
 
-char	*error_check(t_stack *stack)
+char	*error_check(int argc, char *argv[], t_stack *stack)
 {
 	if (stack == NULL || (contains_duplicate_values(stack) == 0))
 	{

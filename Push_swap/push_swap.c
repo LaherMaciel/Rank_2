@@ -27,32 +27,20 @@ int	main(int argc, char *argv[])
 {
 	t_stack	*stack_a;
 	t_stack	*stack_b;
-	char	*commands;
 	int		cont;
 
 	cont = 0;
 	stack_a = NULL;
 	stack_b = NULL;
-	commands = NULL;
 	if (argc > 1)
 	{
 		stack_a = store_integers_in_stack3(argc, argv);
-		//print_stack(stack_a);
-		commands = error_check(argc - 1, argv, stack_a);
-		//ft_printf("%s\n\n", commands);
-		if (commands != NULL && check_order_ok(stack_a) == 0)
-		{
-			if (commands[0] == 'k' && commands[1] == 'o')
-				auto_sort(&stack_a, &stack_b, &cont);
-			else
-				inputed_commands(&stack_a, &stack_b, commands, &cont);
-		}
+		if (error_check(stack_a) != NULL && check_order_ok(stack_a) == 0)
+			auto_sort(&stack_a, &stack_b, &cont);
 	}
-	else
-		proxy(&stack_a, &stack_b, cont);
 	end_code(&stack_a, &stack_b, cont);
-	if (commands != NULL && (check_order_ok(stack_a) == 0
-			|| stack_b != NULL))
+	if (check_order_ok(stack_a) == 0
+			|| stack_b != NULL)
 		ft_printf("\nKO\n");
 	else if (check_order_ok(stack_a) == 1)
 		ft_printf("\nOK\n");
