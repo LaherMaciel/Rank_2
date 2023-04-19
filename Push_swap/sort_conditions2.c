@@ -14,9 +14,7 @@
 
 void	find_pos_1(t_stack *src, int *pos_1, int *cont)
 {
-	if (ft_lstsize(src) == 1)
-		*pos_1 = 0;
-	else if (*cont < (ft_lstsize(src) / 2))
+	if (*cont < (ft_lstsize(src) / 2))
 		*pos_1 = *cont * (-1);
 	else
 		*pos_1 = ft_lstsize(src) - *cont;

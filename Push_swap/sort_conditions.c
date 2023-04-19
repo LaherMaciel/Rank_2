@@ -16,6 +16,8 @@ int	nr_movs(int pos, int stack_size)
 {
 	int	needed_movs;
 
+	if (pos == 0)
+		return (pos);
 	if (pos < 0)
 		pos = stack_size + pos;
 	else if (pos >= stack_size)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_decisions.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: laher_maciel <laher_maciel@student.42.fr>  +#+  +:+       +#+        */
+/*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 16:05:21 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/04/15 03:07:17 by laher_maciel     ###   ########.fr       */
+/*   Updated: 2023/04/19 18:33:12 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,4 +140,3 @@ int	p_decisions_cont(t_stack *src, t_stack *dst, int pos_src, int pos_dst)
 	}
 	return (cont);
 }
-
