@@ -6,7 +6,7 @@
 /*   By: laher_maciel <laher_maciel@student.42.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 09:36:32 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/04/20 13:29:22 by laher_maciel     ###   ########.fr       */
+/*   Updated: 2023/04/20 17:52:28 by laher_maciel     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,9 @@ void	sort_s_3(t_stack **stack, char id, int *cont)
 			out = 1;
 		*cont = *cont + 1;
 	}
-	print_stack(*stack);
 }
 
-void	sort_p(t_stack **stack_a, t_stack **stack_b, int fase)
+void	sort_p(t_stack **stack_a, t_stack **stack_b)
 {
 	int		pb[4];
 	char	*id;
@@ -76,18 +75,8 @@ void	sort_p(t_stack **stack_a, t_stack **stack_b, int fase)
 	if (*stack_a == NULL)
 		return ;
 	pb[0] = INT_MAX;
-	if (fase == 0)
-	{
-		best_stack_pb_mov(*stack_a, *stack_b, pb);
-		id = pb_decisions(*stack_a, *stack_b, pb[1], pb[2]);
-	}
-	else
-	{
-		best_stack_pa_mov(*stack_b, *stack_a, pb);
-		if (ft_lstsize(*stack_a) == 1 && ft_lstsize(*stack_b) > 3 && pb[1] == 1)
-			pb[1] = 0;
-		id = pa_decisions(*stack_b, *stack_a, pb[1], pb[2]);
-	}
+	best_stack_pa_mov(*stack_b, *stack_a, pb);
+	id = pa_decisions(*stack_b, *stack_a, pb[1], pb[2]);
 	sorting(stack_a, stack_b, id);
 }
 
@@ -96,7 +85,9 @@ void	sort_cut(t_stack **stack_a, t_stack **stack_b, int *sa_ord, int *cont)
 	int	nr;
 
 	nr = 0;
-	if (ft_lstsize(*stack_a) <= 3 && *sa_ord == 0)
+	if (check_order_ok(*stack_a) == 1 && *stack_b != NULL && *sa_ord == 0)
+		*sa_ord = 1;
+	else if (ft_lstsize(*stack_a) <= 3 && *sa_ord == 0)
 	{
 		sort_s_3(stack_a, 'a', cont);
 		*cont = *cont - 1;
@@ -114,47 +105,24 @@ void	sort_cut(t_stack **stack_a, t_stack **stack_b, int *sa_ord, int *cont)
 	}
 }
 
-void	skip_orded(t_stack **stack_a)
-{
-	int	i;
-	int	current;
-	int	next;
-
-	i = -1;
-	while (++i < ft_lstsize(*stack_a))
-	{
-		current = (*stack_a)->content;
-		next = (*stack_a)->next->content;
-		if (current > next)
-			break ;
-		(*stack_a) = (*stack_a)->next;
-	}
-}
-
 void	sort(t_stack **stack_a, t_stack **stack_b, int *cont)
 {
 	int	sa_ord;
 	int	done;
-	//int	stop;
 
-	//stop = ft_lstsize(*stack_a) * 5;
 	done = 0;
 	sa_ord = 0;
-	print_tab(*stack_a, *stack_b);
-	skip_orded(stack_a);
-	while (done == 0 || *stack_b != NULL)
+	while (*stack_b != NULL || (done == 0 && check_order_ok(*stack_a) != 1))
 	{
-		/*if ((*cont > stop - 10) || (stop < 10)
-			|| *cont < 10 || (ft_lstsize(*stack_a) <= 3))
+		if (ft_lstsize(*stack_a) <= 5 || ft_lstsize(*stack_b) <= 5)
 		{
+			print_tab(*stack_a, *stack_b);
+			ft_printf("cont -> %i\n", *cont);
 		}
-		*/
-		print_tab(*stack_a, *stack_b);
-		ft_printf("cont -> %i\n", *cont);
 		sort_cut(stack_a, stack_b, &sa_ord, cont);
-		if (ft_lstsize(*stack_a) > 2 && sa_ord != 0)
+		if (sa_ord != 0)
 		{
-			sort_p(stack_a, stack_b, sa_ord);
+			sort_p(stack_a, stack_b);
 			done = 1;
 		}
 		*cont = *cont + 1;

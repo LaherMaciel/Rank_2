@@ -84,7 +84,7 @@ void	sort(t_stack **stack_1, t_stack **stack_2, int *cont);
 void	sort_1(t_stack **stack_1, t_stack **stack_2, char *id_1);
 void	sort_2(t_stack **stack_1, t_stack **stack_2, char *id_1);
 void	sort_s_3(t_stack **stack, char id, int *cont);
-void	sort_p(t_stack **stack_1, t_stack **stack_2, int fase);
+void	sort_p(t_stack **stack_1, t_stack **stack_2);
 
 // pa, pb & p_cont
 char	*p_decisions(t_stack *src, t_stack *dst, int pos_1, int pos_2);

@@ -6,7 +6,7 @@
 /*   By: laher_maciel <laher_maciel@student.42.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 10:34:41 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/04/20 13:10:27 by laher_maciel     ###   ########.fr       */
+/*   Updated: 2023/04/20 17:47:19 by laher_maciel     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ int	find_media(t_stack *stack)
 	return ((val / cont) + (val / (cont * 2)));
 }
 
-// Corre até encontrar 1 numero a cima da media.
+// Corre até encontrar o 1 numero a cima da media, conta
+// primeiro do topo até a mmetade, e depois do final até a metade.
 int	find_above_media(t_stack *stack, int cont1, int cont2)
 {
 	t_stack	*current;
