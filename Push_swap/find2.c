@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: laher_maciel <laher_maciel@student.42.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 10:34:41 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/04/10 06:34:38 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/04/20 13:10:27 by laher_maciel     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int	find_val(t_stack *head, int pos)
 	current = head;
 	while (cont < pos)
 	{
-		cont++;
 		current = current->next;
+		cont++;
 	}
 	return (current->content);
 }
@@ -54,6 +54,7 @@ int	find_media(t_stack *stack)
 	return ((val / cont) + (val / (cont * 2)));
 }
 
+// Corre até encontrar 1 numero a cima da media.
 int	find_above_media(t_stack *stack, int cont1, int cont2)
 {
 	t_stack	*current;
@@ -63,14 +64,14 @@ int	find_above_media(t_stack *stack, int cont1, int cont2)
 	current = stack;
 	while (cont1 > (-ft_lstsize(stack) / 2))
 	{
-		if (find_val(stack, cont1) >= media)
+		if (find_val(stack, cont1) <= media)
 			break ;
 		current = current->next;
 		cont1--;
 	}
 	while (cont2 < (ft_lstsize(stack) / 2))
 	{
-		if (find_val(stack, cont2) >= media)
+		if (find_val(stack, cont2) <= media)
 			break ;
 		current = current->next;
 		cont2++;

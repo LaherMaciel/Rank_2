@@ -14,15 +14,41 @@
 
 void	find_pos_1(t_stack *src, int *pos_1, int *cont)
 {
-	int	a;
+	int	half;
+	int	src_size;
 
-	a = ft_lstsize(src) / 2;
-	if (*cont < a)
+	src_size = ft_lstsize(src);
+	half = src_size / 2;
+	if (half == 0)
+		half = 1;
+	if (*cont <= half)
 		*pos_1 = *cont * (-1);
 	else
 		*pos_1 = ft_lstsize(src) - *cont;
 	*cont = *cont + 1;
 }
+
+/*
+void	find_pos_1(t_stack *src, int *pos_1, int *cont)
+{
+	int	half;
+	int	src_size;
+
+	src_size = ft_lstsize(src);
+	half = src_size / 2;
+	if (*cont < half && *pos_1 == -1)
+		*pos_1 = *pos_1;
+	else if (*cont < half && *pos_1 != -1)
+		*pos_1 = *cont * (-1);
+	else
+		*pos_1 = ft_lstsize(src) - *cont;
+	*cont = *cont + 1;
+}
+
+if (ft_lstsize(src) == 1 && *cont == 0)
+		*cont = *cont + 1;
+	else 
+*/
 
 int	best_stack_pb_mov_aux(t_stack *src, t_stack *dst, int *pos_1, int *pos_2)
 {
@@ -157,9 +183,9 @@ int	*best_stack_pa_mov(t_stack *src,
 	int	cont;
 
 	cont = 0;
-	pos_1 = 0;
+	pos_1 = -1;
 	pos_2 = 0;
-	while (pos_1 != 1)
+	while (cont < ft_lstsize(src))
 	{
 		find_pos_1(src, &pos_1, &cont);
 		movs = best_stack_pa_mov_aux(src, dst, &pos_1, &pos_2);

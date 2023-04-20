@@ -32,18 +32,19 @@ int	main(int argc, char *argv[])
 	cont = 0;
 	stack_a = NULL;
 	stack_b = NULL;
-	if (argc > 1)
+	if (argc > 2)
 	{
 		stack_a = store_integers_in_stack3(argc, argv);
 		if (error_check(stack_a) != NULL && check_order_ok(stack_a) == 0)
+		{
 			auto_sort(&stack_a, &stack_b, &cont);
+			end_code(&stack_a, &stack_b, cont);
+			if (check_order_ok(stack_a) == 0 || stack_b != NULL)
+				ft_printf("\nKO\n");
+			else if (check_order_ok(stack_a) == 1)
+				ft_printf("\nOK\n");
+		}
 	}
-	end_code(&stack_a, &stack_b, cont);
-	if (check_order_ok(stack_a) == 0
-			|| stack_b != NULL)
-		ft_printf("\nKO\n");
-	else if (check_order_ok(stack_a) == 1)
-		ft_printf("\nOK\n");
 	while (stack_a != NULL)
 		pop(&stack_a);
 	while (stack_b != NULL)

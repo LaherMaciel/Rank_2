@@ -6,7 +6,7 @@
 /*   By: laher_maciel <laher_maciel@student.42.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 16:05:21 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/04/20 10:23:53 by laher_maciel     ###   ########.fr       */
+/*   Updated: 2023/04/20 12:19:53 by laher_maciel     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,29 +41,33 @@ char	*p_decisions(t_stack *src, t_stack *dst, int pos_1, int pos_2)
 }
 */
 
-char	*pa_decisions(t_stack *stack_a, t_stack *stack_b, int pos_b, int pos_a)
+char	*pa_decisions(t_stack *src, t_stack *dst, int pos_src, int pos_dst)
 {
 	int	final_pos_2;
+	int	src_val;
+	int	dst_val;
 
-	if (stack_a != NULL && ft_lstsize(stack_a) <= 2)
-			final_pos_2 = 1 - ft_lstsize(stack_a);
-	else if (find_val(stack_b, pos_b) > find_val(stack_a, pos_a))
+	src_val = find_val(src, pos_src);
+	dst_val = find_val(dst, pos_dst);
+	if (dst != NULL && ft_lstsize(dst) <= 2)
+			final_pos_2 = 1 - ft_lstsize(dst);
+	else if (dst_val < src_val)
 		final_pos_2 = 1;
 	else
 		final_pos_2 = 0;
-	if (pos_b == 0 && pos_a == final_pos_2)
+	if (pos_src == 0 && pos_dst == final_pos_2)
 		return ((char *) "pa");
-	else if (pos_b < 0 && pos_a < final_pos_2)
+	else if (pos_src < 0 && pos_dst < final_pos_2)
 		return ((char *) "rr");
-	else if (pos_b > 0 && pos_a > final_pos_2)
+	else if (pos_src > 0 && pos_dst > final_pos_2)
 		return ((char *) "rrr");
-	else if (pos_b < 0)
+	else if (pos_src < 0)
 		return ((char *) "rb");
-	else if (pos_b > 0)
+	else if (pos_src > 0)
 		return ((char *) "rrb");
-	else if (pos_a < final_pos_2)
+	else if (pos_dst < final_pos_2)
 		return ((char *) "ra");
-	else if (pos_a > final_pos_2)
+	else if (pos_dst > final_pos_2)
 		return ((char *) "rra");
 	return (NULL);
 }
@@ -123,7 +127,7 @@ int	p_decisions_cont(t_stack *src, t_stack *dst, int pos_src, int pos_dst)
 	int	cont;
 	int	final_pos_2;
 
-	cont = -1;
+	cont = 0 ;
 	mov = 0;
 	if (ft_lstsize(dst) <= 2)
 			final_pos_2 = 1 - ft_lstsize(dst);

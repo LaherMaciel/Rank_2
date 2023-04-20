@@ -6,7 +6,7 @@
 /*   By: laher_maciel <laher_maciel@student.42.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 09:36:32 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/04/15 03:34:25 by laher_maciel     ###   ########.fr       */
+/*   Updated: 2023/04/20 13:29:22 by laher_maciel     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	sort_p(t_stack **stack_a, t_stack **stack_b, int fase)
 		best_stack_pa_mov(*stack_b, *stack_a, pb);
 		if (ft_lstsize(*stack_a) == 1 && ft_lstsize(*stack_b) > 3 && pb[1] == 1)
 			pb[1] = 0;
-		id = pa_decisions(*stack_a, *stack_b, pb[1], pb[2]);
+		id = pa_decisions(*stack_b, *stack_a, pb[1], pb[2]);
 	}
 	sorting(stack_a, stack_b, id);
 }
@@ -114,6 +114,23 @@ void	sort_cut(t_stack **stack_a, t_stack **stack_b, int *sa_ord, int *cont)
 	}
 }
 
+void	skip_orded(t_stack **stack_a)
+{
+	int	i;
+	int	current;
+	int	next;
+
+	i = -1;
+	while (++i < ft_lstsize(*stack_a))
+	{
+		current = (*stack_a)->content;
+		next = (*stack_a)->next->content;
+		if (current > next)
+			break ;
+		(*stack_a) = (*stack_a)->next;
+	}
+}
+
 void	sort(t_stack **stack_a, t_stack **stack_b, int *cont)
 {
 	int	sa_ord;
@@ -123,6 +140,8 @@ void	sort(t_stack **stack_a, t_stack **stack_b, int *cont)
 	//stop = ft_lstsize(*stack_a) * 5;
 	done = 0;
 	sa_ord = 0;
+	print_tab(*stack_a, *stack_b);
+	skip_orded(stack_a);
 	while (done == 0 || *stack_b != NULL)
 	{
 		/*if ((*cont > stop - 10) || (stop < 10)
