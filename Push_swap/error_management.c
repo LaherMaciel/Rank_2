@@ -6,7 +6,7 @@
 /*   By: laher_maciel <laher_maciel@student.42.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 20:39:02 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/04/20 18:00:31 by laher_maciel     ###   ########.fr       */
+/*   Updated: 2023/04/20 18:54:08 by laher_maciel     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ char	*error_check(t_stack *stack)
 {
 	if (stack == NULL || (contains_duplicate_values(stack) == 0))
 	{
-		ft_printf("Error");
+		ft_printf("Error\n");
 		return (NULL);
 	}
 	return ("ko");

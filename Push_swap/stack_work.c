@@ -48,7 +48,7 @@ void	print_stack(t_stack *head)
 }
 
 // verifica todos os caracteres de cada string
-char	*store_integers_in_stack3_cut(t_stack **stack, int argc, char *argv[])
+char	*store_integers_in_stack_cut(t_stack **stack, int argc, char *argv[])
 {	
 	int		i;
 	long	num;
@@ -75,13 +75,13 @@ char	*store_integers_in_stack3_cut(t_stack **stack, int argc, char *argv[])
 }
 
 // Corre por todas as strings do argv
-t_stack	*store_integers_in_stack3(int argc, char *argv[])
+t_stack	*store_integers_in_stack(int argc, char *argv[])
 {
 	t_stack	*stack;
 
 	stack = NULL;
 	while (--argc > 0)
-		if (store_integers_in_stack3_cut(&stack, argc, argv) == NULL)
+		if (store_integers_in_stack_cut(&stack, argc, argv) == NULL)
 			return (NULL);
 	return (stack);
 }
