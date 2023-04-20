@@ -6,7 +6,7 @@
 /*   By: laher_maciel <laher_maciel@student.42.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 10:34:41 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/04/20 17:47:19 by laher_maciel     ###   ########.fr       */
+/*   Updated: 2023/04/20 18:37:27 by laher_maciel     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,3 @@ int	find_above_media(t_stack *stack, int cont1, int cont2)
 		return (cont2);
 	return (0);
 }
-

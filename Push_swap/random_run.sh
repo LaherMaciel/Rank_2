@@ -1,1 +1,1 @@
-shuf -z -i 1-500 -n 500 | tr '\0' ' ' | tr -d '\n' | xargs ./push_swap
+seq -500 500 | shuf -n 5nor00 | tr '\n' ' ' | xargs ./push_swap

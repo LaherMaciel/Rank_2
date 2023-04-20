@@ -29,26 +29,6 @@ int	find_smallest(t_stack *head)
 	return (val);
 }
 
-// find and return the value smaller, closest to 'val'
-int	find_smaller_then(t_stack *head, int val, int smallest)
-{
-	t_stack	*current;
-	int		new_smaller;
-
-	if (head == NULL)
-		return (0);
-	current = head;
-	new_smaller = smallest;
-	while (current)
-	{
-		if (current->content > new_smaller
-			&& current->content < val)
-			new_smaller = current->content;
-		current = current->next;
-	}
-	return (new_smaller);
-}
-
 // find and return the value bigger, closest to 'val'
 int	find_bigger_then(t_stack *head, int val, int biggest)
 {
