@@ -6,7 +6,7 @@
 /*   By: laher_maciel <laher_maciel@student.42.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 09:36:32 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/04/20 17:52:28 by laher_maciel     ###   ########.fr       */
+/*   Updated: 2023/04/20 18:08:01 by laher_maciel     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	sort_p(t_stack **stack_a, t_stack **stack_b)
 		return ;
 	pb[0] = INT_MAX;
 	best_stack_pa_mov(*stack_b, *stack_a, pb);
-	id = pa_decisions(*stack_b, *stack_a, pb[1], pb[2]);
+	id = p_decisions(*stack_b, *stack_a, pb[1], pb[2]);
 	sorting(stack_a, stack_b, id);
 }
 

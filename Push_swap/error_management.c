@@ -3,139 +3,67 @@
 /*                                                        :::      ::::::::   */
 /*   error_management.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: laher_maciel <laher_maciel@student.42.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 20:39:02 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/04/19 17:58:54 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/04/20 18:00:31 by laher_maciel     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/*
-void	commands_check_aux2(char **val, int i)
+//send an error message if the program recieves a number more then 1 time
+int	contains_this_values(t_stack *head, int num)
 {
-	if (ft_isalpha(val[i][0]) == 0
-	&& (ft_isalpha(val[i][ft_strlen(val[i]) - 1] == 0)
-	|| ft_isalpha(val[i][ft_strlen(val[i])] == 0)) 
-		val[i] = ft_substr(val[i], 1, ft_strlen(val[i]) - 2);
-	else if (ft_strchr(val[i], ']') || ft_strchr(val[i], ','))
-		val[i] = ft_substr(val[i], 0, ft_strlen(val[i]) - 1);
-	else if (ft_strchr(val[i], '[') || )
-		val[i] = ft_substr(val[i], 1, ft_strlen(val[i]) - 1);
-}
-*/
+	t_stack	*stack;
 
-void	commands_check_aux2(char **val, int i)
-{
-	if (ft_strchr(val[i], '[')
-		&& (ft_strchr(val[i], ']') || ft_strchr(val[i], ',')))
-		val[i] = ft_substr(val[i], 1, ft_strlen(val[i]) - 2);
-	else if (ft_strchr(val[i], ']') || ft_strchr(val[i], ','))
-		val[i] = ft_substr(val[i], 0, ft_strlen(val[i]) - 1);
-	else if (ft_strchr(val[i], '[') || ft_strchr(val[i], ','))
-		val[i] = ft_substr(val[i], 1, ft_strlen(val[i]) - 1);
-}
-
-int	commands_check(char *str)
-{
-	int		i;
-	char	**valid_commands;
-
-	valid_commands = valid_strings();
-	i = -1;
-	while (++i < 11)
+	stack = head;
+	while (stack)
 	{
-		if (ft_strlen(str) < 2)
-			break ;
-		else if (ft_strncmp(str, valid_commands[i], ft_strlen(str)) == 0)
+		if (num == stack->content)
+			return (0);
+		stack = stack->next;
+	}
+	return (1);
+}
+
+// check if theres any duplicaded value.
+int	contains_duplicate_values(t_stack *head)
+{
+	t_stack	*current1;
+	t_stack	*current2;
+
+	current1 = head;
+	current2 = NULL;
+	while (current1 != NULL)
+	{
+		current2 = current1->next;
+		while (current2 != NULL)
 		{
-			//free(valid_commands);
-			return (1);
+			if (current1->content == current2->content)
+				return (0);
+			current2 = current2->next;
 		}
+		current1 = current1->next;
 	}
-	free(valid_commands);
-	return (0);
+	return (1);
 }
 
-char	*check_commands_cut(char **val)
+int	check_order_ok(t_stack *stack)
 {
-	int	i;
-
-	i = -1;
-	while (val[++i] != NULL)
+	if (stack == NULL)
 	{
-		commands_check_aux2(val, i);
-		if (commands_check(val[i]) == 0)
-			return (NULL);
-		//ft_printf("check_commands_cut = %s\n", val[i]);
+		return (0);
 	}
-	return ("ok");
-}
-
-char	*check_commands(int argc, char *argv[], int stacksize)
-{
-	char	**val;
-	char	*commands;
-	int		i;
-
-	if (stacksize < argc)
+	while (stack->next != NULL)
 	{
-		commands = "  ";
-		while (argv[++stacksize] != NULL)
+		if (stack->content > stack->next->content)
 		{
-			val = ft_split(argv[stacksize], ' ');
-			if (check_commands_cut(val) == NULL)
-			{
-				free(val);
-				return (NULL);
-			}
-			i = -1;
-			while (val[++i])
-			{
-				commands = ft_strjoin(commands, val[i]);
-				commands = ft_strjoin(commands, "  ");
-			}
-			/*
-			else
-			{
-				ft_printf("commands + val = %s + %s\n", commands, *val);
-				commands = ft_strjoin(commands, val[i]);
-				ft_printf("commands + '  ' = %s\n", commands);
-				commands = ft_strjoin(commands, "  ");
-				ft_printf("commands = %s\n", commands);
-			}
-			*/
+			return (0);
 		}
-		//ft_printf("commands = %s\n", commands);
-		free(val);
-		return (commands);
+		stack = stack->next;
 	}
-	return ("ko");
-}
-
-char	*error_check_checker(int argc, char *argv[], t_stack *stack)
-{
-	char	*commands;
-	int		i;
-
-	i = 1;
-	if (stack == NULL || (contains_duplicate_values(stack) == 0))
-	{
-		ft_printf("stack == NULL ou valores dublicados");
-		i = 0;
-	}
-	commands = check_commands(argc, argv, ft_lstsize(stack));
-	if (commands == NULL)
-		i = 0;
-	if (i == 0)
-	{
-		ft_printf("Error");
-		return (NULL);
-	}
-	if (commands[0] == 'k' && commands[1] == 'o')
-		return ("ko");
-	return (commands);
+	return (1);
 }
 
 char	*error_check(t_stack *stack)

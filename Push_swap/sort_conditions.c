@@ -29,28 +29,6 @@ int	nr_movs(int pos, int stack_size)
 	return (needed_movs);
 }
 
-int	total_movs(int needed_movs1, int needed_movs2)
-{
-	int	sign1;
-	int	sign2;
-
-	sign1 = 1;
-	sign2 = 1;
-	if (needed_movs1 < 0)
-	{
-		needed_movs1 = needed_movs1 * (-1);
-		sign1 = -1;
-	}
-	if (needed_movs2 < 0)
-	{
-		needed_movs2 = needed_movs2 * (-1);
-		sign2 = -1;
-	}
-	if (needed_movs1 < needed_movs2)
-		return (needed_movs1 * (sign1));
-	return (needed_movs2 * (sign2));
-}
-
 int	total_movs_p(t_stack *src, t_stack *dst, int pos_1, int pos_2)
 {
 	int	nr_mov;

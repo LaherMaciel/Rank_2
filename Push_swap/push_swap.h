@@ -88,8 +88,6 @@ void	sort_p(t_stack **stack_1, t_stack **stack_2);
 
 // pa, pb & p_cont
 char	*p_decisions(t_stack *src, t_stack *dst, int pos_1, int pos_2);
-char	*pa_decisions(t_stack *src, t_stack *dst, int pos_1, int pos_2);
-char	*pb_decisions(t_stack *src, t_stack *dst, int pos_1, int pos_2);
 int		p_decisions_cont(t_stack *src, t_stack *dst, int pos_1, int pos_2);
 void	p_decisison_cont_aux(int *pos_1, int *pos_2, int final_pos_2);
 int		find_media(t_stack *stack);
