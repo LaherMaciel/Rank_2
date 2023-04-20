@@ -75,44 +75,6 @@ void	print_tab(t_stack *stack_a, t_stack *stack_b)
 		"-------------------------\n");
 }
 
-/*
-void	visualizer(t_stack **stack_a, t_stack **stack_b)
-{
-	char	input[5];
-	int		cont;
-
-	input[0] = 's';
-	cont = 0;
-	print_tab(*stack_a, *stack_b);
-	while (input[0] != 'e')
-	{
-		ft_printf("next  mov: ");
-		scanf("%s", input);
-		if (input[0] == 'p')
-			p_movs(stack_a, stack_b, input);
-		else if (input[0] == 's')
-			ss_movs(stack_a, stack_b, input);
-		else if (input[0] == 'r' && input[2] != '\0')
-			rrr_movs(stack_a, stack_b, input);
-		else if (input[0] == 'r')
-			rr_movs(stack_a, stack_b, input);
-		else if (input[0] != 'p' && input[0] != 's'
-			&& input[0] != 'r' && input[0] != 'e')
-			ft_printf("ERROR: VALID INPUT -> ss," \
-					" sa, sb, rr, ra, rb, rrr, rra," \
-					" rrb, pa, pb or exit\n");
-		if (input[0] == 'p' || input[0] == 's'
-			|| input[0] == 'r')
-		{
-			cont++;
-			print_tab(*stack_a, *stack_b);
-			ft_printf("%i\n", cont);
-		}
-	}
-	ft_printf("FIM DO PROGRAMA!\n");
-}
-*/
-
 void	visualizer2(t_stack **stack_a, t_stack **stack_b)
 {
 	int		cont;
