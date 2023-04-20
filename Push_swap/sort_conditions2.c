@@ -14,7 +14,10 @@
 
 void	find_pos_1(t_stack *src, int *pos_1, int *cont)
 {
-	if (*cont < (ft_lstsize(src) / 2))
+	int	a;
+
+	a = ft_lstsize(src) / 2;
+	if (*cont < a)
 		*pos_1 = *cont * (-1);
 	else
 		*pos_1 = ft_lstsize(src) - *cont;
@@ -51,9 +54,9 @@ int	*best_stack_pb_mov(t_stack *src,
 	int	cont;
 
 	cont = 0;
-	pos_1 = 0;
+	pos_1 = 1;
 	pos_2 = 0;
-	while (pos_1 != 1)
+	while (pos_1 != 0)
 	{
 		find_pos_1(src, &pos_1, &cont);
 		movs = best_stack_pa_mov_aux(src, dst, &pos_1, &pos_2);

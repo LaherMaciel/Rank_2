@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   p_decisions.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: laher_maciel <laher_maciel@student.42.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 16:05:21 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/04/19 18:33:12 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/04/20 10:23:53 by laher_maciel     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ int	p_decisions_cont(t_stack *src, t_stack *dst, int pos_src, int pos_dst)
 	int	cont;
 	int	final_pos_2;
 
-	cont = 0;
+	cont = -1;
 	mov = 0;
 	if (ft_lstsize(dst) <= 2)
 			final_pos_2 = 1 - ft_lstsize(dst);
