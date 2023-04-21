@@ -6,7 +6,7 @@
 /*   By: laher_maciel <laher_maciel@student.42.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:05:00 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/04/15 01:36:58 by laher_maciel     ###   ########.fr       */
+/*   Updated: 2023/04/21 14:03:11 by laher_maciel     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,69 +27,25 @@ int	contains_this_values(t_stack *head, int num)
 	return (1);
 }
 
-/*
 int	contains_duplicate_values(t_stack *head)
 {
-	t_stack	*stack1;
-	t_stack	*stack2;
-	int		num;
-	int		cont1;
-	int		cont2;
+	t_stack	*current1;
+	t_stack	*current2;
 
-	if (head == NULL)
-		return (0);
-	stack1 = head;
-	cont1 = 0;
-	while (stack1->next != NULL)
+	current1 = head;
+	current2 = NULL;
+	while (current1 != NULL)
 	{
-		num = stack1->content;
-		stack2 = stack1->next;
-		cont2 = 0;
-		while (stack2)
+		current2 = current1->next;
+		while (current2 != NULL)
 		{
-			if (num == stack2->content)
-			{
-				ft_printf("Valores dublicados\n the number = %i\ncont1 = %i\ncont2 = %i\n\n", num, cont1, cont2);
+			if (current1->content == current2->content)
 				return (0);
-			}
-			cont2++;
-			stack2 = stack2->next;
+			current2 = current2->next;
 		}
-		cont1++;
-		stack1 = stack1->next;
+		current1 = current1->next;
 	}
 	return (1);
-}
-*/
-
-int contains_duplicate_values(t_stack *head)
-{
-	t_stack	*current1 = head;
-	t_stack	*current2 = NULL;
-	int		cont1;
-	int		cont2;
-
-	cont1 = 0;
-    while (current1 != NULL)
-    {
-        current2 = current1->next;
-		cont2 = cont1 + 1;
-        while (current2 != NULL)
-        {
-            if (current1->content == current2->content)
-            {
-				ft_printf("Valores dublicados\n the number 1 = \
-				%i\nthe number 2 = %i\ncont1 = %i\n cont2 = %i\n\n"
-				, current1->content, current2->content, cont1, cont2);
-				return (0);
-			}
-			cont2++;
-            current2 = current2->next;
-        }
-		cont1++;
-        current1 = current1->next;
-    }
-    return (1);
 }
 
 int	check_vals(int argc, char *argv[])
@@ -131,7 +87,7 @@ char	**valid_strings(void)
 {
 	char	**commands;
 
-	commands = (char **) malloc(11 * sizeof(char *));
+	commands = (char **) malloc(11* sizeof(char *));
 	if (!commands)
 		return (NULL);
 	commands[0] = "ss";

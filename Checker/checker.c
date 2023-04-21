@@ -3,17 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: laher_maciel <laher_maciel@student.42.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 17:43:48 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/04/19 17:44:43 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/04/21 14:11:42 by laher_maciel     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	end_code(t_stack **stack_a, t_stack **stack_b, int cont)
+void	end_code(t_stack **stack_a, t_stack **stack_b, int cont, char *commands)
 {
+	if (commands != NULL && (check_order_ok(*stack_a) == 1) && *stack_b == NULL)
+		ft_printf("\nOK\n");
+	else
+		ft_printf("\nKO\n");
 	if (stack_a != NULL)
 	{
 		ft_printf("\n\nMAIN FINAL PRINT\n");
@@ -36,31 +40,18 @@ int	main(int argc, char *argv[])
 	commands = NULL;
 	if (argc > 1)
 	{
-		stack_a = store_integers_in_stack3(argc, argv);
-		//print_stack(stack_a);
-		commands = error_check(argc - 1, argv, stack_a);
-		//ft_printf("%s\n\n", commands);
+		stack_a = store_integers_in_stack(argc, argv);
+		commands = error_check_checker((argc - 1), argv, stack_a);
 		if (commands != NULL && check_order_ok(stack_a) == 0)
-		{
-			if (commands[0] == 'k' && commands[1] == 'o')
-				auto_sort(&stack_a, &stack_b, &cont);
-			else
-				inputed_commands(&stack_a, &stack_b, commands, &cont);
-		}
+			inputed_commands(&stack_a, &stack_b, commands, &cont);
 	}
 	else
 		proxy(&stack_a, &stack_b, cont);
-	end_code(&stack_a, &stack_b, cont);
-	if (commands != NULL && (check_order_ok(stack_a) == 0
-			|| stack_b != NULL))
-		ft_printf("\nKO\n");
-	else if (check_order_ok(stack_a) == 1)
-		ft_printf("\nOK\n");
+	end_code(&stack_a, &stack_b, cont, commands);
 	while (stack_a != NULL)
 		pop(&stack_a);
 	while (stack_b != NULL)
 		pop(&stack_b);
-	//ft_printf("FIM DO PROGRAMA!\n");
 	return (0);
 }
 
