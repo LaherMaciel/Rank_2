@@ -74,25 +74,3 @@ void	print_tab(t_stack *stack_a, t_stack *stack_b)
 	ft_printf("----------------------------------------"\
 		"-------------------------\n");
 }
-
-void	visualizer2(t_stack **stack_a, t_stack **stack_b)
-{
-	int		cont;
-	int		done;
-
-	cont = 0;
-	done = 0;
-	ft_printf("visualizer2 in\n");
-	print_tab(*stack_a, *stack_b);
-	while (done == 0 && cont < 200)
-	{
-		sort(stack_a, stack_b, &cont);
-		ft_printf("\ndone = %i\n\n", done);
-		if (done == 0)
-			cont++;
-		print_tab(*stack_a, *stack_b);
-		ft_printf("%i\n", cont);
-	}
-	ft_printf("visualizer2 out\n");
-	ft_printf("FIM DO PROGRAMA!\n");
-}

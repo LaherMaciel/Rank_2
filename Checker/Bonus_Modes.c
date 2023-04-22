@@ -6,7 +6,7 @@
 /*   By: laher_maciel <laher_maciel@student.42.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 21:01:28 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/04/22 09:43:01 by laher_maciel     ###   ########.fr       */
+/*   Updated: 2023/04/22 10:34:52 by laher_maciel     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,33 +83,6 @@ void	inputed_commands(t_stack **stack_a,
 		user_sort(stack_a, stack_b, commands[i]);
 		cont++;
 	}
-}
-
-// if the user introduz just the numbers | main
-void	auto_sort(t_stack **stack_a, t_stack **stack_b, int *cont)
-{
-	int	smallest;
-
-	sort(stack_a, stack_b, cont);
-	smallest = nr_movs(find_pos(*stack_a,
-				find_smallest(*stack_a)), ft_lstsize(*stack_a));
-	print_tab(*stack_a, *stack_b);
-	while (smallest != 0)
-	{
-		if (smallest > 0)
-		{
-			ft_reverse_rotate(stack_a, 'a');
-			smallest--;
-		}
-		else if (smallest < 0)
-		{
-			ft_rotate(stack_a, 'a');
-			smallest++;
-		}
-		*cont = *cont + 1;
-	}
-	print_tab(*stack_a, *stack_b);
-	ft_printf("cont -> %i\n", *cont);
 }
 
 int	check_order_ok(t_stack *stack)

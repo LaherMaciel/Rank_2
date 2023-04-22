@@ -46,6 +46,11 @@ int		check_stack(t_stack *stack);
 char	*error_check(t_stack *stack);
 int		check_order_ok(t_stack *stack);
 
+// ERROR_MANAGEMENT_BONUS.C
+int		commands_check(char *str);
+char	**valid_strings(void);
+char	*error_check_bonus(int argc, char *argv[], t_stack *stack);
+
 // List manipulation stack_work.c
 int		pop(t_stack **stack);
 void	push(t_stack **stack, int data);
@@ -80,12 +85,21 @@ void	sort_s_3(t_stack **stack, char id, int *cont);
 void	sort_p(t_stack **stack_1, t_stack **stack_2);
 void	sorting(t_stack **stack_a, t_stack **stack_b, char *id_1);
 
+// BONUS_RUN_MODE.C
+void	inputed_commands(t_stack **stack_a,
+			t_stack **stack_b, char *command_list, int *cont);
+void	proxy(t_stack **stack_a, t_stack **stack_b, int cont);
+
 // libft functions
 long	ft_atoi(char *str);
 char	*ft_itoa(int n);
 size_t	ft_strlen(const char *a);
 char	*ft_strchr(const char *str, int c);
 int		ft_strncmp(char *str1, const char *str2, size_t n);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	**ft_split(char const *s, char c);
+char	*ft_strjoin(char *s1, char *s2);
+int		ft_isalpha(int c);
 t_stack	*ft_lstnew(int content);
 int		ft_lstsize(t_stack *lst);
 int		ft_isdigit(int i);
