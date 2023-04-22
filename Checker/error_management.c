@@ -6,7 +6,7 @@
 /*   By: laher_maciel <laher_maciel@student.42.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 20:39:02 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/04/21 14:02:27 by laher_maciel     ###   ########.fr       */
+/*   Updated: 2023/04/22 10:12:37 by laher_maciel     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ char	*check_commands(int argc, char *argv[], int stacksize)
 
 	if (stacksize < argc)
 	{
-		commands = "  ";
+		commands = NULL;
 		while (argv[++stacksize] != NULL)
 		{
 			val = ft_split(argv[stacksize], ' ');

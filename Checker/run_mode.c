@@ -6,7 +6,7 @@
 /*   By: laher_maciel <laher_maciel@student.42.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 21:01:28 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/04/15 01:01:10 by laher_maciel     ###   ########.fr       */
+/*   Updated: 2023/04/22 09:43:01 by laher_maciel     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int	user_sort(t_stack **stack_a, t_stack **stack_b, char *command)
 					" rrb, pa, pb or exit\n");
 		return (0);
 	}
-	//print_tab(*stack_a, *stack_b);
 	return (1);
 }
 
@@ -67,7 +66,6 @@ void	proxy(t_stack **stack_a, t_stack **stack_b, int cont)
 				cont++;
 			ft_printf("Nr movs-> %i;\n", cont);
 		}
-		//print_stack(*stack_b);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: laher_maciel <laher_maciel@student.42.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:05:00 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/04/21 14:03:11 by laher_maciel     ###   ########.fr       */
+/*   Updated: 2023/04/22 10:16:51 by laher_maciel     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ char	**valid_strings(void)
 {
 	char	**commands;
 
-	commands = (char **) malloc(11* sizeof(char *));
+	commands = (char **) malloc(11 * sizeof(char *));
 	if (!commands)
 		return (NULL);
 	commands[0] = "ss";
@@ -103,13 +103,3 @@ char	**valid_strings(void)
 	commands[10] = "rrb";
 	return (commands);
 }
-
-/*
-//check if the input is correct or valid
-void	command_input_error(void)
-{}
-
-//check if the numbers are bigger then INT_MAX or smaller then INT_MIN
-void	max_int_error(void)
-{}
-*/

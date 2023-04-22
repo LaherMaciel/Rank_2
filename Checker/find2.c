@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: laher_maciel <laher_maciel@student.42.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 10:34:41 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/04/10 06:34:38 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/04/22 09:41:37 by laher_maciel     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,4 @@ int	find_above_media(t_stack *stack, int cont1, int cont2)
 	else if ((cont1 * (-1)) > cont2)
 		return (cont2);
 	return (0);
-}
-
+}	

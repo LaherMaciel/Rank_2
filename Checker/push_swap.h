@@ -52,7 +52,7 @@ int		commands_check(char *str);
 // RUN_MODE run_mode.c
 void	proxy(t_stack **stack_a, t_stack **stack_b, int cont);
 void	inputed_commands(t_stack **stack_a,
-		t_stack **stack_b, char *command_list, int *cont);
+			t_stack **stack_b, char *command_list, int *cont);
 
 // List manipulation stack_work.c
 int		pop(t_stack **stack);
