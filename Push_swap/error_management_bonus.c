@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_management_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: laher_maciel <laher_maciel@student.42.fr>  +#+  +:+       +#+        */
+/*   By: lwencesl <laherwpayotmaciel@gmail.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 20:39:02 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/04/22 11:07:21 by laher_maciel     ###   ########.fr       */
+/*   Updated: 2023/04/24 17:41:09 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,19 @@ int	commands_check(char *str)
 	char	**valid_commands;
 
 	valid_commands = valid_strings();
+	write(2, valid_commands[1], 2);
 	i = -1;
 	while (++i < 11)
 	{
 		if (ft_strlen(str) < 2)
 			break ;
 		else if (ft_strncmp(str, valid_commands[i], ft_strlen(str)) == 0)
+		{
+			free(valid_commands);
 			return (1);
+		}
 	}
+	i = -1;
 	free(valid_commands);
 	return (0);
 }
@@ -59,6 +64,7 @@ char	*check_commands(int argc, char *argv[], int stacksize)
 {
 	char	**val;
 	char	*commands;
+	char	*temp;
 	int		i;
 
 	if (stacksize < argc)
@@ -66,20 +72,28 @@ char	*check_commands(int argc, char *argv[], int stacksize)
 		commands = NULL;
 		while (argv[++stacksize] != NULL)
 		{
+			i = -1;
 			val = ft_split(argv[stacksize], ' ');
 			if (check_commands_cut(val) == NULL)
 			{
+				while (val[++i])
+					free(val[i]);
 				free(val);
+				free(commands);
 				return (NULL);
 			}
-			i = -1;
 			while (val[++i])
 			{
-				commands = ft_strjoin(commands, val[i]);
-				commands = ft_strjoin(commands, "  ");
+				temp = ft_strjoin(commands, val[i]);
+				free(commands);
+				commands = ft_strjoin(temp, "  ");
 			}
+			//free(temp);
+			i = -1;
+			while (val[++i])
+				free(val[i]);
+			free(val);
 		}
-		free(val);
 		return (commands);
 	}
 	return ("ko");

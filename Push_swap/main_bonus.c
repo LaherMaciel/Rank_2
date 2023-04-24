@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: laher_maciel <laher_maciel@student.42.fr>  +#+  +:+       +#+        */
+/*   By: lwencesl <laherwpayotmaciel@gmail.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 17:43:48 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/04/22 11:07:15 by laher_maciel     ###   ########.fr       */
+/*   Updated: 2023/04/24 17:32:23 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int	main(int argc, char *argv[])
 	else
 		proxy(&stack_a, &stack_b, cont);
 	end_code(&stack_a, &stack_b, cont, commands);
+	free(commands);
 	while (stack_a != NULL)
 		pop(&stack_a);
 	while (stack_b != NULL)

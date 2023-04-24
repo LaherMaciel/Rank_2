@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_run_modes.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: laher_maciel <laher_maciel@student.42.fr>  +#+  +:+       +#+        */
+/*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 21:01:28 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/04/22 11:07:27 by laher_maciel     ###   ########.fr       */
+/*   Updated: 2023/04/24 18:43:27 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,7 @@ void	inputed_commands(t_stack **stack_a,
 	{
 		user_sort(stack_a, stack_b, commands[i]);
 		cont++;
+		free(commands[i]);
 	}
+	free(commands);
 }
