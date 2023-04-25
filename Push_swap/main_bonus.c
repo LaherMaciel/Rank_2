@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lwencesl <laherwpayotmaciel@gmail.com>     +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 17:43:48 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/04/24 17:32:23 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/04/25 10:08:47 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	end_code(t_stack **stack_a, t_stack **stack_b, int cont, char *commands)
 {
 	if (commands != NULL && (check_order_ok(*stack_a) == 1) && *stack_b == NULL)
 		ft_printf("\nOK\n");
-	else
+	else if (commands != NULL)
 		ft_printf("\nKO\n");
 	if (stack_a != NULL)
 	{
