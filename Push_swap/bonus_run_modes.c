@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 21:01:28 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/04/24 18:43:27 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/04/25 12:50:03 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,14 @@ int	user_sort(t_stack **stack_a, t_stack **stack_b, char *command)
 	return (1);
 }
 
+void	proxy_cut(t_stack **stack_a, t_stack **stack_b, int cont, char *command)
+{
+	if (user_sort(stack_a, stack_b, command) == 1
+		&& ft_strncmp(command, "exit", 4) != 0)
+		cont++;
+	ft_printf("Nr movs-> %i;\n", cont);
+}
+
 // if the user dont introduz nothing | main
 void	proxy(t_stack **stack_a, t_stack **stack_b, int cont)
 {
@@ -60,12 +68,7 @@ void	proxy(t_stack **stack_a, t_stack **stack_b, int cont)
 			print_stack(*stack_a);
 		}
 		else if (stack_a != NULL)
-		{
-			if (user_sort(stack_a, stack_b, command) == 1
-				&& ft_strncmp(command, "exit", 4) != 0)
-				cont++;
-			ft_printf("Nr movs-> %i;\n", cont);
-		}
+			proxy_cut(stack_a, stack_b, cont, command);
 	}
 }
 

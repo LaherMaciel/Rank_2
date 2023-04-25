@@ -6,22 +6,11 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 20:39:02 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/04/25 11:03:40 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/04/25 12:46:03 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	commands_check_aux2(char **val, int i)
-{
-	if (ft_strchr(val[i], '[')
-		&& (ft_strchr(val[i], ']') || ft_strchr(val[i], ',')))
-		val[i] = ft_substr(val[i], 1, ft_strlen(val[i]) - 2);
-	else if (ft_strchr(val[i], ']') || ft_strchr(val[i], ','))
-		val[i] = ft_substr(val[i], 0, ft_strlen(val[i]) - 1);
-	else if (ft_strchr(val[i], '[') || ft_strchr(val[i], ','))
-		val[i] = ft_substr(val[i], 1, ft_strlen(val[i]) - 1);
-}
 
 int	commands_check(char *str)
 {
@@ -72,12 +61,17 @@ char	*check_commands_cut2(char **val, char *commands)
 	}
 	while (val[++i])
 	{
-		temp = ft_strjoin(commands, val[i]);
-		free(commands);
-		commands = ft_strjoin(temp, "  ");
-		if (i > 0)
+		if (commands == NULL)
+			commands = ft_strjoin(val[0], "  ");
+		else
+		{
+			temp = ft_strjoin(commands, val[i]);
+			free(commands);
+			commands = ft_strjoin(temp, "  ");
 			free(temp);
+		}
 	}
+	ft_printf("commands = %s\n", commands);
 	return (commands);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: laher_maciel <laher_maciel@student.42.fr>  +#+  +:+       +#+        */
+/*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:05:00 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/04/22 11:07:31 by laher_maciel     ###   ########.fr       */
+/*   Updated: 2023/04/25 12:46:10 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,15 @@ char	**valid_strings(void)
 	commands[9] = "rra";
 	commands[10] = "rrb";
 	return (commands);
+}
+
+void	commands_check_aux2(char **val, int i)
+{
+	if (ft_strchr(val[i], '[')
+		&& (ft_strchr(val[i], ']') || ft_strchr(val[i], ',')))
+		val[i] = ft_substr(val[i], 1, ft_strlen(val[i]) - 2);
+	else if (ft_strchr(val[i], ']') || ft_strchr(val[i], ','))
+		val[i] = ft_substr(val[i], 0, ft_strlen(val[i]) - 1);
+	else if (ft_strchr(val[i], '[') || ft_strchr(val[i], ','))
+		val[i] = ft_substr(val[i], 1, ft_strlen(val[i]) - 1);
 }

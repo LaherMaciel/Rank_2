@@ -50,6 +50,7 @@ int		check_order_ok(t_stack *stack);
 int		commands_check(char *str);
 char	**valid_strings(void);
 char	*error_check_bonus(int argc, char *argv[], t_stack *stack);
+void	commands_check_aux2(char **val, int i);
 
 // List manipulation stack_work.c
 int		pop(t_stack **stack);
