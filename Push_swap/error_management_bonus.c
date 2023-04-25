@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_management_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lwencesl <laherwpayotmaciel@gmail.com>     +#+  +:+       +#+        */
+/*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 20:39:02 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/04/24 17:41:09 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/04/25 11:03:40 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int	commands_check(char *str)
 	char	**valid_commands;
 
 	valid_commands = valid_strings();
-	write(2, valid_commands[1], 2);
 	i = -1;
 	while (++i < 11)
 	{
@@ -60,43 +59,47 @@ char	*check_commands_cut(char **val)
 	return ("ok");
 }
 
-char	*check_commands(int argc, char *argv[], int stacksize)
+char	*check_commands_cut2(char **val, char *commands)
+{
+	int		i;
+	char	*temp;
+
+	i = -1;
+	if (check_commands_cut(val) == NULL)
+	{
+		free(commands);
+		return (NULL);
+	}
+	while (val[++i])
+	{
+		temp = ft_strjoin(commands, val[i]);
+		free(commands);
+		commands = ft_strjoin(temp, "  ");
+		if (i > 0)
+			free(temp);
+	}
+	return (commands);
+}
+
+char	*check_commands(char *argv[], int stacksize)
 {
 	char	**val;
 	char	*commands;
-	char	*temp;
 	int		i;
 
-	if (stacksize < argc)
+	commands = NULL;
+	while (argv[++stacksize] != NULL)
 	{
-		commands = NULL;
-		while (argv[++stacksize] != NULL)
-		{
-			i = -1;
-			val = ft_split(argv[stacksize], ' ');
-			if (check_commands_cut(val) == NULL)
-			{
-				while (val[++i])
-					free(val[i]);
-				free(val);
-				free(commands);
-				return (NULL);
-			}
-			while (val[++i])
-			{
-				temp = ft_strjoin(commands, val[i]);
-				free(commands);
-				commands = ft_strjoin(temp, "  ");
-			}
-			//free(temp);
-			i = -1;
-			while (val[++i])
-				free(val[i]);
-			free(val);
-		}
-		return (commands);
+		i = -1;
+		val = ft_split(argv[stacksize], ' ');
+		commands = check_commands_cut2(val, commands);
+		while (val[++i])
+			free(val[i]);
+		free(val);
+		if (commands == NULL)
+			return (NULL);
 	}
-	return ("ko");
+	return (commands);
 }
 
 char	*error_check_bonus(int argc, char *argv[], t_stack *stack)
@@ -110,7 +113,8 @@ char	*error_check_bonus(int argc, char *argv[], t_stack *stack)
 		ft_printf("stack == NULL ou valores dublicados");
 		i = 0;
 	}
-	commands = check_commands(argc, argv, ft_lstsize(stack));
+	if (ft_lstsize(stack) < argc)
+		commands = check_commands(argv, ft_lstsize(stack));
 	if (commands == NULL)
 		i = 0;
 	if (i == 0)
