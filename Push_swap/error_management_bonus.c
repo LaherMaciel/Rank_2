@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_management_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: laher_maciel <laher_maciel@student.42.fr>  +#+  +:+       +#+        */
+/*   By: lwencesl <laherwpayotmaciel@gmail.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 20:39:02 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/05/02 11:16:33 by laher_maciel     ###   ########.fr       */
+/*   Updated: 2023/05/03 16:46:51 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,24 +98,35 @@ char	*check_commands(char *argv[], int stacksize)
 char	*error_check_bonus(int argc, char *argv[], t_stack *stack)
 {
 	char	*commands;
-	int		i;
 
-	i = 1;
 	if (stack == NULL || (contains_duplicate_values(stack) == 0))
-	{
-		ft_printf("stack == NULL ou valores dublicados");
-		i = 0;
-	}
-	if (ft_lstsize(stack) < argc)
-		commands = check_commands(argv, ft_lstsize(stack));
-	if (commands == NULL)
-		i = 0;
-	if (i == 0)
 	{
 		ft_printf("Error");
 		return (NULL);
 	}
-	if (commands[0] == 'k' && commands[1] == 'o')
-		return ("ko");
+	if (argc == ft_lstsize(stack) && check_order_ok(stack) != 0)
+		return (NULL);
+	if (argc == ft_lstsize(stack) && check_order_ok(stack) == 0)
+	{
+		ft_printf("Error");
+		return (NULL);
+	}
+	if (ft_lstsize(stack) < argc)
+		commands = check_commands(argv, ft_lstsize(stack));
+	if (commands == NULL)
+	{
+		ft_printf("Error");
+		return (NULL);
+	}
 	return (commands);
 }
+
+/*
+	if (argc == ft_lstsize(stack) && check_order_ok(stack) != 0)
+		return ("ex");
+	if (argc == ft_lstsize(stack) && check_order_ok(stack) != 0)
+	{
+		ft_printf("Error");
+		return (NULL);
+	}
+*/

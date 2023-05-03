@@ -34,23 +34,6 @@ void	auto_sort(t_stack **stack_a, t_stack **stack_b, int *cont)
 		}
 		*cont = *cont + 1;
 	}
-	print_tab(*stack_a, *stack_b);
-	ft_printf("cont -> %i\n", *cont);
-}
-
-void	end_code(t_stack **stack_a, t_stack **stack_b, int cont)
-{
-	if (check_order_ok(*stack_a) == 0)
-		ft_printf("\nKO\n");
-	else if (check_order_ok(*stack_a) == 1)
-		ft_printf("\nOK\n");
-	if (stack_a != NULL)
-	{
-		ft_printf("\n\nMAIN FINAL PRINT\n");
-		print_tab(*stack_a, *stack_b);
-	}
-	ft_printf("NUMERO DE MOVIMENTOS FEITOS: %i\n", cont);
-	ft_printf("FIM DO PROGRAMA!\n");
 }
 
 int	main(int argc, char *argv[])
@@ -66,10 +49,7 @@ int	main(int argc, char *argv[])
 	{
 		stack_a = store_integers_in_stack(argc, argv);
 		if (error_check(stack_a) != NULL && check_order_ok(stack_a) == 0)
-		{
 			auto_sort(&stack_a, &stack_b, &cont);
-			end_code(&stack_a, &stack_b, cont);
-		}
 	}
 	while (stack_a != NULL)
 		pop(&stack_a);

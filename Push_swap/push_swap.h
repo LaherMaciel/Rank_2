@@ -91,6 +91,9 @@ void	inputed_commands(t_stack **stack_a,
 			t_stack **stack_b, char *command_list, int *cont);
 void	proxy(t_stack **stack_a, t_stack **stack_b, int cont);
 
+// Main
+void	end_code(t_stack **stack_a, t_stack **stack_b, char *commands);
+
 // libft functions
 long	ft_atoi(char *str);
 char	*ft_itoa(int n);

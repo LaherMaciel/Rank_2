@@ -3,29 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lwencesl <laherwpayotmaciel@gmail.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 17:43:48 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/04/25 11:18:50 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/05/03 17:13:43 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	end_code(t_stack **stack_a, t_stack **stack_b, int cont, char *commands)
-{
-	if (commands != NULL && (check_order_ok(*stack_a) == 1) && *stack_b == NULL)
-		ft_printf("\nOK\n");
-	else if (commands != NULL)
-		ft_printf("\nKO\n");
-	if (stack_a != NULL)
-	{
-		ft_printf("\n\nMAIN FINAL PRINT\n");
-		print_tab(*stack_a, *stack_b);
-	}
-	ft_printf("NUMERO DE MOVIMENTOS FEITOS: %i\n", cont);
-	ft_printf("FIM DO PROGRAMA!\n");
-}
 
 int	main(int argc, char *argv[])
 {
@@ -42,12 +27,12 @@ int	main(int argc, char *argv[])
 	{
 		stack_a = store_integers_in_stack(argc, argv);
 		commands = error_check_bonus((argc - 1), argv, stack_a);
-		if (commands != NULL && check_order_ok(stack_a) == 0)
+		if (commands != NULL)
 			inputed_commands(&stack_a, &stack_b, commands, &cont);
 	}
 	else
 		proxy(&stack_a, &stack_b, cont);
-	end_code(&stack_a, &stack_b, cont, commands);
+	end_code(&stack_a, &stack_b, commands);
 	free(commands);
 	while (stack_a != NULL)
 		pop(&stack_a);
@@ -57,6 +42,8 @@ int	main(int argc, char *argv[])
 }
 
 /*
+commands[0] != 'e' && 
+
 int	main(int argc, char *argv[])
 {
 	t_stack	*stack_a;

@@ -3,14 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_run_modes.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lwencesl <laherwpayotmaciel@gmail.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 21:01:28 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/04/25 12:50:03 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/05/03 17:13:56 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	end_code(t_stack **stack_a, t_stack **stack_b, char *commands)
+{
+	if (commands != NULL && (check_order_ok(*stack_a) == 1) && *stack_b == NULL)
+		ft_printf("\nOK\n");
+	else if (commands != NULL)
+		ft_printf("\nKO\n");
+}
 
 int	user_sort(t_stack **stack_a, t_stack **stack_b, char *command)
 {
@@ -40,7 +48,6 @@ void	proxy_cut(t_stack **stack_a, t_stack **stack_b, int cont, char *command)
 	if (user_sort(stack_a, stack_b, command) == 1
 		&& ft_strncmp(command, "exit", 4) != 0)
 		cont++;
-	ft_printf("Nr movs-> %i;\n", cont);
 }
 
 // if the user dont introduz nothing | main
@@ -51,8 +58,6 @@ void	proxy(t_stack **stack_a, t_stack **stack_b, int cont)
 
 	command[0] = '\0';
 	val = 0;
-	ft_printf("Introduz numbers to store them in the first stack,\
- or command to swap the numbers or 'exit' to end the program.\n");
 	while (ft_strncmp(command, "exit", 4) != 0)
 	{
 		ft_printf("\n>");
@@ -64,12 +69,12 @@ void	proxy(t_stack **stack_a, t_stack **stack_b, int cont)
 				ft_printf("\nNumber already on the stack, try another number:\n");
 			else
 				push(stack_a, val);
-			ft_printf("command2 = %s\n", command);
 			print_stack(*stack_a);
 		}
 		else if (stack_a != NULL)
 			proxy_cut(stack_a, stack_b, cont, command);
 	}
+	end_code(stack_a, stack_b, command);
 }
 
 // if the user introduz the numbers and the commands | main
