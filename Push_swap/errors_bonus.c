@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:05:00 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/05/03 14:29:22 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/05/03 14:31:11 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,21 +67,6 @@ char	**valid_strings(void)
 	commands[10] = "rrb";
 	return (commands);
 }
-
-/*
-void	commands_check_aux2(char **val, int i)
-{
-	printf("val[%i] antes = %s\n", i, val[i]);
-	if (ft_strchr(val[i], '[')
-		&& (ft_strchr(val[i], ']') || ft_strchr(val[i], ',')))
-		val[i] = ft_substr(val[i], 1, ft_strlen(val[i]) - 2);
-	else if (ft_strchr(val[i], ']') || ft_strchr(val[i], ','))
-		val[i] = ft_substr(val[i], 0, ft_strlen(val[i]) - 1);
-	else if (ft_strchr(val[i], '[') || ft_strchr(val[i], ','))
-		val[i] = ft_substr(val[i], 1, ft_strlen(val[i]) - 1);
-	printf("val[%i] depois = %s\n\n", i, val[i]);
-}
-*/
 
 void	commands_check_aux2(char **val, int i)
 {
