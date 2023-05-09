@@ -83,6 +83,9 @@ void	sorting(t_stack **stack_a, t_stack **stack_b, char *id_1);
 // Main
 void	end_code(t_stack **stack_a, t_stack **stack_b, char *commands);
 
+// Main
+void	end_code(t_stack **stack_a, t_stack **stack_b, char *commands);
+
 // libft functions
 long	ft_atoi(char *str);
 char	*ft_itoa(int n);

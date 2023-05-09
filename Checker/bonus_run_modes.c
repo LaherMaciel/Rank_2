@@ -6,11 +6,23 @@
 /*   By: lwencesl <laherwpayotmaciel@gmail.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 21:01:28 by lwencesl          #+#    #+#             */
+<<<<<<< HEAD:Checker/bonus_run_modes.c
 /*   Updated: 2023/05/05 20:20:58 by lwencesl         ###   ########.fr       */
+=======
+/*   Updated: 2023/05/03 17:13:56 by lwencesl         ###   ########.fr       */
+>>>>>>> f1f5c4aa36db2b2f137c201c0d9175b7edf83a49:Push_swap/bonus_run_modes.c
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
+
+void	end_code(t_stack **stack_a, t_stack **stack_b, char *commands)
+{
+	if (commands != NULL && (check_order_ok(*stack_a) == 1) && *stack_b == NULL)
+		ft_printf("\nOK\n");
+	else if (commands != NULL)
+		ft_printf("\nKO\n");
+}
 
 void	end_code(t_stack **stack_a, t_stack **stack_b, char *commands)
 {

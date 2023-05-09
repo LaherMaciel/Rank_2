@@ -6,11 +6,19 @@
 /*   By: lwencesl <laherwpayotmaciel@gmail.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 17:43:48 by lwencesl          #+#    #+#             */
+<<<<<<< HEAD:Checker/main.c
 /*   Updated: 2023/05/05 20:17:48 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
+=======
+/*   Updated: 2023/05/03 17:13:43 by lwencesl         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "push_swap.h"
+>>>>>>> f1f5c4aa36db2b2f137c201c0d9175b7edf83a49:Push_swap/main_bonus.c
 
 int	main(int argc, char *argv[])
 {
@@ -27,15 +35,24 @@ int	main(int argc, char *argv[])
 	{
 		stack_a = store_integers_in_stack(argc, argv);
 		commands = error_check_bonus((argc - 1), argv, stack_a);
+<<<<<<< HEAD:Checker/main.c
 		if (commands != NULL && commands[0] != 'x')
+=======
+		if (commands != NULL)
+>>>>>>> f1f5c4aa36db2b2f137c201c0d9175b7edf83a49:Push_swap/main_bonus.c
 			inputed_commands(&stack_a, &stack_b, commands, &cont);
 		else if (commands != NULL && commands[0] == 'x')
 			proxy(&stack_a, &stack_b, cont);
 	}
 	else
 		proxy(&stack_a, &stack_b, cont);
+<<<<<<< HEAD:Checker/main.c
 	if ((commands != NULL && commands[0] != 'x'))
 		free(commands);
+=======
+	end_code(&stack_a, &stack_b, commands);
+	free(commands);
+>>>>>>> f1f5c4aa36db2b2f137c201c0d9175b7edf83a49:Push_swap/main_bonus.c
 	while (stack_a != NULL)
 		pop(&stack_a);
 	while (stack_b != NULL)
