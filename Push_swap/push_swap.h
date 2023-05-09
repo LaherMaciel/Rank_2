@@ -50,7 +50,7 @@ int		check_order_ok(t_stack *stack);
 int		pop(t_stack **stack);
 void	push(t_stack **stack, int data);
 void	print_stack(t_stack *head);
-t_stack	*store_integers_in_stack(int argc, char *argv[], char **commands);
+t_stack	*store_integers_in_stack(int argc, char *argv[], char *commands, t_stack *stack);
 
 // all the find functions find.c && find2.c
 int		find_smallest(t_stack *stack);

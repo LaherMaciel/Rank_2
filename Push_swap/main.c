@@ -46,7 +46,7 @@ int	main(int argc, char *argv[])
 	cont = 0;
 	commands = NULL;
 	stack_b = NULL;
-	stack_a = store_integers_in_stack(argc, argv, &commands);
+	stack_a = store_integers_in_stack(argc, argv, commands, NULL);
 	if (error_check(stack_a, argv, commands) != NULL && check_order_ok(stack_a) == 0
 		&& ft_lstsize(stack_a) > 2)
 		auto_sort(&stack_a, &stack_b, &cont);
