@@ -43,14 +43,14 @@ int		contains_this_values(t_stack *head, int num);
 int		contains_duplicate_values(t_stack *head);
 int		check_vals(int argc, char *argv[]);
 int		check_stack(t_stack *stack);
-char	*error_check(t_stack *stack, char *argv[]);
+char	*error_check(t_stack *stack, char *argv[], char *commands);
 int		check_order_ok(t_stack *stack);
 
 // List manipulation stack_work.c
 int		pop(t_stack **stack);
 void	push(t_stack **stack, int data);
 void	print_stack(t_stack *head);
-t_stack	*store_integers_in_stack(int argc, char *argv[]);
+t_stack	*store_integers_in_stack(int argc, char *argv[], char **commands);
 
 // all the find functions find.c && find2.c
 int		find_smallest(t_stack *stack);

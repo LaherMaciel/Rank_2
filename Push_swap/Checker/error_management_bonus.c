@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   error_management_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lwencesl <laherwpayotmaciel@gmail.com>     +#+  +:+       +#+        */
+/*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 20:39:02 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/05/03 16:46:51 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/05/09 18:31:59 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker.h"
 
 int	commands_check(char *str)
 {
@@ -99,6 +99,7 @@ char	*error_check_bonus(int argc, char *argv[], t_stack *stack)
 {
 	char	*commands;
 
+	commands = NULL;
 	if (stack == NULL || (contains_duplicate_values(stack) == 0))
 	{
 		ft_printf("Error");
@@ -107,10 +108,7 @@ char	*error_check_bonus(int argc, char *argv[], t_stack *stack)
 	if (argc == ft_lstsize(stack) && check_order_ok(stack) != 0)
 		return (NULL);
 	if (argc == ft_lstsize(stack) && check_order_ok(stack) == 0)
-	{
-		ft_printf("Error");
-		return (NULL);
-	}
+		return ("xa");
 	if (ft_lstsize(stack) < argc)
 		commands = check_commands(argv, ft_lstsize(stack));
 	if (commands == NULL)

@@ -1,42 +1,11 @@
 {
-<<<<<<< HEAD
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "name": "(gdb) Launch",
-            "type": "cppdbg",
-            "request": "launch",
-            "program": "${workspaceFolder}/push_swap",
-            "args": [],
-            "stopAtEntry": false,
-            "cwd": "${fileDirname}",
-            "environment": [],
-            "externalConsole": false,
-            "MIMode": "gdb",
-            "setupCommands": [
-                {
-                    "description": "Enable pretty-printing for gdb",
-                    "text": "-enable-pretty-printing",
-                    "ignoreFailures": true
-                },
-                {
-                    "description": "Set Disassembly Flavor to Intel",
-                    "text": "-gdb-set disassembly-flavor intel",
-                    "ignoreFailures": true
-                }
-            ]
-        }
-=======
 	"configurations": [
 	{
 		"name": "(gdb) Launch",
 		"type": "cppdbg",
 		"request": "launch",
-		"program": "${workspaceFolder}/checker",
-		"args": [2, 1, 4, 3, "[sa ra sa rra sa ra]"],
+		"program": "${workspaceFolder}/push_swap",
+		"args": ["3 2 1 4 6 5"],
 		"stopAtEntry": false,
 		"cwd": "${fileDirname}",
 		"environment": [],
@@ -57,7 +26,6 @@
 	}
 	]
 }
->>>>>>> f1f5c4aa36db2b2f137c201c0d9175b7edf83a49
 
-    ]
-}
+//"args": [3, 2, 1, 4, 6, 5],
+//"args": ["3 2 1 4 6 5"],

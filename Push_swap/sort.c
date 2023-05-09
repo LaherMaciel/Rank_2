@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lwencesl <laherwpayotmaciel@gmail.com>     +#+  +:+       +#+        */
+/*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 09:36:32 by lwencesl          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/05/06 20:31:44 by laher_maciel     ###   ########.fr       */
-=======
-/*   Updated: 2023/05/03 15:34:22 by lwencesl         ###   ########.fr       */
->>>>>>> f1f5c4aa36db2b2f137c201c0d9175b7edf83a49
+/*   Updated: 2023/05/09 16:14:02 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

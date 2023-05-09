@@ -40,23 +40,17 @@ int	main(int argc, char *argv[])
 {
 	t_stack	*stack_a;
 	t_stack	*stack_b;
+	char	*commands;
 	int		cont;
 
 	cont = 0;
-	stack_a = NULL;
+	commands = NULL;
 	stack_b = NULL;
-	if (argc > 2)
-	{
-		stack_a = store_integers_in_stack(argc, argv);
-<<<<<<< HEAD
-		if (error_check(stack_a, argv) != NULL && check_order_ok(stack_a) == 0)
-=======
-		if (error_check(stack_a) != NULL && check_order_ok(stack_a) == 0)
->>>>>>> f1f5c4aa36db2b2f137c201c0d9175b7edf83a49
-			auto_sort(&stack_a, &stack_b, &cont);
-	}
-	if (argc == 2 && ft_isdigit(argv[1][0]) == 0)
-		ft_printf("Error\n");
+	stack_a = store_integers_in_stack(argc, argv, &commands);
+	if (error_check(stack_a, argv, commands) != NULL && check_order_ok(stack_a) == 0
+		&& ft_lstsize(stack_a) > 2)
+		auto_sort(&stack_a, &stack_b, &cont);
+	free(commands);
 	while (stack_a != NULL)
 		pop(&stack_a);
 	while (stack_b != NULL)

@@ -5,21 +5,22 @@
 #                                                     +:+ +:+         +:+      #
 #    By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/04/20 19:03:40 by laher_macie       #+#    #+#              #
-#    Updated: 2023/05/09 16:47:01 by lwencesl         ###   ########.fr        #
+#    Created: 2023/05/05 19:22:56 by lwencesl          #+#    #+#              #
+#    Updated: 2023/05/09 16:21:51 by lwencesl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = push_swap
-SRC = error_management find find2 ft_atoi ft_isdigit ft_split\
-ft_isprint ft_lstnew ft_lstsize ft_printf ft_printf_utils ft_substr\
-ft_strchr ft_strncmp ft_strlen  moviments moviments2 p_decisions\
-sort_conditions sort stack_work main\
-
+NAME = checker
+SRC = error_management error_management_bonus errors_bonus ft_split\
+	ft_atoi ft_isdigit ft_strjoin ft_substr\
+	ft_isprint ft_lstnew ft_lstsize ft_printf ft_printf_utils\
+	ft_strchr ft_strncmp ft_strlen  moviments moviments2 \
+	sort stack_work ft_isalpha main\
 
 CC = cc
 RM = rm -f
-CFLAGS = -g -Wall -Werror -Wextra\
+CFLAGS = -g -Wall -Werror -Wextra -fsanitize=address\
+-fsanitize-address-use-after-scope\
 
 all:$(NAME)
 
