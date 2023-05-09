@@ -43,14 +43,8 @@ int		contains_this_values(t_stack *head, int num);
 int		contains_duplicate_values(t_stack *head);
 int		check_vals(int argc, char *argv[]);
 int		check_stack(t_stack *stack);
-char	*error_check(t_stack *stack);
+char	*error_check(t_stack *stack, char *argv[]);
 int		check_order_ok(t_stack *stack);
-
-// ERROR_MANAGEMENT_BONUS.C
-int		commands_check(char *str);
-char	**valid_strings(void);
-char	*error_check_bonus(int argc, char *argv[], t_stack *stack);
-void	commands_check_aux2(char **val, int i);
 
 // List manipulation stack_work.c
 int		pop(t_stack **stack);
@@ -86,10 +80,8 @@ void	sort_s_3(t_stack **stack, char id, int *cont);
 void	sort_p(t_stack **stack_1, t_stack **stack_2);
 void	sorting(t_stack **stack_a, t_stack **stack_b, char *id_1);
 
-// BONUS_RUN_MODE.C
-void	inputed_commands(t_stack **stack_a,
-			t_stack **stack_b, char *command_list, int *cont);
-void	proxy(t_stack **stack_a, t_stack **stack_b, int cont);
+// Main
+void	end_code(t_stack **stack_a, t_stack **stack_b, char *commands);
 
 // libft functions
 long	ft_atoi(char *str);

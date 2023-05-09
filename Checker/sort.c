@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort2.c                                            :+:      :+:    :+:   */
+/*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: laher_maciel <laher_maciel@student.42.fr>  +#+  +:+       +#+        */
+/*   By: lwencesl <laherwpayotmaciel@gmail.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 09:36:32 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/04/20 18:14:19 by laher_maciel     ###   ########.fr       */
+/*   Updated: 2023/05/05 19:44:32 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker.h"
 
 void	sorting(t_stack **stack_a, t_stack **stack_b, char *id_1)
 {
@@ -36,96 +36,4 @@ void	sorting(t_stack **stack_a, t_stack **stack_b, char *id_1)
 		ft_reverse_rotate_rotate(stack_a, stack_b);
 	else if (ft_strncmp(id_1, "rr", 2) == 0)
 		ft_rotate_rotate(stack_a, stack_b);
-}
-
-void	sort_s_3(t_stack **stack, char id, int *cont)
-{
-	int	out;
-
-	out = 0;
-	if (!stack)
-		return ;
-	while (out != 1)
-	{
-		if ((*stack)->content > (*stack)->next->content
-			&& (*stack)->next->content > (*stack)->next->next->content)
-			ft_rotate(stack, id);
-		else if (((*stack)->content < (*stack)->next->content)
-			&& ((*stack)->content > (*stack)->next->next->content))
-			ft_reverse_rotate(stack, id);
-		else if (((*stack)->content > (*stack)->next->content)
-			&& ((*stack)->content > (*stack)->next->next->content))
-			ft_rotate(stack, id);
-		else if (((*stack)->content < (*stack)->next->content)
-			&& ((*stack)->next->content > (*stack)->next->next->content))
-			ft_reverse_rotate(stack, id);
-		else if (((*stack)->content > (*stack)->next->content))
-			ft_swap(stack, id);
-		else
-			out = 1;
-		*cont = *cont + 1;
-	}
-}
-
-void	sort_p(t_stack **stack_a, t_stack **stack_b)
-{
-	int		pb[4];
-	char	*id;
-
-	if (*stack_a == NULL)
-		return ;
-	pb[0] = INT_MAX;
-	best_stack_pa_mov(*stack_b, *stack_a, pb);
-	id = p_decisions(*stack_b, *stack_a, pb[1], pb[2]);
-	sorting(stack_a, stack_b, id);
-}
-
-void	sort_cut(t_stack **stack_a, t_stack **stack_b, int *sa_ord, int *cont)
-{
-	int	nr;
-
-	nr = 0;
-	if (check_order_ok(*stack_a) == 1 && *stack_b != NULL && *sa_ord == 0)
-		*sa_ord = 1;
-	else if (ft_lstsize(*stack_a) <= 3 && *sa_ord == 0)
-	{
-		sort_s_3(stack_a, 'a', cont);
-		*cont = *cont - 1;
-		*sa_ord = 1;
-	}
-	else if (*sa_ord == 0)
-	{
-		nr = find_above_media(*stack_a, 0, 0);
-		if (nr > 0)
-			ft_reverse_rotate(stack_a, 'a');
-		else if (nr < 0)
-			ft_rotate(stack_a, 'a');
-		else
-			ft_pass_to(stack_a, stack_b, 'b');
-	}
-}
-
-void	sort(t_stack **stack_a, t_stack **stack_b, int *cont)
-{
-	int	sa_ord;
-	int	done;
-
-	done = 0;
-	sa_ord = 0;
-	while (*stack_b != NULL || (done == 0 && check_order_ok(*stack_a) != 1))
-	{
-		if (ft_lstsize(*stack_a) <= 5 || ft_lstsize(*stack_b) <= 5)
-		{
-			print_tab(*stack_a, *stack_b);
-			ft_printf("cont -> %i\n", *cont);
-		}
-		sort_cut(stack_a, stack_b, &sa_ord, cont);
-		if (sa_ord != 0)
-		{
-			sort_p(stack_a, stack_b);
-			done = 1;
-		}
-		*cont = *cont + 1;
-	}
-	ft_printf("\nout\n");
 }

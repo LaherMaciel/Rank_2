@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker.h"
 
 void	print_tab_cut2(t_stack *stack_a, t_stack *stack_b, int cont)
 {

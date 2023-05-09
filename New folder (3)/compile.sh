@@ -1,1 +1,0 @@
-clear && gcc -Wall -Werror -Wextra -fsanitize=address -fsanitize-address-use-after-scope *.c && ./a.out 1 48 79 33 92 12 -40 64 27 5 51 -1 88 14 70 29 3 46 -9 97 6 58 83 9 23 42 71 11 99 35 77 -5 55 38 68 25 61 43 0 -42

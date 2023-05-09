@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort2.c                                            :+:      :+:    :+:   */
+/*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: laher_maciel <laher_maciel@student.42.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 09:36:32 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/04/20 18:14:19 by laher_maciel     ###   ########.fr       */
+/*   Updated: 2023/05/06 20:31:44 by laher_maciel     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,20 +112,19 @@ void	sort(t_stack **stack_a, t_stack **stack_b, int *cont)
 
 	done = 0;
 	sa_ord = 0;
+	if (ft_lstsize(*stack_a) == 2)
+	{
+		ft_swap(stack_a, 'a');
+		return ;
+	}
 	while (*stack_b != NULL || (done == 0 && check_order_ok(*stack_a) != 1))
 	{
-		if (ft_lstsize(*stack_a) <= 5 || ft_lstsize(*stack_b) <= 5)
-		{
-			print_tab(*stack_a, *stack_b);
-			ft_printf("cont -> %i\n", *cont);
-		}
 		sort_cut(stack_a, stack_b, &sa_ord, cont);
-		if (sa_ord != 0)
+		if (sa_ord != 0 && *stack_b != NULL)
 		{
 			sort_p(stack_a, stack_b);
 			done = 1;
 		}
 		*cont = *cont + 1;
 	}
-	ft_printf("\nout\n");
 }

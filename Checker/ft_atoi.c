@@ -9,7 +9,7 @@
 /*   Updated: 2022/10/28 18:54:06 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "push_swap.h"
+#include "checker.h"
 
 int	new_sign(char *str, int i, int sign)
 {

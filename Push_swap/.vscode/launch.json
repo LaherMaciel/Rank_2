@@ -1,38 +1,33 @@
 {
-	"configurations": [
-	{
-		"name": "(gdb) Launch",
-		"type": "cppdbg",
-		"request": "launch",
-		"program": "${workspaceFolder}/checker",
-		"args": [2, 1, 3, "sa ra rra"],
-		"stopAtEntry": false,
-		"cwd": "${fileDirname}",
-		"environment": [],
-		"externalConsole": false,
-		"MIMode": "gdb",
-		"setupCommands": [
-			{
-				"description": "Enable pretty-printing for gdb",
-				"text": "-enable-pretty-printing",
-				"ignoreFailures": true
-			},
-			{
-				"description": "Set Disassembly Flavor to Intel",
-				"text": "-gdb-set disassembly-flavor intel",
-				"ignoreFailures": true
-			}
-		]
-	}
-	]
-}
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "(gdb) Launch",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/push_swap",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set Disassembly Flavor to Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ]
+        }
 
-/*
-"args": [-413, -195, -177, -471, -278, 66, -189, -244, -343, -145, 435, 372, 303,
-		 -39, 487, 94, 226, 438, -208, -105, -119, -2, 381, 251, 417, 322, -296, -394, 497,
-		  101, -473, -407, -362, -87, -335, -221, 468, -227, -562, -199, -475, -153, 87, 14,
-		   274, 198, 245, 474, 167, 209, -340, -479, 60, 478, -69, -295, -587, -138, 444, 205,
-		    -359, -191, -272, 177, 48, 320, -266, -150, -461, -307, 489, 324, 239, 334, -232,
-			 -347, 181, 88, -269, -389, 307, -14, 371, 178, -391, -41, -235, -432, -3, -101,
-			  -95, -402, -317, 61, 384, 512, -510, 520, -600, -501, 550],
-*/
+    ]
+}

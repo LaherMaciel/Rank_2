@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lwencesl <laherwpayotmaciel@gmail.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/08 16:04:51 by marvin            #+#    #+#             */
-/*   Updated: 2022/11/14 18:58:05 by lwencesl         ###   ########.fr       */
+/*   Created: 2023/05/05 16:25:53 by lwencesl          #+#    #+#             */
+/*   Updated: 2023/05/05 16:25:53 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker.h"
 
 size_t	ft_pos_search(const char *str, int c)
 {
@@ -101,3 +101,39 @@ char	**ft_split(char const *s, char c)
 		return (NULL);
 	return (ft_terminator(s, c, splited));
 }
+
+/*
+char	**ft_split(char *str, char)
+{
+	int		i;
+	int		i2;
+	int		i3;
+	int		a;
+	char	**final;
+
+	final = malloc(sizeof(char **) * 9999);
+	i = -1;
+	i2 = 0;
+	while (str[++i])
+	{
+		if (str[i] > 32)
+		{
+			i3 = 0;
+			while (str[i3] > 32)
+				a++;
+			final[i2] = malloc(sizeof(char **) * a + 1);
+			i3 = 0;
+			while (str[i] > 32)
+			{
+				final[i2][i3] = str[i];
+				i3++;
+				i++;
+			}
+			final[i2][i3] = '\0';
+			i2++;
+		}
+	}
+	final[i2] = 0;
+	return (final);
+}
+*/

@@ -1,52 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   errors_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: laher_maciel <laher_maciel@student.42.fr>  +#+  +:+       +#+        */
+/*   By: lwencesl <laherwpayotmaciel@gmail.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:05:00 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/04/22 10:16:51 by laher_maciel     ###   ########.fr       */
+/*   Updated: 2023/05/05 19:39:45 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-
-//send an error message if the program recieves a number more then 1 time
-int	contains_this_values(t_stack *head, int num)
-{
-	t_stack	*stack;
-
-	stack = head;
-	while (stack)
-	{
-		if (num == stack->content)
-			return (0);
-		stack = stack->next;
-	}
-	return (1);
-}
-
-int	contains_duplicate_values(t_stack *head)
-{
-	t_stack	*current1;
-	t_stack	*current2;
-
-	current1 = head;
-	current2 = NULL;
-	while (current1 != NULL)
-	{
-		current2 = current1->next;
-		while (current2 != NULL)
-		{
-			if (current1->content == current2->content)
-				return (0);
-			current2 = current2->next;
-		}
-		current1 = current1->next;
-	}
-	return (1);
-}
+#include "checker.h"
 
 int	check_vals(int argc, char *argv[])
 {
@@ -102,4 +66,20 @@ char	**valid_strings(void)
 	commands[9] = "rra";
 	commands[10] = "rrb";
 	return (commands);
+}
+
+void	commands_check_aux2(char **val, int i)
+{
+	char	*temp;
+
+	temp = val[i];
+	if (ft_strchr(temp, '[')
+		&& (ft_strchr(temp, ']') || ft_strchr(temp, ',')))
+		val[i] = ft_substr(temp, 1, ft_strlen(temp) - 2);
+	else if (ft_strchr(temp, ']') || ft_strchr(temp, ','))
+		val[i] = ft_substr(temp, 0, ft_strlen(temp) - 1);
+	else if (ft_strchr(temp, '[') || ft_strchr(temp, ','))
+		val[i] = ft_substr(temp, 1, ft_strlen(temp) - 1);
+	if (ft_strncmp(temp, val[i], ft_strlen(temp)) != 0)
+		free(temp);
 }

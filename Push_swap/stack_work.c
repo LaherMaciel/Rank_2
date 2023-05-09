@@ -58,6 +58,8 @@ char	*store_integers_in_stack_cut(t_stack **stack, int argc, char *argv[])
 	i = -1;
 	while (argv[argc][++i] != '\0')
 	{
+		if (ft_isdigit(argv[argc][i] == 0))
+			return (NULL);
 		if (ft_isdigit(argv[argc][i]) || (((argv[argc][i] == '-'
 		|| argv[argc][i] == '+') && i == 0)))
 			skip = 0;

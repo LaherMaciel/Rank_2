@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker.h"
 
 // Swap the first 2 elements at the top of stack. 
 // Do nothing if there is only one or no elements.

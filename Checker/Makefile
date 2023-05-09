@@ -1,33 +1,31 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    MakeFile                                           :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+         #
+#    By: laher_maciel <laher_maciel@student.42.fr>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/03/12 20:08:05 by lwencesl          #+#    #+#              #
-#    Updated: 2023/03/12 20:08:05 by lwencesl         ###   ########.fr        #
+#    Created: 2023/05/05 19:22:56 by lwencesl          #+#    #+#              #
+#    Updated: 2023/05/06 20:18:00 by laher_maciel     ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libft.a
-SRC = find ft_atoi ft_lstnew ft_lstsize ft_printf_utils ft_printf \
-ft_strjoin ft_strlen main moviments moviments2 movs3 p_cont pa pb \
-sort_conditions sort_conditions2 sort stack_work visualizer \
+NAME = checker
+SRC = error_management error_management_bonus errors_bonus ft_split\
+	ft_atoi ft_isdigit ft_strjoin ft_substr ft_isprint ft_lstnew\
+	ft_lstsize ft_printf ft_printf_utils ft_strchr ft_strncmp bonus_run_modes\
+	ft_strlen  moviments moviments2 sort stack_work ft_isalpha main\
 
 CC = cc
 RM = rm -f
-CFLAGS = -Wall -Werror -Wextra
-
+CFLAGS = -g -Wall -Werror -Wextra\
 
 all:$(NAME)
 
 $(NAME): $(SRC:=.o)
-			ar rc $(NAME) $(SRC:=.o)
-bonus: $(B_SRCS:=.o)
-			ar rc $(NAME) $(B_SRCS:=.o)
+				cc -o $(NAME) $(SRC:=.o)
 clean:
-	$(RM)	$(SRC:=.o) $(B_SRCS:=.o)
+	$(RM)	$(SRC:=.o)
 fclean: clean
-		$(RM)	$(NAME)
-re:	fclean	$(NAME)
+			$(RM)	$(NAME)
+re: fclean	$(NAME)

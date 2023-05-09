@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   moviments2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lwencesl <laherwpayotmaciel@gmail.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 14:08:52 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/04/06 11:05:55 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/05/05 19:40:26 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker.h"
 
 // ss -> sa and sb at the same time.
 void	ft_swap_swap(t_stack **stack_a, t_stack **stack_b)

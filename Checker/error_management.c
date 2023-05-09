@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   error_management.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: laher_maciel <laher_maciel@student.42.fr>  +#+  +:+       +#+        */
+/*   By: lwencesl <laherwpayotmaciel@gmail.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 20:39:02 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/05/06 20:54:19 by laher_maciel     ###   ########.fr       */
+/*   Updated: 2023/05/05 19:39:42 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker.h"
 
 //send an error message if the program recieves a number more then 1 time
 int	contains_this_values(t_stack *head, int num)
@@ -66,31 +66,8 @@ int	check_order_ok(t_stack *stack)
 	return (1);
 }
 
-int	input_ok(char *argv[])
+char	*error_check(t_stack *stack)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	while (argv[++i])
-	{
-		j = -1;
-		while (argv[i][++j])
-		{
-			if (ft_isdigit(argv[i][j]) == 0)
-				return (0);
-		}
-	}
-	return (1);
-}
-
-char	*error_check(t_stack *stack, char *argv[])
-{
-	if (input_ok(argv) == 0)
-	{
-		ft_printf("Error\n");
-		return (NULL);
-	}
 	if (stack == NULL || (contains_duplicate_values(stack) == 0))
 	{
 		ft_printf("Error\n");
