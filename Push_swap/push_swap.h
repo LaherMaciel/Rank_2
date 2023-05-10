@@ -43,14 +43,17 @@ int		contains_this_values(t_stack *head, int num);
 int		contains_duplicate_values(t_stack *head);
 int		check_vals(int argc, char *argv[]);
 int		check_stack(t_stack *stack);
-char	*error_check(t_stack *stack, char *argv[], char *commands);
+//char	*error_check(t_stack *stack, char *argv[], char *commands);
+char	*error_check(t_stack *stack, char *commands);
 int		check_order_ok(t_stack *stack);
+void	commands_check_aux2(char **val, int i);
+char	**valid_strings(void);
 
 // List manipulation stack_work.c
 int		pop(t_stack **stack);
 void	push(t_stack **stack, int data);
 void	print_stack(t_stack *head);
-t_stack	*store_integers_in_stack(int argc, char *argv[], char *commands, t_stack *stack);
+t_stack	*store_stack(int argc, char *argv[], char **commands, t_stack *stack);
 
 // all the find functions find.c && find2.c
 int		find_smallest(t_stack *stack);
@@ -75,8 +78,8 @@ int		p_decisions_cont(t_stack *src, t_stack *dst, int pos_1, int pos_2);
 void	p_decisison_cont_aux(int *pos_1, int *pos_2, int final_pos_2);
 
 // sort.c
-void	sort(t_stack **stack_1, t_stack **stack_2, int *cont);
-void	sort_s_3(t_stack **stack, char id, int *cont);
+void	sort(t_stack **stack_1, t_stack **stack_2);
+void	sort_s_3(t_stack **stack, char id);
 void	sort_p(t_stack **stack_1, t_stack **stack_2);
 void	sorting(t_stack **stack_a, t_stack **stack_b, char *id_1);
 

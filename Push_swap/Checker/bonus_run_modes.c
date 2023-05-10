@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_run_modes.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lwencesl <laherwpayotmaciel@gmail.com>     +#+  +:+       +#+        */
+/*   By: laher_maciel <laher_maciel@student.42.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 21:01:28 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/05/05 20:20:58 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/05/10 21:55:05 by laher_maciel     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,8 @@ int	user_sort(t_stack **stack_a, t_stack **stack_b, char *command)
 	return (1);
 }
 
-void	proxy_cut(t_stack **stack_a, t_stack **stack_b, int cont, char *command)
-{
-	if (user_sort(stack_a, stack_b, command) == 1
-		&& ft_strncmp(command, "exit", 4) != 0)
-		cont++;
-}
-
 // if the user dont introduz nothing | main
-void	proxy(t_stack **stack_a, t_stack **stack_b, int cont)
+void	proxy(t_stack **stack_a, t_stack **stack_b)
 {
 	char	command[100];
 	int		val;
@@ -71,15 +64,13 @@ void	proxy(t_stack **stack_a, t_stack **stack_b, int cont)
 				push(stack_a, val);
 			print_stack(*stack_a);
 		}
-		else if (stack_a != NULL)
-			proxy_cut(stack_a, stack_b, cont, command);
 	}
 	end_code(stack_a, stack_b, command);
 }
 
 // if the user introduz the numbers and the commands | main
 void	inputed_commands(t_stack **stack_a,
-		t_stack **stack_b, char *command_list, int *cont)
+		t_stack **stack_b, char *command_list)
 {
 	char	**commands;
 	int		i;
@@ -89,7 +80,6 @@ void	inputed_commands(t_stack **stack_a,
 	while (commands[++i] != NULL)
 	{
 		user_sort(stack_a, stack_b, commands[i]);
-		cont++;
 		free(commands[i]);
 	}
 	end_code(stack_a, stack_b, *commands);

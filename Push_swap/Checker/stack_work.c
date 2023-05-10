@@ -47,41 +47,95 @@ void	print_stack(t_stack *head)
 	ft_printf ("\n");
 }
 
-// verifica todos os caracteres de cada string
-char	*store_integers_in_stack_cut(t_stack **stack, int argc, char *argv[])
-{	
-	int		i;
-	long	num;
-	int		skip;
+int	store_cut2(char *vals, char *commands, int skip, t_stack *stack)
+{
+	int	j;
 
-	skip = 2;
-	i = -1;
-	while (argv[argc][++i] != '\0')
+	j = -1;
+	while (vals[++j])
 	{
-		if (ft_isdigit(argv[argc][i]) || (((argv[argc][i] == '-'
-		|| argv[argc][i] == '+') && i == 0)))
-			skip = 0;
-		else if (ft_isprint(argv[argc][i]) && skip == 0)
+		if (stack != NULL && ft_isdigit(vals[j]) == 0
+			&& (((ft_strchr(vals, '-') == NULL
+						&& ft_strchr(vals, '+') == NULL))))
+			return (0);
+		if (ft_isdigit(vals[j]) == 0 && (((ft_strchr(vals, '-') == NULL
+						|| ft_strchr(vals, '+') == NULL))) && skip == 1)
+			return (0);
+		else if (ft_isdigit(vals[j]) == 1 && (((ft_strchr(vals, '-') != NULL
+						|| ft_strchr(vals, '+') != NULL)))
+			&& commands != NULL && skip == 2)
+			return (0);
+		else if (ft_isdigit(vals[j]) == 1 || (((ft_strchr(vals, '-') != NULL
+						|| ft_strchr(vals, '+') != NULL))))
+			skip = 1;
+	}
+	return (skip);
+}
+
+char	*store_cut(t_stack **stack, char **vals, char *commands)
+{
+	int		i;
+	int		skip;
+	char	*temp;
+
+	i = 0;
+	while (vals[i])
+		i++;
+	while (--i >= 0)
+	{
+		commands_check_aux2(vals, i);
+		skip = store_cut2(vals[i], commands, 2, *stack);
+		if (skip == 1)
+		{
+			ft_printf("%i\n", ft_atoi(vals[i]));
+			if (ft_atoi(vals[i]) > INT_MAX || ft_atoi(vals[i]) < INT_MIN)
+				return (NULL);
+			push(stack, ft_atoi(vals[i]));
+		}
+		else if (skip == 2)
+		{
+			if (commands == NULL)
+				commands = ft_strjoin("  ", vals[i]);
+			else
+			{
+				temp = ft_strjoin(vals[i], commands);
+				free(commands);
+				commands = ft_strjoin("  ", temp);
+				free(temp);
+			}
+			ft_printf("store_cut: commands -> %s\n", commands);
+		}
+		else
 			return (NULL);
 	}
-	if (skip == 0)
-	{
-		num = ft_atoi(argv[argc]);
-		if (num > INT_MAX || num < INT_MIN)
-			return (NULL);
-		push(stack, num);
-	}
-	return ("ok");
+	if (commands == NULL)
+		return ("ok");
+	return (commands);
 }
 
 // Corre por todas as strings do argv
-t_stack	*store_integers_in_stack(int argc, char *argv[])
+t_stack	*store_stack(int argc, char *argv[], char **commands, t_stack *stack)
 {
-	t_stack	*stack;
+	char	**vals;
+	int		i;
 
-	stack = NULL;
 	while (--argc > 0)
-		if (store_integers_in_stack_cut(&stack, argc, argv) == NULL)
+	{
+		i = -1;
+		vals = ft_split(argv[argc], ' ');
+		*commands = store_cut(&stack, vals, *commands);
+		if (*commands == NULL)
+		{
+			while (vals[++i])
+				free(vals[i]);
+			free(vals);
+			while (stack != NULL)
+				pop(&stack);
 			return (NULL);
+		}
+		while (vals[++i])
+			free(vals[i]);
+		free(vals);
+	}
 	return (stack);
 }

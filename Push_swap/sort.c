@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: laher_maciel <laher_maciel@student.42.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 09:36:32 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/05/09 16:14:02 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/05/10 21:33:50 by laher_maciel     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	sorting(t_stack **stack_a, t_stack **stack_b, char *id_1)
 		ft_rotate_rotate(stack_a, stack_b);
 }
 
-void	sort_s_3(t_stack **stack, char id, int *cont)
+void	sort_s_3(t_stack **stack, char id)
 {
 	int	out;
 
@@ -63,7 +63,6 @@ void	sort_s_3(t_stack **stack, char id, int *cont)
 			ft_swap(stack, id);
 		else
 			out = 1;
-		*cont = *cont + 1;
 	}
 }
 
@@ -80,7 +79,7 @@ void	sort_p(t_stack **stack_a, t_stack **stack_b)
 	sorting(stack_a, stack_b, id);
 }
 
-void	sort_cut(t_stack **stack_a, t_stack **stack_b, int *sa_ord, int *cont)
+void	sort_cut(t_stack **stack_a, t_stack **stack_b, int *sa_ord)
 {
 	int	nr;
 
@@ -89,8 +88,7 @@ void	sort_cut(t_stack **stack_a, t_stack **stack_b, int *sa_ord, int *cont)
 		*sa_ord = 1;
 	else if (ft_lstsize(*stack_a) <= 3 && *sa_ord == 0)
 	{
-		sort_s_3(stack_a, 'a', cont);
-		*cont = *cont - 1;
+		sort_s_3(stack_a, 'a');
 		*sa_ord = 1;
 	}
 	else if (*sa_ord == 0)
@@ -105,7 +103,7 @@ void	sort_cut(t_stack **stack_a, t_stack **stack_b, int *sa_ord, int *cont)
 	}
 }
 
-void	sort(t_stack **stack_a, t_stack **stack_b, int *cont)
+void	sort(t_stack **stack_a, t_stack **stack_b)
 {
 	int	sa_ord;
 	int	done;
@@ -119,12 +117,11 @@ void	sort(t_stack **stack_a, t_stack **stack_b, int *cont)
 	}
 	while (*stack_b != NULL || (done == 0 && check_order_ok(*stack_a) != 1))
 	{
-		sort_cut(stack_a, stack_b, &sa_ord, cont);
+		sort_cut(stack_a, stack_b, &sa_ord);
 		if (sa_ord != 0 && *stack_b != NULL)
 		{
 			sort_p(stack_a, stack_b);
 			done = 1;
 		}
-		*cont = *cont + 1;
 	}
 }

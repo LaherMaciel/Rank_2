@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lwencesl <laherwpayotmaciel@gmail.com>     +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 19:33:52 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/05/05 19:42:09 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/05/10 22:25:45 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,20 +43,19 @@ int		contains_this_values(t_stack *head, int num);
 int		contains_duplicate_values(t_stack *head);
 int		check_vals(int argc, char *argv[]);
 int		check_stack(t_stack *stack);
-char	*error_check(t_stack *stack);
 int		check_order_ok(t_stack *stack);
 
 // ERROR_MANAGEMENT_BONUS.C
 int		commands_check(char *str);
 char	**valid_strings(void);
-char	*error_check_bonus(int argc, char *argv[], t_stack *stack);
+char	*error_check_bonus(int argc, char *argv[], t_stack *stack, char *comma);
 void	commands_check_aux2(char **val, int i);
 
 // List manipulation stack_work.c
 int		pop(t_stack **stack);
 void	push(t_stack **stack, int data);
 void	print_stack(t_stack *head);
-t_stack	*store_integers_in_stack(int argc, char *argv[]);
+t_stack	*store_stack(int argc, char *argv[], char **commands, t_stack *stack);
 
 // all the find functions find.c && find2.c
 int		find_smallest(t_stack *stack);
@@ -69,8 +68,8 @@ int		find_above_media(t_stack *stack, int cont1, int cont2);
 
 // BONUS_RUN_MODE.C
 void	inputed_commands(t_stack **stack_a,
-			t_stack **stack_b, char *command_list, int *cont);
-void	proxy(t_stack **stack_a, t_stack **stack_b, int cont);
+			t_stack **stack_b, char *command_list);
+void	proxy(t_stack **stack_a, t_stack **stack_b);
 
 void	sorting(t_stack **stack_a, t_stack **stack_b, char *id_1);
 

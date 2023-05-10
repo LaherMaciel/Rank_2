@@ -1,0 +1,2 @@
+ make fclean && clear && make
+ 

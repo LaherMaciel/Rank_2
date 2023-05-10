@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_management.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lwencesl <laherwpayotmaciel@gmail.com>     +#+  +:+       +#+        */
+/*   By: laher_maciel <laher_maciel@student.42.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 20:39:02 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/05/05 19:39:42 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/05/10 22:07:57 by laher_maciel     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,20 @@ int	check_order_ok(t_stack *stack)
 	return (1);
 }
 
-char	*error_check(t_stack *stack)
+int	input_ok(char *argv[])
 {
-	if (stack == NULL || (contains_duplicate_values(stack) == 0))
+	int	i;
+	int	j;
+
+	i = 0;
+	while (argv[++i])
 	{
-		ft_printf("Error\n");
-		return (NULL);
+		j = -1;
+		while (argv[i][++j])
+		{
+			if (ft_isdigit(argv[i][j]) == 0)
+				return (0);
+		}
 	}
-	return ("ko");
+	return (1);
 }

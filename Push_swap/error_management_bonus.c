@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   error_management_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: laher_maciel <laher_maciel@student.42.fr>  +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 20:39:02 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/05/10 22:26:22 by laher_maciel     ###   ########.fr       */
+/*   Updated: 2023/05/10 22:03:49 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "push_swap.h"
 
 int	commands_check(char *str)
 {
@@ -74,13 +74,13 @@ char	*check_commands_cut2(char **val, char *commands)
 	return (commands);
 }
 
-char	*check_commands(char *argv[], int stacksize, char *comma)
+char	*check_commands(char *argv[], int stacksize)
 {
 	char	**val;
 	char	*commands;
 	int		i;
 
-	commands = comma;
+	commands = NULL;
 	while (argv[++stacksize] != NULL)
 	{
 		i = -1;
@@ -95,11 +95,14 @@ char	*check_commands(char *argv[], int stacksize, char *comma)
 	return (commands);
 }
 
-char	*error_check_bonus(int argc, char *argv[], t_stack *stack, char *comma)
+char	*error_check_bonus(int argc, char *argv[], t_stack *stack)
 {
+	char	*commands;
+
+	commands = NULL;
 	if (stack == NULL || (contains_duplicate_values(stack) == 0))
 	{
-		ft_printf("Error");
+		ft_printf("Error\n");
 		return (NULL);
 	}
 	if (argc == ft_lstsize(stack) && check_order_ok(stack) != 0)
@@ -107,15 +110,13 @@ char	*error_check_bonus(int argc, char *argv[], t_stack *stack, char *comma)
 	if (argc == ft_lstsize(stack) && check_order_ok(stack) == 0)
 		return ("xa");
 	if (ft_lstsize(stack) < argc)
-		comma = check_commands(argv, ft_lstsize(stack), comma);
-	if (comma == NULL)
+		commands = check_commands(argv, ft_lstsize(stack));
+	if (commands == NULL)
 	{
-		ft_printf("Error");
+		ft_printf("Error\n");
 		return (NULL);
 	}
-	if (argc == 1)
-		return ("xa");
-	return (comma);
+	return (commands);
 }
 
 /*

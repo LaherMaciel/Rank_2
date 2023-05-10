@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_bonus.c                                       :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lwencesl <laherwpayotmaciel@gmail.com>     +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 17:43:48 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/05/05 20:17:48 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/05/10 22:26:54 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,16 @@ int	main(int argc, char *argv[])
 	t_stack	*stack_a;
 	t_stack	*stack_b;
 	char	*commands;
-	int		cont;
 
-	cont = 0;
-	stack_a = NULL;
-	stack_b = NULL;
 	commands = NULL;
-	if (argc > 1)
-	{
-		stack_a = store_integers_in_stack(argc, argv);
-		commands = error_check_bonus((argc - 1), argv, stack_a);
-		if (commands != NULL && commands[0] != 'x')
-			inputed_commands(&stack_a, &stack_b, commands, &cont);
-		else if (commands != NULL && commands[0] == 'x')
-			proxy(&stack_a, &stack_b, cont);
-	}
-	else
-		proxy(&stack_a, &stack_b, cont);
+	stack_a = store_stack(argc, argv, &commands, NULL);
+	stack_b = NULL;
+	commands = error_check_bonus((argc - 1), argv, stack_a, commands);
+	if (commands != NULL && commands[0] != 'x')
+		inputed_commands(&stack_a, &stack_b, commands);
+	else if (commands != NULL && commands[0] == 'x')
+		proxy(&stack_a, &stack_b);
+
 	if ((commands != NULL && commands[0] != 'x'))
 		free(commands);
 	while (stack_a != NULL)
