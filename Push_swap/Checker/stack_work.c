@@ -87,7 +87,6 @@ char	*store_cut(t_stack **stack, char **vals, char *commands)
 		skip = store_cut2(vals[i], commands, 2, *stack);
 		if (skip == 1)
 		{
-			ft_printf("%i\n", ft_atoi(vals[i]));
 			if (ft_atoi(vals[i]) > INT_MAX || ft_atoi(vals[i]) < INT_MIN)
 				return (NULL);
 			push(stack, ft_atoi(vals[i]));
@@ -103,10 +102,13 @@ char	*store_cut(t_stack **stack, char **vals, char *commands)
 				commands = ft_strjoin("  ", temp);
 				free(temp);
 			}
-			ft_printf("store_cut: commands -> %s\n", commands);
 		}
 		else
+		{
+			if (commands != NULL && ft_strncmp(commands, "ok", 2) != 0)
+				free(commands);
 			return (NULL);
+		}
 	}
 	if (commands == NULL)
 		return ("ok");

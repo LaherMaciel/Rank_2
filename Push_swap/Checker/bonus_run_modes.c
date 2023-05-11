@@ -6,7 +6,7 @@
 /*   By: laher_maciel <laher_maciel@student.42.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 21:01:28 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/05/10 21:55:05 by laher_maciel     ###   ########.fr       */
+/*   Updated: 2023/05/11 01:35:03 by laher_maciel     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,9 @@ void	proxy(t_stack **stack_a, t_stack **stack_b)
 	val = 0;
 	while (ft_strncmp(command, "exit", 4) != 0)
 	{
-		ft_printf("\n>");
+		ft_printf(">");
 		scanf("%s", command);
+		//command ================================================
 		if (ft_isdigit(command[0]) == 1)
 		{
 			val = ft_atoi(command);
@@ -64,6 +65,10 @@ void	proxy(t_stack **stack_a, t_stack **stack_b)
 				push(stack_a, val);
 			print_stack(*stack_a);
 		}
+		else if (stack_a != NULL)
+			user_sort(stack_a, stack_b, command);
+		if (check_order_ok(*stack_a) == 1 && *stack_b == NULL)
+			break ;
 	}
 	end_code(stack_a, stack_b, command);
 }

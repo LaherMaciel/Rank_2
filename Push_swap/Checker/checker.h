@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 19:33:52 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/05/10 22:25:45 by marvin           ###   ########.fr       */
+/*   Updated: 2023/05/10 22:54:06 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int		check_order_ok(t_stack *stack);
 // ERROR_MANAGEMENT_BONUS.C
 int		commands_check(char *str);
 char	**valid_strings(void);
-char	*error_check_bonus(int argc, char *argv[], t_stack *stack, char *comma);
+char	*error_check_bonus(int argc, t_stack *stack, char *comma);
 void	commands_check_aux2(char **val, int i);
 
 // List manipulation stack_work.c

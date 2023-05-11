@@ -47,65 +47,6 @@ void	print_stack(t_stack *head)
 	ft_printf ("\n");
 }
 
-// verifica todos os caracteres de cada string
-/*
-char	*store_integers_in_stack_cut2(t_stack **stack, int argc, char **val)
-{	
-	int		i;
-	int		j;
-	long	num;
-	int		skip;
-
-	skip = 2;
-	i = ft_lstsize(*val);
-	while (val[++i])
-	{
-		j = ft_strlen(val[i]) + 1;
-		while (val[i][++j])
-		{
-			if (ft_isdigit(val[i][j] == 0))
-				return (NULL);
-			if (ft_isdigit(val[i][j]) || (((val[i][j] == '-'
-			|| val[i][j] == '+') && i == 0)))
-				skip = 0;
-			else if (ft_isprint(val[i][j]) && skip == 0)
-				return (NULL);
-		}
-	}
-	if (skip == 0)
-	{
-		num = ft_atoi(argv[argc]);
-		if (num > INT_MAX || num < INT_MIN)
-			return (NULL);
-		push(stack, num);
-	}
-	return ("ok");
-}
-
-int	store_cut2(char *vals, char *commands, int skip, t_stack *stack)
-{
-	int	j;
-
-	j = -1;
-	while (vals[++j])
-	{
-		if (stack != NULL && ft_isdigit(vals[j]) == 0)
-			return (0);
-		if (ft_isdigit(vals[j]) == 0 && (((ft_strchr(vals, '-') == NULL
-						|| ft_strchr(vals, '+') == NULL))) && skip == 1)
-			return (0);
-		else if (ft_isdigit(vals[j]) == 1 && (((ft_strchr(vals, '-') != NULL
-						|| ft_strchr(vals, '+') != NULL)))
-			&& commands != NULL && skip == 2)
-			return (0);
-		else if (ft_isdigit(vals[j]) == 1 || (((ft_strchr(vals, '-') != NULL
-						|| ft_strchr(vals, '+') != NULL))))
-			skip = 1;
-	}
-	return (skip);
-}
-*/
-
 int	store_cut2(char *vals, char *commands, int skip, t_stack *stack)
 {
 	int	j;
@@ -146,7 +87,6 @@ char	*store_cut(t_stack **stack, char **vals, char *commands)
 		skip = store_cut2(vals[i], commands, 2, *stack);
 		if (skip == 1)
 		{
-			ft_printf("%i\n", ft_atoi(vals[i]));
 			if (ft_atoi(vals[i]) > INT_MAX || ft_atoi(vals[i]) < INT_MIN)
 				return (NULL);
 			push(stack, ft_atoi(vals[i]));
@@ -162,7 +102,6 @@ char	*store_cut(t_stack **stack, char **vals, char *commands)
 				commands = ft_strjoin("  ", temp);
 				free(temp);
 			}
-			ft_printf("store_cut: commands -> %s\n", commands);
 		}
 		else
 			return (NULL);

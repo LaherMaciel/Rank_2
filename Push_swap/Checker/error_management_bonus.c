@@ -6,7 +6,7 @@
 /*   By: laher_maciel <laher_maciel@student.42.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 20:39:02 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/05/10 22:26:22 by laher_maciel     ###   ########.fr       */
+/*   Updated: 2023/05/11 01:21:04 by laher_maciel     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,56 +74,63 @@ char	*check_commands_cut2(char **val, char *commands)
 	return (commands);
 }
 
-char	*check_commands(char *argv[], int stacksize, char *comma)
+char	*check_commands(char *comma)
 {
 	char	**val;
 	char	*commands;
 	int		i;
 
-	commands = comma;
-	while (argv[++stacksize] != NULL)
-	{
-		i = -1;
-		val = ft_split(argv[stacksize], ' ');
-		commands = check_commands_cut2(val, commands);
-		while (val[++i])
-			free(val[i]);
-		free(val);
-		if (commands == NULL)
-			return (NULL);
-	}
+	commands = NULL;
+	val = ft_split(comma, ' ');
+	commands = check_commands_cut2(val, commands);
+	i = -1;
+	while (val[++i])
+		free(val[i]);
+	free(val);
+	if (commands == NULL)
+		return (NULL);
 	return (commands);
 }
 
-char	*error_check_bonus(int argc, char *argv[], t_stack *stack, char *comma)
+char	*error_check_bonus2(int argc, t_stack *stack, char *comma)
 {
-	if (stack == NULL || (contains_duplicate_values(stack) == 0))
-	{
-		ft_printf("Error");
-		return (NULL);
-	}
-	if (argc == ft_lstsize(stack) && check_order_ok(stack) != 0)
-		return (NULL);
-	if (argc == ft_lstsize(stack) && check_order_ok(stack) == 0)
-		return ("xa");
-	if (ft_lstsize(stack) < argc)
-		comma = check_commands(argv, ft_lstsize(stack), comma);
 	if (comma == NULL)
 	{
-		ft_printf("Error");
-		return (NULL);
+		if (ft_lstsize(stack) == 1 || (ft_lstsize(stack) > 1
+				&& check_order_ok(stack) != 0))
+			return (NULL);
+		if (ft_lstsize(stack) > 1 && check_order_ok(stack) == 0)
+			return ("pr");
+		if (argc == 0)
+			return ("pr");
 	}
-	if (argc == 1)
-		return ("xa");
-	return (comma);
+	return ("ok");
 }
 
-/*
-	if (argc == ft_lstsize(stack) && check_order_ok(stack) != 0)
-		return ("ex");
-	if (argc == ft_lstsize(stack) && check_order_ok(stack) != 0)
+char	*error_check_bonus(int argc, t_stack *stack, char *comma)
+{
+	char	*commands;
+
+	if (argc != 0 && (stack == NULL || (contains_duplicate_values(stack) == 0)
+			|| (ft_lstsize(stack) == 1 && comma != NULL)))
 	{
-		ft_printf("Error");
+		ft_printf("Error\n");
+		free(comma);
 		return (NULL);
 	}
-*/
+	commands = error_check_bonus2(argc, stack, comma);
+	if (commands == NULL
+		|| ft_strncmp(commands, "ok", ft_strlen(commands)) != 0)
+		return (commands);
+	if (comma != NULL)
+	{
+		commands = check_commands(comma);
+		free(comma);
+		if (commands == NULL)
+		{
+			ft_printf("Error\n");
+			return (NULL);
+		}
+	}
+	return (commands);
+}
