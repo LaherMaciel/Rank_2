@@ -68,11 +68,10 @@ int	store_cut2(char *vals, char *commands, int skip, t_stack *stack)
 						&& ft_isdigit(vals[j + 1] == 1))
 			&& commands != NULL && skip == 2)
 			return (0);
-		if (ft_isdigit(vals[j]) == 0 && (ft_isdigit(vals[j + 1] == 1
-						|| ft_isdigit(vals[j + 1] == '\0'))))
+		if (ft_isdigit(vals[j]) == 0 && (((vals[j + 1] == '-' || vals[j + 1] == '+'
+						|| ft_isdigit(vals[j + 1] == 1)))))
 			return (0);
-		if (ft_isdigit(vals[j]) == 1 && (ft_isdigit(vals[j + 1] == 0
-						|| ft_isdigit(vals[j + 1] == '\0'))))
+		if (ft_isdigit(vals[j]) == 1 && (ft_isdigit(vals[j + 1] == 0)))
 			return (0);
 		if (ft_isdigit(vals[j]) == 1 || ((vals[j] == '-' || vals[j] == '+')
 						&& ft_isdigit(vals[j + 1] == 1)))
@@ -94,9 +93,6 @@ char	*store_cut(t_stack **stack, char **vals, char *commands)
 	{
 		commands_check_aux2(vals, i);
 		skip = store_cut2(vals[i], commands, 2, *stack);
-		ft_printf("vals[%i]: %s\n", i, vals[i]);
-		//ft_printf("skip->%i\n", skip);
-		//ft_printf("commands: %s\n", *commands);
 		if (skip == 1)
 		{
 			if (ft_atoi(vals[i]) > INT_MAX || ft_atoi(vals[i]) < INT_MIN)
@@ -107,10 +103,11 @@ char	*store_cut(t_stack **stack, char **vals, char *commands)
 		{
 			if (commands == NULL)
 				commands = ft_strjoin("  ", vals[i]);
-			else if (commands[0] != 'o' && ft_strlen(commands) == 2)
+			else
 			{
 				temp = ft_strjoin(vals[i], commands);
-				free(commands);
+				if (commands[0] != 'o' && commands[1] != 'k')
+					free(commands);
 				commands = ft_strjoin("  ", temp);
 				free(temp);
 			}
@@ -134,7 +131,6 @@ t_stack	*store_stack(int argc, char *argv[], char **commands, t_stack *stack)
 		i = -1;
 		vals = ft_split(argv[argc], ' ');
 		*commands = store_cut(&stack, vals, *commands);
-		ft_printf("commands: %s\n", *commands);
 		if (*commands == NULL)
 		{
 			while (vals[++i])
