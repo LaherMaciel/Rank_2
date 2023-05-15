@@ -86,7 +86,7 @@ void	visualizer2(t_stack **stack_a, t_stack **stack_b)
 	print_tab(*stack_a, *stack_b);
 	while (done == 0 && cont < 200)
 	{
-		sort(stack_a, stack_b, &cont);
+		sort(stack_a, stack_b);
 		ft_printf("\ndone = %i\n\n", done);
 		if (done == 0)
 			cont++;

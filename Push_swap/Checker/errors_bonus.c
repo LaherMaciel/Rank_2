@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lwencesl <laherwpayotmaciel@gmail.com>     +#+  +:+       +#+        */
+/*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:05:00 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/05/05 19:39:45 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/05/15 17:04:26 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ char	**valid_strings(void)
 	return (commands);
 }
 
-void	commands_check_aux2(char **val, int i)
+char	*commands_check_aux2(char **val, int i)
 {
 	char	*temp;
 
@@ -80,6 +80,13 @@ void	commands_check_aux2(char **val, int i)
 		val[i] = ft_substr(temp, 0, ft_strlen(temp) - 1);
 	else if (ft_strchr(temp, '[') || ft_strchr(temp, ','))
 		val[i] = ft_substr(temp, 1, ft_strlen(temp) - 1);
+	else if (temp[0] == '"' && temp[ft_strlen(temp)] == '"')
+		val[i] = ft_substr(temp, 1, ft_strlen(temp) - 2);
+	else if (temp[0] == '"')
+		val[i] = ft_substr(temp, 1, ft_strlen(temp) - 1);
+	else if (temp[ft_strlen(temp) - 1] == '"')
+		val[i] = ft_substr(temp, 0, ft_strlen(temp) - 1);
 	if (ft_strncmp(temp, val[i], ft_strlen(temp)) != 0)
 		free(temp);
+	return (val[i]);
 }

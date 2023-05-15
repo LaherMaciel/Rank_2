@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 19:33:52 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/05/11 13:51:33 by marvin           ###   ########.fr       */
+/*   Updated: 2023/05/15 16:45:25 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int		commands_check(char *str);
 char	**valid_strings(void);
 char	*error_check_bonus(int argc, t_stack *stack, char *comma);
 char	*check_commands(char *comma);
-void	commands_check_aux2(char **val, int i);
+char	*commands_check_aux2(char **val, int i);
 
 // List manipulation stack_work.c
 int		pop(t_stack **stack);

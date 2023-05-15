@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_run_modes.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: laher_maciel <laher_maciel@student.42.fr>  +#+  +:+       +#+        */
+/*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 21:01:28 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/05/12 19:55:52 by laher_maciel     ###   ########.fr       */
+/*   Updated: 2023/05/15 16:56:54 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ int	user_sort(t_stack **stack_a, t_stack **stack_b, char *command)
 					" rrb, pa, pb or exit\n");
 		return (0);
 	}
+	if (ft_strncmp(command, "exit", 4) == 0)
+		return(2);
 	return (1);
 }
 
@@ -76,7 +78,6 @@ void	proxy(t_stack **stack_a, t_stack **stack_b)
 	}
 	end_code(stack_a, stack_b, command);
 }
-*/
 
 char	*proxy_cut(t_stack **stack_a, t_stack **stack_b, char **vals, char *commands)
 {
@@ -143,20 +144,53 @@ void	proxy(t_stack **stack_a, t_stack **stack_b)
 		free(vals);
 	}
 }
+*/
+
+// if the user introduz the numbers and the commands | main
+void	proxy(t_stack **stack_a,
+		t_stack **stack_b)
+{
+	char	commands[100];
+	char	**vals;
+	int		i;
+
+	commands[0] = '\0';
+	while (ft_strncmp(commands, "exit", 4) != 0)
+	{
+		scanf("%s", commands);
+		vals = ft_split(commands, ' ');
+		i = -1;
+		while (vals[++i] != NULL)
+		{
+			vals[i] = commands_check_aux2(&vals[i], 0);
+			ft_printf("vals: %s\n", vals[i]);
+			user_sort(stack_a, stack_b, vals[i]);
+			free(vals[i]);
+		}
+		free(vals);
+	}
+	end_code(stack_a, stack_b, commands);
+}
 
 // if the user introduz the numbers and the commands | main
 void	inputed_commands(t_stack **stack_a,
 		t_stack **stack_b, char *command_list)
 {
 	char	**commands;
+	int		returned;
 	int		i;
 
 	commands = ft_split(command_list, ' ');
 	i = -1;
 	while (commands[++i] != NULL)
 	{
-		user_sort(stack_a, stack_b, commands[i]);
+		returned = user_sort(stack_a, stack_b, commands[i]);
 		free(commands[i]);
+		if (returned == 2)
+		{
+			free(commands);
+			return ;
+		}
 	}
 	end_code(stack_a, stack_b, *commands);
 	free(commands);

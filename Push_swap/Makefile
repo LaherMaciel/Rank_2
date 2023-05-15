@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: laher_maciel <laher_maciel@student.42.fr>  +#+  +:+       +#+         #
+#    By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/20 19:03:40 by laher_macie       #+#    #+#              #
-#    Updated: 2023/05/10 21:02:23 by laher_maciel     ###   ########.fr        #
+#    Updated: 2023/05/15 17:36:43 by lwencesl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
