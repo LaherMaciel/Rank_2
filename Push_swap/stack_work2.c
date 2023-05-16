@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:52:48 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/05/16 16:22:23 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/05/16 18:15:28 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	store_cut3(char *vals, char *commands, int skip, t_stack *stack)
 	{
 		skip = store_cut4(vals, commands, skip, stack);
 		if (ft_isdigit(vals[j]) == 0 && (vals[j] != '-'
-				&& vals[j] != '+'))
+				&& vals[j] != '+') && skip == 1)
 			return (0);
 		if ((vals[j] == '-' || vals[j] == '+')
 			&& (vals[j + 1] == '-' || vals[j + 1] == '+'))
