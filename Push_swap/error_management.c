@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_management.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: laher_maciel <laher_maciel@student.42.fr>  +#+  +:+       +#+        */
+/*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 20:39:02 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/05/10 21:49:44 by laher_maciel     ###   ########.fr       */
+/*   Updated: 2023/05/16 16:21:04 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,8 @@ int	input_ok(char *argv[])
 
 char	*error_check(t_stack *stack, char	*commands)
 {
-	if (stack == NULL || commands != NULL || (contains_duplicate_values(stack) == 0))
+	if (stack == NULL || commands != NULL
+		|| (contains_duplicate_values(stack) == 0))
 	{
 		ft_printf("Error\n");
 		return (NULL);

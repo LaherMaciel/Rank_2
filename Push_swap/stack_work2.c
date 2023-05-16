@@ -6,11 +6,11 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:52:48 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/05/16 16:16:04 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/05/16 16:22:23 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#include "push_swap.h"
 
 int	store_cut4(char *vals, char *commands, int skip, t_stack *stack)
 {
