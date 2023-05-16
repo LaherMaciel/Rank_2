@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 19:33:52 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/05/15 16:45:25 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/05/16 15:35:42 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ char	**valid_strings(void);
 char	*error_check_bonus(int argc, t_stack *stack, char *comma);
 char	*check_commands(char *comma);
 char	*commands_check_aux2(char **val, int i);
+int		commands_check(char *str);
 
 // List manipulation stack_work.c
 int		pop(t_stack **stack);

@@ -3,36 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   error_management_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: laher_maciel <laher_maciel@student.42.fr>  +#+  +:+       +#+        */
+/*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 20:39:02 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/05/11 01:21:04 by laher_maciel     ###   ########.fr       */
+/*   Updated: 2023/05/16 15:34:55 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
-
-int	commands_check(char *str)
-{
-	int		i;
-	char	**valid_commands;
-
-	valid_commands = valid_strings();
-	i = -1;
-	while (++i < 11)
-	{
-		if (ft_strlen(str) < 2)
-			break ;
-		else if (ft_strncmp(str, valid_commands[i], ft_strlen(str)) == 0)
-		{
-			free(valid_commands);
-			return (1);
-		}
-	}
-	i = -1;
-	free(valid_commands);
-	return (0);
-}
 
 char	*check_commands_cut(char **val)
 {

@@ -68,8 +68,10 @@ int	store_cut2(char *vals, char *commands, int skip, t_stack *stack)
 						&& ft_isdigit(vals[j + 1] == 1))
 			&& commands != NULL && skip == 2)
 			return (0);
-		if (ft_isdigit(vals[j]) == 0 && (((vals[j + 1] == '-' || vals[j + 1] == '+'
-						|| ft_isdigit(vals[j + 1] == 1)))))
+		if (ft_isdigit(vals[j]) == 0 && (vals[j] != '-'
+						&& vals[j] != '+'))
+			return (0);
+		if ((vals[j] == '-' || vals[j] == '+') && (vals[j + 1] == '-' || vals[j + 1] == '+'))
 			return (0);
 		if (ft_isdigit(vals[j]) == 1 && (ft_isdigit(vals[j + 1] == 0)))
 			return (0);

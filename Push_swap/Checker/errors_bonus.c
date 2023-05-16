@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:05:00 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/05/15 17:04:26 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/05/16 15:35:20 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,4 +89,26 @@ char	*commands_check_aux2(char **val, int i)
 	if (ft_strncmp(temp, val[i], ft_strlen(temp)) != 0)
 		free(temp);
 	return (val[i]);
+}
+
+int	commands_check(char *str)
+{
+	int		i;
+	char	**valid_commands;
+
+	valid_commands = valid_strings();
+	i = -1;
+	while (++i < 11)
+	{
+		if (ft_strlen(str) < 2)
+			break ;
+		else if (ft_strncmp(str, valid_commands[i], ft_strlen(str)) == 0)
+		{
+			free(valid_commands);
+			return (1);
+		}
+	}
+	i = -1;
+	free(valid_commands);
+	return (0);
 }
