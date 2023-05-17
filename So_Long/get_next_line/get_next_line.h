@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lwencesl <laherwpayotmaciel@gmail.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/16 15:19:36 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/05/16 19:18:20 by lwencesl         ###   ########.fr       */
+/*   Created: 2023/01/03 16:41:52 by lwencesl          #+#    #+#             */
+/*   Updated: 2023/02/06 17:48:43 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-//# include "libft.h"
-
-# include <string.h>
-# include <stdlib.h>
 # include <stdio.h>
-# include <stdint.h>
+# include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
-# include <stdarg.h>
-# include <fcntl.h>
 
-#endif // !FT_SO_LONG.H
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
+
+char	*get_next_line(int fd);
+
+#endif

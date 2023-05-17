@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   read_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/16 15:19:36 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/05/16 19:18:20 by lwencesl         ###   ########.fr       */
+/*   Created: 2023/05/16 19:13:45 by lwencesl          #+#    #+#             */
+/*   Updated: 2023/05/16 19:15:55 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "so_long.h"
 
-//# include "libft.h"
+int	read_file(void)
+{
+	int		fds;
+	char	*a;
+	int		cont;
 
-# include <string.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <stdint.h>
-# include <unistd.h>
-# include <limits.h>
-# include <stdarg.h>
-# include <fcntl.h>
-
-#endif // !FT_SO_LONG.H
+	cont = 1;
+	fds = open("test.txt", O_RDONLY);
+	printf("\n");
+	while ((a = get_next_line(fds)) != NULL)
+	{
+		printf("%i - %s", cont, a);
+		free(a);
+		cont++;
+	}
+	printf("\n\n");
+	return (0);
+}
