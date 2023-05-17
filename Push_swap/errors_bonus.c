@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:05:00 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/05/10 18:37:21 by marvin           ###   ########.fr       */
+/*   Updated: 2023/05/17 18:41:51 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,10 @@ char	**valid_strings(void)
 	return (commands);
 }
 
-void	commands_check_aux2(char **val, int i)
+//remove all the '[', ']' and '"' from the string.
+char	*commands_check_aux3(char **val, int i)
 {
-	char	*temp;
+	char	*temp;	
 
 	temp = val[i];
 	if (ft_strchr(temp, '[')
@@ -82,4 +83,30 @@ void	commands_check_aux2(char **val, int i)
 		val[i] = ft_substr(temp, 1, ft_strlen(temp) - 1);
 	if (ft_strncmp(temp, val[i], ft_strlen(temp)) != 0)
 		free(temp);
+	return (val[i]);
+}
+
+//remove all the '[', ']' and '"' from the string.
+char	*commands_check_aux2(char **val, int i)
+{
+	char	*temp;
+	int		out;
+
+	out = 0;
+	while (out == 0)
+	{
+		val[i] = commands_check_aux3(val, i);
+		temp = val[i];
+		if (temp[0] == '"' && temp[ft_strlen(temp)] == '"')
+			val[i] = ft_substr(temp, 1, ft_strlen(temp) - 2);
+		else if (temp[0] == '"')
+			val[i] = ft_substr(temp, 1, ft_strlen(temp) - 1);
+		else if (temp[ft_strlen(temp) - 1] == '"')
+			val[i] = ft_substr(temp, 0, ft_strlen(temp) - 1);
+		else
+			out = 1;
+		if (ft_strncmp(temp, val[i], ft_strlen(temp)) != 0)
+			free(temp);
+	}
+	return (val[i]);
 }

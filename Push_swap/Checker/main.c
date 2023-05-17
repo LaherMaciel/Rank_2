@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 17:43:48 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/05/16 16:50:00 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/05/17 17:09:11 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ int	main(int argc, char *argv[])
 		&& ft_strncmp(commands, "ok", ft_strlen(commands)) == 0)
 		commands = NULL;
 	commands = error_check_bonus((argc - 1), stack_a, commands);
-	if (commands != NULL && commands[0] != 'p')
+	if (commands != NULL && commands[0] != 'x')
 		inputed_commands(&stack_a, &stack_b, commands);
-	else if (commands != NULL && commands[0] == 'p')
+	else if (commands != NULL && commands[0] == 'x')
 		proxy(&stack_a, &stack_b);
-	if ((commands != NULL && commands[0] != 'p'))
+	if ((commands != NULL && commands[0] != 'x'))
 		free(commands);
 	while (stack_a != NULL)
 		pop(&stack_a);

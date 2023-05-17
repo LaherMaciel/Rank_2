@@ -46,7 +46,7 @@ int		check_stack(t_stack *stack);
 //char	*error_check(t_stack *stack, char *argv[], char *commands);
 char	*error_check(t_stack *stack, char *commands);
 int		check_order_ok(t_stack *stack);
-void	commands_check_aux2(char **val, int i);
+char	*commands_check_aux2(char **val, int i);
 char	**valid_strings(void);
 
 // List manipulation stack_work.c

@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 21:01:28 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/05/16 15:33:50 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/05/17 17:48:11 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,14 @@ int	user_sort(t_stack **stack_a, t_stack **stack_b, char *command)
 	while (command[++i])
 	{
 		if (ft_strncmp(command, "pa", 2) == 0 && stack_a == NULL)
-			ft_printf("Can't do this movement, stack_a empty.\n");
+			ft_printf("\n");
 		if (ft_strncmp(command, "pb", 2) == 0 && stack_b == NULL)
-			ft_printf("Can't do this movement, stack_b empty.\n");
+			ft_printf("\n");
 	}
 	sorting(stack_a, stack_b, command);
 	if (commands_check(command) == 0 && ft_strncmp(command, "exit", 4) != 0)
 	{
-		ft_printf("ERROR: VALID INPUTS -> 'numbers', ss," \
-					" sa, sb, rr, ra, rb, rrr, rra," \
-					" rrb, pa, pb or exit\n");
+		ft_printf("Error\n");
 		return (0);
 	}
 	if (ft_strncmp(command, "exit", 4) == 0)
