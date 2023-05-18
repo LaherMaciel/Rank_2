@@ -41,18 +41,22 @@ int	main(int argc, char *argv[])
 	t_stack	*stack_b;
 	char	*commands;
 
-	commands = NULL;
-	stack_b = NULL;
-	stack_a = store_stack(argc, argv, &commands, NULL);
-	if (commands != NULL
-		&& ft_strncmp(commands, "ok", ft_strlen(commands)) == 0)
+	if (argc > 1)
+	{
 		commands = NULL;
-	if (error_check(stack_a, commands) != NULL && check_order_ok(stack_a) == 0)
-		auto_sort(&stack_a, &stack_b);
-	free(commands);
-	while (stack_a != NULL)
-		pop(&stack_a);
-	while (stack_b != NULL)
-		pop(&stack_b);
+		stack_b = NULL;
+		stack_a = store_stack(argc, argv, &commands, NULL);
+		if (commands != NULL
+			&& ft_strncmp(commands, "ok", ft_strlen(commands)) == 0)
+			commands = NULL;
+		if (error_check(stack_a, commands) != NULL
+			&& check_order_ok(stack_a) == 0)
+			auto_sort(&stack_a, &stack_b);
+		free(commands);
+		while (stack_a != NULL)
+			pop(&stack_a);
+		while (stack_b != NULL)
+			pop(&stack_b);
+	}
 	return (0);
 }
