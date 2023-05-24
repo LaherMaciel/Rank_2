@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 21:01:28 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/05/24 18:08:39 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/05/24 19:23:44 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,16 @@ int	user_sort(t_stack **stack_a, t_stack **stack_b, char *command)
 char	**the_split(char *commands)
 {
 	char	**vals;
+	char	*comma;
 	int		i;
 
+	comma = check_commands(commands);
+	if (comma == NULL)
+	{
+		ft_printf("Error\n");
+		return (NULL);
+	}
+	free(comma);
 	vals = ft_split(commands, ' ');
 	if (ft_strlen(*vals) == ft_strlen(commands))
 	{
@@ -64,11 +72,10 @@ char	**the_split(char *commands)
 }
 
 // if the user introduz the numbers and the commands or just numbers | main
-void	proxy(t_stack **stack_a, t_stack **stack_b)
+void	proxy(t_stack **stack_a, t_stack **stack_b, int i)
 {
 	char	commands[1000];
 	char	**vals;
-	int		i;
 	ssize_t	ret;
 
 	commands[0] = '\0';
@@ -77,7 +84,8 @@ void	proxy(t_stack **stack_a, t_stack **stack_b)
 		return ;
 	commands[ret] = '\0';
 	vals = the_split(commands);
-	i = -1;
+	if (!vals)
+		return ;
 	while (vals[++i] != NULL)
 	{
 		vals[i] = commands_check_aux2(&vals[i], 0);

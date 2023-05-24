@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 19:33:52 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/05/24 16:10:52 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/05/24 19:24:01 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int		find_above_media(t_stack *stack, int cont1, int cont2);
 // BONUS_RUN_MODE.C
 void	inputed_commands(t_stack **stack_a,
 			t_stack **stack_b, char *command_list);
-void	proxy(t_stack **stack_a, t_stack **stack_b);
+void	proxy(t_stack **stack_a, t_stack **stack_b, int i);
 
 void	sorting(t_stack **stack_a, t_stack **stack_b, char *id_1);
 
