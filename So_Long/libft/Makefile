@@ -6,7 +6,7 @@
 #    By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/31 18:07:37 by lwencesl          #+#    #+#              #
-#    Updated: 2022/11/18 01:00:28 by lwencesl         ###   ########.fr        #
+#    Updated: 2023/05/24 19:44:46 by lwencesl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ fclean: clean
 	make -C ft_printf fclean
 
 re:	fclean
-	@clear && make
+	@clear && make all
 
 rungnl:
 	make -C get_next_line
