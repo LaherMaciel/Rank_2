@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:05:00 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/05/17 19:20:19 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/05/24 14:50:45 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ int	commands_check_aux3(char **val, int i, int out)
 		val[i] = ft_substr(temp, 0, ft_strlen(temp) - 1);
 	else if (ft_strchr(temp, '[') || ft_strchr(temp, ','))
 		val[i] = ft_substr(temp, 1, ft_strlen(temp) - 1);
+	else if (ft_strchr(temp, '\n'))
+		val[i] = ft_substr(temp, 0, ft_strchr_int(temp, '\n'));
 	else
 		out = 1;
 	if (ft_strncmp(temp, val[i], ft_strlen(temp)) != 0)

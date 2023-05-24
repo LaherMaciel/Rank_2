@@ -6,27 +6,29 @@
 #    By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/20 19:03:40 by laher_macie       #+#    #+#              #
-#    Updated: 2023/05/16 16:22:57 by lwencesl         ###   ########.fr        #
+#    Updated: 2023/05/24 15:15:02 by lwencesl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
-SRC = error_management find find2 ft_atoi ft_isdigit ft_split ft_strjoin\
-ft_isprint ft_lstnew ft_lstsize ft_printf ft_printf_utils ft_substr\
-ft_strchr ft_strncmp ft_strlen  moviments moviments2 p_decisions stack_work2\
-sort_conditions sort stack_work main error_management_bonus errors_bonus\
-
-
-CC = cc
-RM = rm -f
-CFLAGS = -g -Wall -Werror -Wextra\
+SRC		:= $(wildcard *.c)
+OBJ		= $(SRC:.c=.o)
+CC		= cc
+RM		= rm -f
+CFLAGS	= -g -Wall -Werror -Wextra
 
 all:$(NAME)
 
-$(NAME): $(SRC:=.o)
-				cc -o $(NAME) $(SRC:=.o)
+$(NAME): run $(OBJ)
+				$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
 clean:
-	$(RM)	$(SRC:=.o)
+	$(RM)	$(OBJ)
+	make -C Checker clean
 fclean: clean
 			$(RM)	$(NAME)
-re: fclean	$(NAME)
+			make -C Checker fclean
+re: fclean
+	@clear
+	$(MAKE) all
+run:
+	make -C Checker

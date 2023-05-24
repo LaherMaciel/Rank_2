@@ -22,3 +22,14 @@ char	*ft_strchr(const char *str, int c)
 			return ((char *)str + a);
 	return (NULL);
 }
+
+size_t	ft_strchr_int(const char *str, int c)
+{
+	size_t	a;
+
+	a = -1;
+	while (++a <= ft_strlen(str))
+		if (((unsigned char *)str)[a] == (unsigned char) c)
+			return (a);
+	return (0);
+}
