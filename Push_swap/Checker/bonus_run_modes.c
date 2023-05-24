@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 21:01:28 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/05/24 15:54:15 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/05/24 18:08:39 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,23 @@ int	user_sort(t_stack **stack_a, t_stack **stack_b, char *command)
 	return (1);
 }
 
+char	**the_split(char *commands)
+{
+	char	**vals;
+	int		i;
+
+	vals = ft_split(commands, ' ');
+	if (ft_strlen(*vals) == ft_strlen(commands))
+	{
+		i = -1;
+		while (vals[++i])
+			free(vals[i]);
+		free(vals);
+		vals = ft_split(commands, '\n');
+	}
+	return (vals);
+}
+
 // if the user introduz the numbers and the commands or just numbers | main
 void	proxy(t_stack **stack_a, t_stack **stack_b)
 {
@@ -53,30 +70,24 @@ void	proxy(t_stack **stack_a, t_stack **stack_b)
 	char	**vals;
 	int		i;
 	ssize_t	ret;
-	int		cont;
 
 	commands[0] = '\0';
-	cont = 0;
-	while (ft_strncmp(commands, "exit", 4) != 0)
+	ret = read(0, commands, 1000);
+	if (ret == -1)
+		return ;
+	commands[ret] = '\0';
+	vals = the_split(commands);
+	i = -1;
+	while (vals[++i] != NULL)
 	{
-		ret = read(0, commands, 1000);
-		if (ret == -1)
-			return ;
-		commands[ret] = '\0';
-		i = -1;
-		ft_printf("commands -> %s\n;", commands);
-		vals = ft_split(commands, ' ');
-		i = -1;
-		while (vals[++i] != NULL)
+		vals[i] = commands_check_aux2(&vals[i], 0);
+		if (user_sort(stack_a, stack_b, vals[i]) == 0)
 		{
-			vals[i] = commands_check_aux2(&vals[i], 0);
-			user_sort(stack_a, stack_b, vals[i]);
-			free(vals[i]);
+			while (vals[i])
+				free(vals[i++]);
+			break ;
 		}
-		if (*stack_b == NULL && check_order_ok(*stack_a) == 1)
-			break ;
-		if (cont++ < 20)
-			break ;
+		free(vals[i]);
 	}
 	free(vals);
 	end_code(stack_a, stack_b, commands);
