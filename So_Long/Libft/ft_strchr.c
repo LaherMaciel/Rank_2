@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/16 15:19:10 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/05/18 17:00:02 by lwencesl         ###   ########.fr       */
+/*   Created: 2022/10/28 21:33:04 by lwencesl          #+#    #+#             */
+/*   Updated: 2022/11/02 19:12:44 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-int	main(void)
+char	*ft_strchr(const char *str, int c)
 {
-	char	**map;
-	int		i;
+	size_t	a;
 
-	i = 0;
-	map = creat_map();
-	while (map[i])
-		ft_printf("%s", map[i]);
-	return (0);
+	a = -1;
+	while (++a <= ft_strlen(str))
+		if (((unsigned char *)str)[a] == (unsigned char) c)
+			return ((char *)str + a);
+	return (NULL);
 }

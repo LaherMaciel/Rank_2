@@ -1,25 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/16 15:19:10 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/05/18 17:00:02 by lwencesl         ###   ########.fr       */
+/*   Created: 2022/10/29 23:21:40 by lwencesl          #+#    #+#             */
+/*   Updated: 2022/10/29 23:33:56 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-int	main(void)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	**map;
-	int		i;
+	size_t	a;
+	char	*d;
 
-	i = 0;
-	map = creat_map();
-	while (map[i])
-		ft_printf("%s", map[i]);
-	return (0);
+	a = 0;
+	while ((start + a) < ft_strlen(s) && a < len)
+		a++;
+	d = (char *) malloc(a * sizeof(char) + 1);
+	if (!d)
+		return (NULL);
+	a = 0;
+	while ((start + a) < ft_strlen(s) && a < len)
+	{
+		d[a] = s[start + a];
+		a++;
+	}
+	d[a] = '\0';
+	return (d);
 }

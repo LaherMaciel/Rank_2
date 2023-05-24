@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lwencesl <laherwpayotmaciel@gmail.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/03 16:47:34 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/01/21 19:54:12 by lwencesl         ###   ########.fr       */
+/*   Created: 2023/01/21 20:08:35 by lwencesl          #+#    #+#             */
+/*   Updated: 2023/01/21 20:27:53 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 int	clean(int newline, int x, int y, char *buffer)
 {

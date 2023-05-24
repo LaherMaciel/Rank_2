@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/16 15:19:10 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/05/18 17:00:02 by lwencesl         ###   ########.fr       */
+/*   Created: 2022/10/28 19:47:47 by lwencesl          #+#    #+#             */
+/*   Updated: 2022/10/28 19:47:47 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-int	main(void)
+int	ft_toupper(int c)
 {
-	char	**map;
-	int		i;
-
-	i = 0;
-	map = creat_map();
-	while (map[i])
-		ft_printf("%s", map[i]);
-	return (0);
+	if (c >= 97 && c <= 122)
+		c = c - 32;
+	return (c);
 }

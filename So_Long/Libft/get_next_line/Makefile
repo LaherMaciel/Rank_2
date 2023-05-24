@@ -5,29 +5,34 @@
 #                                                     +:+ +:+         +:+      #
 #    By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/05/18 15:36:42 by lwencesl          #+#    #+#              #
-#    Updated: 2023/05/18 15:40:00 by lwencesl         ###   ########.fr        #
+#    Created: 2023/05/23 23:00:27 by lwencesl          #+#    #+#              #
+#    Updated: 2023/05/23 23:00:27 by lwencesl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= so_long
+NAME	= get_next_line.a
 SRC		= ${wildcard *.c}
+OBJ		= $(SRC:.c=.o)
+AR		= ar rcs
 CC		= cc
 RM		= rm -f
-CFLAGS	= -g -Wall -Werror -Wextra
-GNL		= libft/includes
-GNL_LIB	= -Llibft -lft
+CFLAGS	= -g -Wall -Werror -Wextra -I./
 
 all:$(NAME)
 
-$(NAME): rungnl $(SRC:.c=.o)
-	$(CC) $(SRC:.c=.o) $(CFLAGS) -I $(GNL) $(GNL_LIB) -o $(NAME)
+$(NAME): $(OBJ)
+		$(AR) $(NAME) $(OBJ)
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
 clean:
-	$(RM)	$(SRC:.c=.o)	$(NAME)
-	make -C libft clean
+	$(RM)	$(OBJ)
+
 fclean: clean
-	make -C libft fclean
-re: fclean
-	@clear && $(MAKE) all
-rungnl:
-	make -C libft
+	$(RM) $(NAME)
+
+re:	fclean
+	@clear && make
+
+.PHONY: all clean fclean re

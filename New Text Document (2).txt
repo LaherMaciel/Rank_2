@@ -12,22 +12,31 @@
 
 NAME	= so_long
 SRC		= ${wildcard *.c}
+OBJ		= $(SRC:.c=.o)
 CC		= cc
 RM		= rm -f
 CFLAGS	= -g -Wall -Werror -Wextra
-GNL		= libft/includes
-GNL_LIB	= -Llibft -lft
+LIBFT	= libft/libft.a
+GNL		= get_next_line/libget_next_line.a
+PRINTF	= ft_prinft/libft_prinft.a
+MY_LIBS	= -Llibft -libft -Lget_next_line -lget_next_line -Lft_prinft -lft_prinft
 
 all:$(NAME)
 
-$(NAME): rungnl $(SRC:.c=.o)
-	$(CC) $(SRC:.c=.o) $(CFLAGS) -I $(GNL) $(GNL_LIB) -o $(NAME)
+$(NAME): rungnl $(OBJ)
+	$(CC) $(OBJ) $(CFLAGS) $(My_LIBS) -o $(NAME)
 clean:
-	$(RM)	$(SRC:.c=.o)	$(NAME)
+	$(RM)	$(OBJ)	$(NAME)
 	make -C libft clean
+	make -C get_next_line clean
+	make -C ft_printf clean
 fclean: clean
 	make -C libft fclean
+	make -C get_next_line fclean
+	make -C ft_printf fclean
 re: fclean
 	@clear && $(MAKE) all
 rungnl:
 	make -C libft
+	make -C get_next_line
+	make -C ft_printf

@@ -12,26 +12,26 @@
 
 #include "so_long.h"
 
-int	read_file(void)
+char	**read_file(void)
 {
 	int		fds;
 	char	*a;
 	int		cont;
 
 	cont = 1;
-	fds = open("test.txt", O_RDONLY);
-	printf("\n");
+	fds = open("mapa.txt", O_RDONLY);
+	ft_printf("\n");
 	while ((a = get_next_line(fds)) != NULL)
 	{
-		printf("%i - %s", cont, a);
+		ft_printf("%i - %s", cont, a);
 		free(a);
 		cont++;
 	}
-	printf("\n\n");
+	ft_printf("\n\n");
 	return (0);
 }
 
-int	creat_map(void)
+char	**creat_map(void)
 {
 	int		fds;
 	char	*a;
@@ -40,19 +40,20 @@ int	creat_map(void)
 
 	i = 0;
 	a = "o";
+	map = NULL;
 	fds = open("test.txt", O_RDONLY);
-	printf("\n");
+	ft_printf("\n");
 	while (a != NULL)
 	{
 		a = get_next_line(fds);
 		map[i++] = a;
 		free(a);
 	}
-	printf("\n\n");
-	return (0);
+	ft_printf("\n\n");
+	return (map);
 }
 
-int	map_base_check(char *map[])
+int	map_base_check(char **map)
 {
 	int	x;
 	int	y;
@@ -66,17 +67,18 @@ int	map_base_check(char *map[])
 	player = 0;
 	exit = 0;
 	collectible = 0;
-	//x_max_len = map;
+	x_max_len = ft_strstrlen(map);
 	while (x <= x_max_len)
 	{
 		y = -1;
+		y_max_len = ft_strlen(map[x]);
 		while (y <= y_max_len)
 		{
-			if (x == 0 && y == 0 && map[x][y] != '1' || x == x_max_len && y == y_max_len && map[x][y] != '1')
+			if ((x == 0 && y == 0 && map[x][y] != '1') || (x == x_max_len && y == y_max_len && map[x][y] != '1'))
 				return (0);
-			else if (x == 0 && map[x][y] != '1' || y == 0 && map[x][y] != '1')
+			else if ((x == 0 && map[x][y] != '1') || (y == 0 && map[x][y] != '1'))
 				return (0);
-			else if (x == x_max_len && map[x][y] != '1' || y == y_max_len && map[x][y] != '1')
+			else if ((x == x_max_len && map[x][y] != '1') || (y == y_max_len && map[x][y] != '1'))
 				return (0);
 			if (map[x][y] != 'p')
 				player++;
@@ -88,4 +90,5 @@ int	map_base_check(char *map[])
 	}
 	if (player != 1 || exit != 1 || collectible < 1)
 		return (0);
+	return (1);
 }

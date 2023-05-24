@@ -23,5 +23,10 @@
 # include <limits.h>
 # include <stdarg.h>
 # include <fcntl.h>
+# include "Libft/libft.h"
 
-#endif // !FT_SO_LONG.H
+char	**creat_map(void);
+char	**read_file(void);
+int		map_base_check(char *map[]);
+
+#endif // !SO_LONG_H

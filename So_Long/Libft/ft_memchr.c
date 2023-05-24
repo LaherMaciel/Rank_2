@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/16 15:19:10 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/05/18 17:00:02 by lwencesl         ###   ########.fr       */
+/*   Created: 2022/10/28 19:48:30 by lwencesl          #+#    #+#             */
+/*   Updated: 2022/11/02 21:18:47 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-int	main(void)
+void	*ft_memchr(void *str, int c, size_t n)
 {
-	char	**map;
-	int		i;
+	size_t			a;
+	unsigned char	*s;
 
-	i = 0;
-	map = creat_map();
-	while (map[i])
-		ft_printf("%s", map[i]);
+	s = (unsigned char *)str;
+	a = 0;
+	while (a < n)
+	{
+		if (s[a] == (unsigned char) c)
+			return ((void *)s + a);
+		a++;
+	}
 	return (0);
 }

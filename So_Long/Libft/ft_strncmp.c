@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/16 15:19:10 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/05/18 17:00:02 by lwencesl         ###   ########.fr       */
+/*   Created: 2022/10/28 19:44:33 by lwencesl          #+#    #+#             */
+/*   Updated: 2022/10/28 19:44:33 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-int	main(void)
+int	ft_strncmp(const char *str1, const char *str2, size_t n)
 {
-	char	**map;
-	int		i;
+	size_t	a;
 
-	i = 0;
-	map = creat_map();
-	while (map[i])
-		ft_printf("%s", map[i]);
+	a = 0;
+	while (a < n && (str1[a] || str2[a]))
+	{
+		if (str1[a] != str2[a])
+			return ((unsigned char)str1[a] - (unsigned char)str2[a]);
+		a++;
+	}
 	return (0);
 }
