@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/16 15:19:36 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/05/16 19:18:20 by lwencesl         ###   ########.fr       */
+/*   Created: 2023/05/16 15:19:10 by lwencesl          #+#    #+#             */
+/*   Updated: 2023/05/25 23:36:01 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "../includes/so_long.h"
 
-//# include "libft.h"
+int	main(void)
+{
+	//char	**map;
+	//int		i;
+//
+	//i = 0;
+	//map = creat_map();
+	//while (map[i])
+	//	ft_printf("%s", map[i]);
 
-# include <string.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <stdint.h>
-# include <unistd.h>
-# include <limits.h>
-# include <stdarg.h>
-# include <fcntl.h>
-# include "Libft/libft.h"
-
-char	**creat_map(void);
-char	**read_file(void);
-int		map_base_check(char *map[]);
-
-#endif // !SO_LONG_H
+	ft_printf("ola\n");
+	return (0);
+}

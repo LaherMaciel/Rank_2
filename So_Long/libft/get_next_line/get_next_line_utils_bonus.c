@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lwencesl <laherwpayotmaciel@gmail.com>     +#+  +:+       +#+        */
+/*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 20:08:35 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/01/21 20:27:53 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/05/25 23:37:43 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	clean(int newline, int x, int y, char *buffer)
 	return (newline);
 }
 
-size_t	ft_strlen(char *a)
+size_t	str_length(char *a)
 {
 	size_t	i;
 
@@ -45,7 +45,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	char	*sjoin;
 	size_t	i;
 
-	sjoin = (char *) malloc((ft_strlen(s1) + ft_strlen(s2)) * sizeof(char) + 1);
+	sjoin = (char *) malloc((str_length(s1) + str_length(s2)) * sizeof(char) + 1);
 	if (!sjoin)
 		return (NULL);
 	i = -1;

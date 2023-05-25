@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lwencesl <laherwpayotmaciel@gmail.com>     +#+  +:+       +#+        */
+/*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 19:57:33 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/02/06 17:48:18 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/05/25 23:37:58 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
 int		clean(int newline, int x, int y, char *buffer);
-size_t	ft_strlen(char *a);
+size_t	str_length(char *a);
 char	*ft_strjoin(char *s1, char *s2);
 
 char	*get_next_line(int fd)

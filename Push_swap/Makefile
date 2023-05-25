@@ -6,7 +6,7 @@
 #    By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/20 19:03:40 by laher_macie       #+#    #+#              #
-#    Updated: 2023/05/25 09:58:13 by lwencesl         ###   ########.fr        #
+#    Updated: 2023/05/25 17:53:44 by lwencesl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,6 @@ fclean: clean
 re: fclean
 	@clear
 	$(MAKE) all
-	@norminette
 
 run:
 	make -C Checker
