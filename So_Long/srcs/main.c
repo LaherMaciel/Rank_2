@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:19:10 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/05/25 23:36:01 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/05/26 20:21:57 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,10 @@
 
 int	main(void)
 {
-	//char	**map;
-	//int		i;
-//
-	//i = 0;
-	//map = creat_map();
-	//while (map[i])
-	//	ft_printf("%s", map[i]);
 
-	ft_printf("ola\n");
+	void	*mlx;
+
+	mlx = mlx_init();
+	ft_printf("HELLO WORLD\n");
 	return (0);
 }
