@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 19:33:52 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/05/24 19:24:01 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/05/27 13:59:01 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,5 +108,8 @@ void	print_tab(t_stack *stack_a, t_stack *stack_b);
 size_t	ft_my_sizeof(const void *ptr);
 size_t	ft_strchr_int(const char *str, int c);
 int		ft_strstrlen(char **str_of_str);
+char	**the_split(char *commands);
+int		user_sort(t_stack **stack_a, t_stack **stack_b, char *command);
+void	end_code(t_stack **stack_a, t_stack **stack_b, char *commands);
 
 #endif
