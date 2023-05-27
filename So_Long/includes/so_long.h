@@ -6,14 +6,12 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:19:36 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/05/26 18:05:24 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/05/27 19:19:33 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
-
-//# include "libft.h"
 
 # include <string.h>
 # include <stdlib.h>
@@ -25,6 +23,23 @@
 # include <fcntl.h>
 # include "../minilibx-linux/mlx.h"
 # include "../libft/libft.h"
+
+typedef struct s_data{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_data;
+
+typedef struct s_map
+{
+	int	player;
+	int	walls;
+	int	floor;
+	int	collectibles;
+	int	exit;
+}		t_map;
 
 char	**creat_map(void);
 char	**read_file(void);

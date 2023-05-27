@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/16 15:19:10 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/05/27 18:39:16 by lwencesl         ###   ########.fr       */
+/*   Created: 2023/05/27 18:46:12 by lwencesl          #+#    #+#             */
+/*   Updated: 2023/05/27 19:38:44 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../../includes/so_long.h"
 
-int	main(void)
+/*=============================================
+include the 'mlx.h' on ur '.h' file
+mlx_init() -> used to inicialize the library. It returns a (void *)
+mlx_new_window(pointer_returned_by_mlx_init(),
+	width, heigth, "the_name_of_the_window") -> return the (void *) to the new window created.  
+mlx_new_image() ->
+mlx_loop() -> initiate the window rendering.
+==============================================*/
+
+int	window_start(void)
 {
 	void	*mlx;
 	void	*mlx_win;

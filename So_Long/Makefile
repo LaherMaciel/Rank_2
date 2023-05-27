@@ -6,7 +6,7 @@
 #    By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 15:36:42 by lwencesl          #+#    #+#              #
-#    Updated: 2023/05/27 15:16:28 by lwencesl         ###   ########.fr        #
+#    Updated: 2023/05/27 18:57:16 by lwencesl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ NAME = so_long
 TEXTURE_C = 
 ANIMATION_C = test1.c
 MAP_PARSING_C = map_parser.c
-MOVEMENT_C = 
+MOVEMENT_C =
+WINDOW_C = window.c
 
 LIBFT_DIRECTORY = libft/
 LIBFT_HEADER = $(LIBFT_DIRECTORY)libft.h
@@ -44,7 +45,11 @@ ANIMATION_LIST = $(ANIMATION_C)
 ANIMATION_DIRECTORY = animation/
 ANIMATION = $(addprefix $(ANIMATION_DIRECTORY), $(ANIMATION_LIST))
 
-SRCS_LIST = $(MOVEMENT) $(MAP_PARSING) $(TEXTURES) $(ANIMATION) main.c read_file.c
+WINDOW_LIST = $(WINDOW_C)
+WINDOW_DIRECTORY = window/
+WINDOW = $(addprefix $(WINDOW_DIRECTORY), $(WINDOW_LIST))
+
+SRCS_LIST = $(MOVEMENT) $(MAP_PARSING) $(TEXTURES) $(ANIMATION) $(WINDOW) main.c read_file.c
 SRCS_DIRECTORY = srcs/
 SRCS = $(addprefix $(SRCS_DIRECTORY), $(SRCS_LIST))
 
@@ -67,6 +72,7 @@ $(OBJECTS_DIRECTORY):
 	mkdir -p $(OBJECTS_DIRECTORY)$(MOVEMENT_DIRECTORY)
 	mkdir -p $(OBJECTS_DIRECTORY)$(MAP_PARSING_DIRECTORY)
 	mkdir -p $(OBJECTS_DIRECTORY)$(ANIMATION_DIRECTORY)
+	mkdir -p $(OBJECTS_DIRECTORY)$(WINDOW_DIRECTORY)
 
 $(OBJECTS_DIRECTORY)%.o : $(SRCS_DIRECTORY)%.c
 	$(CC) $(CFLAGS) -c $(INCLUDES) $< -o $@
