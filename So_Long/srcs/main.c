@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:19:10 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/05/26 20:21:57 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/05/27 15:29:15 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,9 @@
 
 int	main(void)
 {
-
 	void	*mlx;
 
 	mlx = mlx_init();
-	ft_printf("HELLO WORLD\n");
+	ft_printf("IT'S WORKING\n");
 	return (0);
 }

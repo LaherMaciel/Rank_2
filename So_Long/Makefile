@@ -6,7 +6,7 @@
 #    By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 15:36:42 by lwencesl          #+#    #+#              #
-#    Updated: 2023/05/26 18:01:15 by lwencesl         ###   ########.fr        #
+#    Updated: 2023/05/27 15:16:28 by lwencesl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,7 @@ OBJECTS_DIRECTORY = objects/
 OBJECTS = $(addprefix $(OBJECTS_DIRECTORY), $(OBJECT_LIST))
 
 CC = cc
-CFLAGS = -g -Wall -Werror -Wextra  
+CFLAGS = -g -Wall -Werror -Wextra
 
 LIBS = -L$(LIBFT_DIRECTORY) -lft $(MLX) -Imlx_linux -lXext -lX11 -lm -lz
 INCLUDES = -I.$(HEADERS) -I.$(LIBFT_HEADER) -I.$(MLX_HEADER)
