@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 21:01:28 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/05/24 19:23:44 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/05/27 12:53:49 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,16 @@ char	**the_split(char *commands)
 	return (vals);
 }
 
+char	**proxy_cut(char commands[])
+{
+	char	**vals;
+
+	vals = the_split(commands);
+	if (!vals)
+		return (NULL);
+	return (vals);
+}
+
 // if the user introduz the numbers and the commands or just numbers | main
 void	proxy(t_stack **stack_a, t_stack **stack_b, int i)
 {
@@ -82,22 +92,25 @@ void	proxy(t_stack **stack_a, t_stack **stack_b, int i)
 	ret = read(0, commands, 1000);
 	if (ret == -1)
 		return ;
-	commands[ret] = '\0';
-	vals = the_split(commands);
-	if (!vals)
-		return ;
-	while (vals[++i] != NULL)
+
+		
+	if (ret != 0)
 	{
-		vals[i] = commands_check_aux2(&vals[i], 0);
-		if (user_sort(stack_a, stack_b, vals[i]) == 0)
+		commands[ret] = '\0';
+		vals = proxy_cut(commands);
+		while (vals[++i] != NULL)
 		{
-			while (vals[i])
-				free(vals[i++]);
-			break ;
+			vals[i] = commands_check_aux2(&vals[i], 0);
+			if (user_sort(stack_a, stack_b, vals[i]) == 0)
+			{
+				while (vals[i])
+					free(vals[i++]);
+				break ;
+			}
+			free(vals[i]);
 		}
-		free(vals[i]);
+		free(vals);
 	}
-	free(vals);
 	end_code(stack_a, stack_b, commands);
 }
 

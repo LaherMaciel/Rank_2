@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 20:39:02 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/05/17 17:08:15 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/05/27 12:52:14 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ char	*error_check_bonus2(int argc, t_stack *stack, char *comma)
 	{
 		if (ft_lstsize(stack) == 1 || (ft_lstsize(stack) > 1
 				&& check_order_ok(stack) != 0))
-			return (NULL);
+			return ("xpr");
 		if (ft_lstsize(stack) > 1 && check_order_ok(stack) == 0)
 			return ("xpr");
 		if (argc == 0)
