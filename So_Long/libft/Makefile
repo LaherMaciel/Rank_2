@@ -6,7 +6,7 @@
 #    By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/31 18:07:37 by lwencesl          #+#    #+#              #
-#    Updated: 2023/05/25 22:35:52 by lwencesl         ###   ########.fr        #
+#    Updated: 2023/05/28 01:17:45 by lwencesl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,23 +60,34 @@ SRC		= ft_atoi.c \
 	get_next_line/get_next_line_bonus.c \
 	get_next_line/get_next_line_utils_bonus.c
 
-OBJ		= $(SRC:.c=.o)
-AR		= ar rc
-CC		= cc
-RM		= rm -f
-CFLAGS  = -g -Wall -Werror -Wextra
+AR = ar rc
+CC = cc
+RM = rm -f
+CFLAGS = -g -Wall -Werror -Wextra
 HEADER = -I.libft.h -I.get_next_line/get_next_line_bonus.h -I.ft_printf/ft_printf.h
+FT_PRINTF_DIRECTORY = ft_printf/
+GNL_DIRECTORY = get_next_line/
+
+OBJ = $(SRC:.c=.o)
+OBJECTS_DIRECTORY = bin/
+OBJECTS = $(addprefix $(OBJECTS_DIRECTORY), $(OBJ))
 
 all:$(NAME)
 
-$(NAME): $(OBJ)
-		$(AR) $(NAME) $(OBJ)
+$(NAME): $(OBJECTS_DIRECTORY) $(OBJECTS)
+		$(AR) $(NAME) $(OBJECTS)
 
-%.o: %.c
+$(OBJECTS_DIRECTORY):
+	mkdir -p $(OBJECTS_DIRECTORY)
+	mkdir -p $(OBJECTS_DIRECTORY)$(FT_PRINTF_DIRECTORY)
+	mkdir -p $(OBJECTS_DIRECTORY)$(GNL_DIRECTORY)
+
+$(OBJECTS_DIRECTORY)%.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@ $(HEADER)
 
 clean:
-	$(RM)	$(OBJ)
+	$(RM) $(OBJECTS)
+	rm -rf $(OBJECTS_DIRECTORY)
 
 fclean: clean
 	$(RM) $(NAME)

@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:19:36 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/05/27 19:19:33 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/05/28 01:25:40 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,9 @@ typedef struct s_map
 char	**creat_map(void);
 char	**read_file(void);
 int		map_base_check(char *map[]);
+
+//WINDOWS
+void	window_start(void);
+void	*create_image(void);
 
 #endif // !SO_LONG_H
