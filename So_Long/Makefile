@@ -6,7 +6,7 @@
 #    By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 15:36:42 by lwencesl          #+#    #+#              #
-#    Updated: 2023/05/28 18:19:24 by lwencesl         ###   ########.fr        #
+#    Updated: 2023/05/30 22:45:00 by lwencesl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,9 +34,9 @@ TEXTURES_LIST = $(TEXTURE_C)
 TEXTURES_DIRECTORY = textures/
 TEXTURES = $(addprefix $(TEXTURES_DIRECTORY), $(TEXTURES_LIST))
 
-MAP_PARSING_LIST = $(MAP_PARSING_C)
-MAP_PARSING_DIRECTORY = map_parsing/
-MAP_PARSING = $(addprefix $(MAP_PARSING_DIRECTORY), $(MAP_PARSING_LIST))
+MAP_LIST = $(MAP_C)
+MAP_DIRECTORY = map/
+MAP = $(addprefix $(MAP_DIRECTORY), $(MAP_LIST))
 
 MOVEMENT_LIST = $(MOVEMENT_C)
 MOVEMENT_DIRECTORY = movement/
@@ -50,7 +50,7 @@ INTERFACE_LIST = $(INTERFACE_C)
 INTERFACE_DIRECTORY = interface/
 INTERFACE = $(addprefix $(INTERFACE_DIRECTORY), $(INTERFACE_LIST))
 
-SRCS_LIST = $(MOVEMENT) $(MAP_PARSING) $(TEXTURES) $(ANIMATION) $(INTERFACE) main.c read_file.c
+SRCS_LIST = $(MOVEMENT) $(MAP) $(TEXTURES) $(ANIMATION) $(INTERFACE) main.c read_file.c
 SRCS_DIRECTORY = srcs/
 SRCS = $(addprefix $(SRCS_DIRECTORY), $(SRCS_LIST))
 
@@ -71,7 +71,7 @@ $(OBJECTS_DIRECTORY):
 	mkdir -p $(OBJECTS_DIRECTORY)
 	mkdir -p $(OBJECTS_DIRECTORY)$(TEXTURES_DIRECTORY)
 	mkdir -p $(OBJECTS_DIRECTORY)$(MOVEMENT_DIRECTORY)
-	mkdir -p $(OBJECTS_DIRECTORY)$(MAP_PARSING_DIRECTORY)
+	mkdir -p $(OBJECTS_DIRECTORY)$(MAP_DIRECTORY)
 	mkdir -p $(OBJECTS_DIRECTORY)$(ANIMATION_DIRECTORY)
 	mkdir -p $(OBJECTS_DIRECTORY)$(INTERFACE_DIRECTORY)
 
