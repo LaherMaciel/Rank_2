@@ -6,7 +6,7 @@
 #    By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 15:36:42 by lwencesl          #+#    #+#              #
-#    Updated: 2023/05/27 23:20:59 by lwencesl         ###   ########.fr        #
+#    Updated: 2023/05/28 18:19:24 by lwencesl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ TEXTURE_C =
 ANIMATION_C = test1.c
 MAP_PARSING_C = map_parser.c
 MOVEMENT_C =
-WINDOW_C = window.c
+INTERFACE_C = window.c\
+			colors.c
 
 LIBFT_DIRECTORY = libft/
 LIBFT_HEADER = $(LIBFT_DIRECTORY)libft.h
@@ -45,11 +46,11 @@ ANIMATION_LIST = $(ANIMATION_C)
 ANIMATION_DIRECTORY = animation/
 ANIMATION = $(addprefix $(ANIMATION_DIRECTORY), $(ANIMATION_LIST))
 
-WINDOW_LIST = $(WINDOW_C)
-WINDOW_DIRECTORY = window/
-WINDOW = $(addprefix $(WINDOW_DIRECTORY), $(WINDOW_LIST))
+INTERFACE_LIST = $(INTERFACE_C)
+INTERFACE_DIRECTORY = interface/
+INTERFACE = $(addprefix $(INTERFACE_DIRECTORY), $(INTERFACE_LIST))
 
-SRCS_LIST = $(MOVEMENT) $(MAP_PARSING) $(TEXTURES) $(ANIMATION) $(WINDOW) main.c read_file.c
+SRCS_LIST = $(MOVEMENT) $(MAP_PARSING) $(TEXTURES) $(ANIMATION) $(INTERFACE) main.c read_file.c
 SRCS_DIRECTORY = srcs/
 SRCS = $(addprefix $(SRCS_DIRECTORY), $(SRCS_LIST))
 
@@ -72,7 +73,7 @@ $(OBJECTS_DIRECTORY):
 	mkdir -p $(OBJECTS_DIRECTORY)$(MOVEMENT_DIRECTORY)
 	mkdir -p $(OBJECTS_DIRECTORY)$(MAP_PARSING_DIRECTORY)
 	mkdir -p $(OBJECTS_DIRECTORY)$(ANIMATION_DIRECTORY)
-	mkdir -p $(OBJECTS_DIRECTORY)$(WINDOW_DIRECTORY)
+	mkdir -p $(OBJECTS_DIRECTORY)$(INTERFACE_DIRECTORY)
 
 $(OBJECTS_DIRECTORY)%.o : $(SRCS_DIRECTORY)%.c
 	$(CC) $(CFLAGS) -c $(INCLUDES) $< -o $@

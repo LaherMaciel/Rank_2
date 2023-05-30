@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 18:46:12 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/05/28 01:35:19 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/05/28 17:49:56 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,27 +22,33 @@ mlx_new_image() ->
 mlx_loop() -> initiate the window rendering.
 ==============================================*/
 
-void	window_start(void)
+t_win	window_start(void)
 {
-	void	*mlx;
-	void	*mlx_win;
+	t_win	win;
 
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1280, 720, "Hello world");
-	mlx_loop(mlx);
-	ft_printf("mlx_win: %p\n", mlx_win);
-	ft_printf("THE WINDOOW IS WORKING\n");
+	win.mlx = mlx_init();
+	win.mlx_win = mlx_new_window(win.mlx, 1280, 720, "Hello world");
+	ft_printf("WINDOOW CREATED\n");
+	return (win);
 }
 
-void	*create_image(void)
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
-	void	*mlx;
-	void	*img;
+	char	*dst;
 
-	mlx = mlx_init();
-	img = mlx_new_image(mlx, 1920, 1080);
-	//mlx_loop(mlx);
-	ft_printf("img: %p\n", img);
-	ft_printf("IMAGE GENERATOR IS WORKING\n");
+	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
+}
+
+t_data	create_image(t_win win)
+{
+	t_data	img;
+
+	img.img = mlx_new_image(win.mlx, 1920, 1080);
+	img.addr = mlx_get_data_addr(img.img,
+			&img.bits_per_pixel, &img.line_length, &img.endian);
+	my_mlx_pixel_put(&img, 620, 350, 0x00FFFFFF);
+	mlx_put_image_to_window(win.mlx, win.mlx_win, img.img, 0, 0);
+	ft_printf("IMAGE CREATED\n");
 	return (img);
 }

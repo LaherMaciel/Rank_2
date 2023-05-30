@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:19:36 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/05/28 01:25:40 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/05/28 16:28:04 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,19 @@ typedef struct s_map
 	int	exit;
 }		t_map;
 
+typedef struct s_win
+{
+	void	*mlx;
+	void	*mlx_win;
+	int		colors;
+}		t_win;
+
 char	**creat_map(void);
 char	**read_file(void);
 int		map_base_check(char *map[]);
 
 //WINDOWS
-void	window_start(void);
-void	*create_image(void);
+t_win	window_start(void);
+t_data	create_image(t_win win);
 
 #endif // !SO_LONG_H
