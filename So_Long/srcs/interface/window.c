@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 18:46:12 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/05/31 00:25:53 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/05/31 15:27:01 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,105 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
+}
+
+t_data	color_win(t_data img, t_map *map, int x, int y)
+{
+	if (map->mapa[map->cont_heigth][map->cont_length] == '1')
+		my_mlx_pixel_put(&img, x, y, 0x00005AFF);
+	else if (map->mapa[map->cont_heigth][map->cont_length] == '0')
+		my_mlx_pixel_put(&img, x, y, 0x00DDDDFF);
+	else if (map->mapa[map->cont_heigth][map->cont_length] == 'p')
+		my_mlx_pixel_put(&img, x, y, 0x0000FF00);
+	else if (map->mapa[map->cont_heigth][map->cont_length] == 'c')
+		my_mlx_pixel_put(&img, x, y, 0x00DDCC5F);
+	else if (map->mapa[map->cont_heigth][map->cont_length] == 'e')
+		my_mlx_pixel_put(&img, x, y, 0x00FF0000);
+	return (img);
+}
+
+t_data	pain_block(t_data img, t_map *map)
+{
+	int	x;
+	int	y;
+	int	lgen;
+	int	hegn;
+	int	a;
+
+	a = 0;
+	lgen = map->block_length;
+	hegn = map->block_heigth;
+	ft_printf("length->%i\nheigth->%i\n", map->length, map->heigth);
+	ft_printf("block_length->%i\nblock_heigth->%i\n",
+		map->block_length, map->block_heigth);
+	y = -1;
+	while (++y < 1080 && map->cont_heigth < map->heigth)
+	{
+		x = -1;
+		map->cont_length = 0;
+		map->block_length = 1280 / map->length;
+		if (1080 % map->length >= 5 && a == 0)
+		{
+			map->block_length++;
+			a = 1;
+		}
+		if (1080 % map->length >= 5 && a == 1)
+			a = 0;
+		while (++x < 1920 && map->cont_length < map->length)
+		{
+			color_win(img, map, x, y);
+			if (x >= map->block_length)
+			{
+				map->block_length += lgen;
+				map->cont_length++;
+				ft_printf("x = %i, y = %i\n", x, y);
+			}
+			if (y >= map->block_heigth)
+			{
+				map->block_heigth += hegn;
+				map->cont_heigth++;
+				ft_printf("cont_length -> %i\ncont_heigth -> %i\n",
+					map->cont_length, map->cont_heigth);
+				ft_printf("x = %i, y = %i\n", x, y);
+			}
+			if (map->cont_heigth >= map->heigth)
+				break ;
+		}
+	}
+	ft_printf("length->%i\nheigth->%i\n", map->length, map->heigth);
+	ft_printf("block_length->%i\nblock_heigth->%i\n", lgen, hegn);
+	ft_printf("x = %i, y = %i\n", x, y);
+	return (img);
+}
+
+t_data	paint_wind(t_win *win, t_data img, t_map *map)
+{
+	map->length = ft_strlen(map->mapa[0]);
+	map->heigth = 0;
+	while (map->mapa[map->heigth])
+		map->heigth++;
+	map->block_length = 1280 / map->length;
+	if (1080 % map->length >= 5)
+		map->block_length++;
+	map->block_heigth = 720 / map->heigth;
+	if (720 % map->heigth >= 5)
+		map->block_heigth++;
+	map->cont_heigth = 0;
+	img = pain_block(img, map);
+	mlx_put_image_to_window(win->mlx, win->mlx_win, img.img, 0, 0);
+	return (img);
+}
+
+t_data	create_image(t_win win, t_map map)
+{
+	t_data	img;
+
+	img.img = mlx_new_image(win.mlx, 1920, 1080);
+	img.addr = mlx_get_data_addr(img.img,
+			&img.bits_per_pixel, &img.line_length, &img.endian);
+	img = paint_wind(&win, img, &map);
+	ft_printf("IMAGE CREATED\n");
+	return (img);
 }
 
 /*
@@ -78,113 +177,8 @@ void	paint_wind(t_win win, t_data img)
 	}
 	mlx_put_image_to_window(win.mlx, win.mlx_win, img.img, 0, 0);
 }
-*/
 
-t_data	color_win(t_data img, char **map, int i, int j, int x, int y)
-{
-	if (map[i][j] == '1')
-		my_mlx_pixel_put(&img, x, y, 0x00005AFF);
-	else if (map[i][j] == '0')
-		my_mlx_pixel_put(&img, x, y, 0x00DDDDFF);
-	else if (map[i][j] == 'p')
-		my_mlx_pixel_put(&img, x, y, 0x0000FF00);
-	else if (map[i][j] == 'c')
-		my_mlx_pixel_put(&img, x, y, 0x00DDCC5F);
-	else if (map[i][j] == 'e')
-		my_mlx_pixel_put(&img, x, y, 0x00FF0000);
-	return (img);
-}
 
-t_data	pain_block(int length, int heigth, t_data img, char **map)
-{
-	int	x;
-	int	y;
-	int	lgen;
-	int	hegn;
-	int	block_length;
-	int	block_heigth;
-	int	cont_length;
-	int	cont_heigth;
-	int	a;
-
-	a = 0;
-	block_length = 1280 / length;
-	if (1080 % length >= 5)
-		block_length++;
-	block_heigth = 720 / heigth;
-	if (720 % heigth >= 5)
-		block_heigth++;
-	lgen = block_length;
-	hegn = block_heigth;	
-	ft_printf("length->%i\nheigth->%i\n", length, heigth);
-	ft_printf("block_length->%i\nblock_heigth->%i\n", block_length, block_heigth);
-	y = -1;
-	cont_heigth = 0;
-	while (++y < 1080 && cont_heigth < heigth)
-	{
-		x = -1;
-		cont_length = 0;
-		block_length = 1280 / length;
-		if (1080 % length >= 5 && a == 0)
-		{
-			block_length++;
-			a = 1;
-		}
-		if (1080 % length >= 5 && a == 1)
-			a = 0;
-		while (++x < 1920 && cont_length < length)
-		{
-			color_win(img, map, cont_heigth, cont_length, x, y);
-			if (x >= block_length)
-			{
-				block_length += lgen;
-				cont_length++;
-				ft_printf("x = %i, y = %i\n", x, y);
-			}
-			if (y >= block_heigth)
-			{
-				block_heigth += hegn;
-				cont_heigth++;
-				ft_printf("cont_length -> %i\ncont_heigth -> %i\n", cont_length, cont_heigth);
-				ft_printf("x = %i, y = %i\n", x, y);
-			}
-			if (cont_heigth >= heigth)
-				break ;
-		}
-	}
-	ft_printf("length->%i\nheigth->%i\n", length, heigth);
-	ft_printf("block_length->%i\nblock_heigth->%i\n", lgen, hegn);
-	ft_printf("x = %i, y = %i\n", x, y);
-	return (img);
-}
-
-t_data	paint_wind(t_win *win, t_data img, char **map)
-{
-	int	length;
-	int	heigth;
-
-	length = ft_strlen(map[0]); // fazer uma função para remover o \n que o get_next_line retorna...
-	heigth = 0;
-	while (map[heigth])
-		heigth++;
-	img = pain_block(length, heigth, img, map);
-	mlx_put_image_to_window(win->mlx, win->mlx_win, img.img, 0, 0);
-	return (img);
-}
-
-t_data	create_image(t_win win, char **map)
-{
-	t_data	img;
-
-	img.img = mlx_new_image(win.mlx, 1920, 1080);
-	img.addr = mlx_get_data_addr(img.img,
-			&img.bits_per_pixel, &img.line_length, &img.endian);
-	img = paint_wind(&win, img, map);
-	ft_printf("IMAGE CREATED\n");
-	return (img);
-}
-
-/*
 	ft_printf("%c\n", map[0][0]);
 	j = -1;
 	while (++j < 1080)

@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:19:36 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/05/30 22:43:40 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/05/31 15:11:07 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,19 @@ typedef struct s_data{
 
 typedef struct s_map
 {
-	int	player;
-	int	walls;
-	int	floor;
-	int	collectibles;
-	int	exit;
-}		t_map;
+	char	**mapa;
+	int		player;
+	int		walls;
+	int		floor;
+	int		collectibles;
+	int		exit;
+	int		length;
+	int		heigth;
+	int		block_length;
+	int		block_heigth;
+	int		cont_length;
+	int		cont_heigth;
+}			t_map;
 
 typedef struct s_win
 {
@@ -50,11 +57,11 @@ typedef struct s_win
 
 char	**creat_map(void);
 char	**read_file(void);
-int		map_base_check(char *map[]);
+int		map_base_check(t_map map);
 
 //WINDOWS
-char	**creat_map_mod();
+char	**creat_map_mod(void);
 t_win	window_init(void);
-t_data	create_image(t_win win, char **map);
+t_data	create_image(t_win win, t_map map);
 
 #endif // !SO_LONG_H

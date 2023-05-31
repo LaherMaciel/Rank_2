@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_file.c                                        :+:      :+:    :+:   */
+/*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 19:13:45 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/05/31 00:07:19 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/05/31 15:39:56 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../../includes/so_long.h"
 
 char	**creat_map_mod()
 {
@@ -51,7 +51,8 @@ char	**creat_map(void)
 {
 	int		fds;
 	char	*a;
-	char 	**map;
+	char	**map;
+	char	**tmp;
 	int		i;
 	//int		cont;
 
@@ -59,19 +60,19 @@ char	**creat_map(void)
 	i = 0;
 	a = NULL;
 	map = NULL;
-	fds = open("mapa.txt", O_RDONLY);
+	fds = open("mapa2.txt", O_RDONLY);
 	if (fds == -1)
 	{
 		ft_printf("ERROR\n");
-		return NULL;
+		return (NULL);
 	}
 	while ((a = get_next_line(fds)) != NULL)
 	{
 		//ft_printf("%i - %s", cont++, a);
-		char **tmp = realloc(map, (i + 1) * sizeof(char *));
+		tmp = realloc(map, (i + 1) * sizeof(char *));
 		if (tmp == NULL)
 		{
-		ft_printf("ERROR\n");
+			ft_printf("ERROR\n");
 			free(a);
 			close(fds);
 			return NULL;
@@ -88,7 +89,7 @@ char	**creat_map(void)
 	return (map);
 }
 
-int	map_base_check(char **map)
+int	map_base_check(t_map map)
 {
 	int	x;
 	int	y;
@@ -104,38 +105,39 @@ int	map_base_check(char **map)
 	exit = 0;
 	collectible = 0;
 	x_max_len = 0;
-	while (map[++x])
+	while (map.mapa[++x])
 		x_max_len++;
 	x_max_len--;
 	x = -1;
-	base_max_y_len = ft_strlen(map[0]) - 1;
+	base_max_y_len = ft_strlen(map.mapa[0]) - 1;
 	if (base_max_y_len <= x_max_len)
 		return (0);
-	if ((map[0][0] != '1') || (map[x_max_len][base_max_y_len] != '1'))
+	if ((map.mapa[0][0] != '1') || (map.mapa[x_max_len][base_max_y_len] != '1'))
 		return (0);
 	while (++x < x_max_len)
 	{
 		y = -1;
-		y_max_len = ft_strlen(map[x]) - 1;
+		y_max_len = ft_strlen(map.mapa[x]) - 1;
 		ft_printf("x_max_len -> %i\n", x_max_len);
 		ft_printf("y_max_len -> %i\n", y_max_len);
 		ft_printf("base_max_y_len -> %i\n", base_max_y_len);
 		if (base_max_y_len != y_max_len)
 			return (0);
-		while (map[x][++y])
+		while (map.mapa[x][++y])
 		{
-			ft_printf("%c", map[x][y]);
-			if ((map[0][y] != '1') || (map[x][0] != '1'))
+			ft_printf("%c", map.mapa[x][y]);
+			if ((map.mapa[0][y] != '1') || (map.mapa[x][0] != '1'))
 				return (0);
-			else if ((map[x_max_len][y] != '1') || (map[x][y_max_len] != '1'))
+			else if ((map.mapa[x_max_len][y] != '1')
+				|| (map.mapa[x][y_max_len] != '1'))
 				return (0);
-			else if (map[x][y] == 'p')
+			else if (map.mapa[x][y] == 'p')
 				player++;
-			else if (map[x][y] == 'e')
+			else if (map.mapa[x][y] == 'e')
 				exit++;
-			else if (map[x][y] == 'c')
+			else if (map.mapa[x][y] == 'c')
 				collectible++;
-			else if (map[x][y] != '0' && map[x][y] != '1')
+			else if (map.mapa[x][y] != '0' && map.mapa[x][y] != '1')
 				return (0);
 		}
 		ft_printf("\n");

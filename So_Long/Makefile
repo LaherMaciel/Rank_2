@@ -6,14 +6,14 @@
 #    By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 15:36:42 by lwencesl          #+#    #+#              #
-#    Updated: 2023/05/30 22:45:00 by lwencesl         ###   ########.fr        #
+#    Updated: 2023/05/31 15:35:22 by lwencesl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 TEXTURE_C = 
 ANIMATION_C = test1.c
-MAP_PARSING_C = map_parser.c
+MAP_C = map_parser.c read_map.c
 MOVEMENT_C =
 INTERFACE_C = window.c\
 			colors.c
@@ -50,7 +50,7 @@ INTERFACE_LIST = $(INTERFACE_C)
 INTERFACE_DIRECTORY = interface/
 INTERFACE = $(addprefix $(INTERFACE_DIRECTORY), $(INTERFACE_LIST))
 
-SRCS_LIST = $(MOVEMENT) $(MAP) $(TEXTURES) $(ANIMATION) $(INTERFACE) main.c read_file.c
+SRCS_LIST = $(MOVEMENT) $(MAP) $(TEXTURES) $(ANIMATION) $(INTERFACE) main.c
 SRCS_DIRECTORY = srcs/
 SRCS = $(addprefix $(SRCS_DIRECTORY), $(SRCS_LIST))
 
