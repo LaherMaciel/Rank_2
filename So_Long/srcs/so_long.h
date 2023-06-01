@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:19:36 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/05/31 17:53:31 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/01 20:08:50 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,13 @@ typedef struct s_data{
 	int		endian;
 }				t_data;
 
-typedef struct s_map
+typedef struct s_win
 {
+	void	*mlx;
+	void	*mlx_win;
+	int		length_size;
+	int		heigth_size;
+	int		colors;
 	char	**mapa;
 	int		player;
 	int		walls;
@@ -46,29 +51,31 @@ typedef struct s_map
 	int		block_heigth;
 	int		cont_length;
 	int		cont_heigth;
-}			t_map;
-
-typedef struct s_win
-{
-	void	*mlx;
-	void	*mlx_win;
-	int		length_size;
-	int		heigth_size;
-	int		colors;
+	int		x;
+	int		y;
 }		t_win;
+
+//EVENTS
+//int	keycode_decisions(int keycode);
+int	keycode_decisions(int keycode, t_win *win);
+int	my_close(t_win *win);
+int	mov_left(t_win *win);
+int	mov_right(t_win *win);
+int	mov_up(t_win *win);
+int	mov_down(t_win *win);
 
 //CREAT_MAP
 char	**creat_map(void);
 char	**read_file(void);
-int		map_base_check(t_map map);
+int		map_base_check(t_win map);
 
 //WINDOWS
 char	**creat_map_mod(void);
 t_win	window_init(t_win win);
-t_data	create_image(t_win win, t_map map);
+t_data	create_image(t_win win);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 //COLORS
-t_data	color_win(t_data img, t_map *map, int x, int y);
+t_data	color_win(t_data img, t_win *win, int x, int y);
 
 #endif // !SO_LONG_H

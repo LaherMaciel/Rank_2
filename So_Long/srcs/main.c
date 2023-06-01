@@ -6,39 +6,39 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:19:10 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/01 14:05:30 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/01 20:44:47 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "so_long.h"
 
 void	window_start(t_win win)
 {
-	t_map	map;
 	t_data	img;
 	int		i;
 
-	//map.mapa = creat_map_mod();
-	map.mapa = creat_map();
-	if (map.mapa == NULL)
+	win.mapa = creat_map_mod();
+	//win.mapa = creat_map();
+	if (win.mapa == NULL)
 		return ;
-	if (map_base_check(map) == 0)
+	if (map_base_check(win) == 0)
 	{
 		ft_printf("ERROR\n");
 		return ;
 	}
+	ft_printf("%s\n\n", win.mapa[0]);
 	win = window_init(win);
-	img = create_image(win, map);
-	mlx_hook(win.mlx_win, 2, 1L<<0, close, &win);
-	mlx_hook(win.mlx_win, 2, 1L<<1, close, &win);
-	mlx_hook(win.mlx_win, 2, 1L<<2, close, &win);
-	mlx_hook(win.mlx_win, 2, 1L<<3, close, &win);
+	img = create_image(win);
+	win.mapa = win.mapa;
+	mlx_hook(win.mlx_win, 2, 1L<<0, keycode_decisions, &win);
+	win.mapa = win.mapa;
+	//mlx_loop_hook(win.mlx, create_image, &win);
 	mlx_loop(win.mlx);
 	ft_printf("img: %p\n", img);
 	i = -1;
-	while (map.mapa[++i])
-		free(map.mapa[i]);
-	free(map.mapa);
+	while (win.mapa[++i])
+		free(win.mapa[i]);
+	free(win.mapa);
 }
 
 int	main(void)
@@ -50,6 +50,19 @@ int	main(void)
 	window_start(win);
 	return (0);
 }
+
+/*
+int	main(void)
+{
+	void	*mlx;
+	void	*mlx_win;
+
+	mlx = mlx_init();
+	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world");
+	mlx_loop(mlx);
+	return (0);
+}*/
+
 
 /*
 typedef struct s_vars {

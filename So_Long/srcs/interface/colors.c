@@ -6,11 +6,11 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 18:12:35 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/05/31 17:56:39 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/01 17:20:15 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/so_long.h"
+#include "../so_long.h"
 
 /*
 Since each byte contains 2^8 = 256 values (1 byte = 8 bits),

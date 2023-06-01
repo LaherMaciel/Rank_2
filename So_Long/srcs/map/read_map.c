@@ -6,11 +6,11 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 19:13:45 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/05/31 18:11:30 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/01 20:06:30 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/so_long.h"
+#include "../so_long.h"
 
 char	**creat_map_mod()
 {
@@ -19,11 +19,11 @@ char	**creat_map_mod()
 
 	//map_test = "11111111111111111111111\n1pce0000000000000000001\n10000000000000000000001\n10000000000000000000001\n10000000000000000000001\n11111111111111111111111";
 	map_test = "1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111\n\
-1p00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001\n\
+1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001\n\
 1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001\n\
 1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001\n\
 10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000c0000000000001\n\
-1000000000000000000000000000000000000000000000c00000000000000000000000000000000000000000000000000000000000001\n\
+1000000000000000000000000000000000000p00000000c00000000000000000000000000000000000000000000000000000000000001\n\
 1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001\n\
 1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001\n\
 1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001\n\
@@ -89,7 +89,7 @@ char	**creat_map(void)
 	return (map);
 }
 
-int	map_base_check(t_map map)
+int	map_base_check(t_win win)
 {
 	int	x;
 	int	y;
@@ -105,39 +105,39 @@ int	map_base_check(t_map map)
 	exit = 0;
 	collectible = 0;
 	x_max_len = 0;
-	while (map.mapa[++x])
+	while (win.mapa[++x])
 		x_max_len++;
 	x_max_len--;
 	x = -1;
-	base_max_y_len = ft_strlen(map.mapa[0]) - 1;
+	base_max_y_len = ft_strlen(win.mapa[0]) - 1;
 	if (base_max_y_len <= x_max_len)
 		return (0);
-	if ((map.mapa[0][0] != '1') || (map.mapa[x_max_len][base_max_y_len] != '1'))
+	if ((win.mapa[0][0] != '1') || (win.mapa[x_max_len][base_max_y_len] != '1'))
 		return (0);
 	while (++x < x_max_len)
 	{
 		y = -1;
-		y_max_len = ft_strlen(map.mapa[x]) - 1;
+		y_max_len = ft_strlen(win.mapa[x]) - 1;
 		ft_printf("x_max_len -> %i\n", x_max_len);
 		ft_printf("y_max_len -> %i\n", y_max_len);
 		ft_printf("base_max_y_len -> %i\n", base_max_y_len);
 		if (base_max_y_len != y_max_len)
 			return (0);
-		while (map.mapa[x][++y])
+		while (win.mapa[x][++y])
 		{
-			ft_printf("%c", map.mapa[x][y]);
-			if ((map.mapa[0][y] != '1') || (map.mapa[x][0] != '1'))
+			ft_printf("%c", win.mapa[x][y]);
+			if ((win.mapa[0][y] != '1') || (win.mapa[x][0] != '1'))
 				return (0);
-			else if ((map.mapa[x_max_len][y] != '1')
-				|| (map.mapa[x][y_max_len] != '1'))
+			else if ((win.mapa[x_max_len][y] != '1')
+				|| (win.mapa[x][y_max_len] != '1'))
 				return (0);
-			else if (map.mapa[x][y] == 'p')
+			else if (win.mapa[x][y] == 'p')
 				player++;
-			else if (map.mapa[x][y] == 'e')
+			else if (win.mapa[x][y] == 'e')
 				exit++;
-			else if (map.mapa[x][y] == 'c')
+			else if (win.mapa[x][y] == 'c')
 				collectible++;
-			else if (map.mapa[x][y] != '0' && map.mapa[x][y] != '1')
+			else if (win.mapa[x][y] != '0' && win.mapa[x][y] != '1')
 				return (0);
 		}
 		ft_printf("\n");

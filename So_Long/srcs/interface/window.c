@@ -6,11 +6,11 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 18:46:12 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/05/31 17:59:47 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/01 20:09:12 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/so_long.h"
+#include "../so_long.h"
 
 /*=============================================
 include the 'mlx.h' on your '.h' project file
@@ -38,88 +38,88 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-t_data	color_win(t_data img, t_map *map, int x, int y)
+t_data	color_win(t_data img, t_win *win, int x, int y)
 {
-	if (map->mapa[map->cont_heigth][map->cont_length] == '1')
+	if (win->mapa[win->cont_heigth][win->cont_length] == '1')
 		my_mlx_pixel_put(&img, x, y, 0x00005AFF);
-	else if (map->mapa[map->cont_heigth][map->cont_length] == '0')
+	else if (win->mapa[win->cont_heigth][win->cont_length] == '0')
 		my_mlx_pixel_put(&img, x, y, 0x00DDDDFF);
-	else if (map->mapa[map->cont_heigth][map->cont_length] == 'p')
+	else if (win->mapa[win->cont_heigth][win->cont_length] == 'p')
 		my_mlx_pixel_put(&img, x, y, 0x0000FF00);
-	else if (map->mapa[map->cont_heigth][map->cont_length] == 'c')
+	else if (win->mapa[win->cont_heigth][win->cont_length] == 'c')
 		my_mlx_pixel_put(&img, x, y, 0x00DDCC5F);
-	else if (map->mapa[map->cont_heigth][map->cont_length] == 'e')
+	else if (win->mapa[win->cont_heigth][win->cont_length] == 'e')
 		my_mlx_pixel_put(&img, x, y, 0x00FF0000);
 	return (img);
 }
 
-t_data	pain_block(t_win *win, t_data img, t_map *map)
+t_data	pain_block(t_win *win, t_data img)
 {
 	int	x;
 	int	y;
 	int	lgen;
 	int	hegn;
 
-	lgen = map->block_length;
-	hegn = map->block_heigth;
-	ft_printf("length->%i\nheigth->%i\n", map->length, map->heigth);
+	lgen = win->block_length;
+	hegn = win->block_heigth;
+	ft_printf("length->%i\nheigth->%i\n", win->length, win->heigth);
 	ft_printf("block_length->%i\nblock_heigth->%i\n",
-		map->block_length, map->block_heigth);
+		win->block_length, win->block_heigth);
 	y = -1;
-	while (++y < win->heigth_size && map->cont_heigth < map->heigth)
+	while (++y < win->heigth_size && win->cont_heigth < win->heigth)
 	{
 		x = -1;
-		map->cont_length = 0;
-		map->block_length = win->length_size / map->length;
-		while (++x < win->length_size && map->cont_length < map->length)
+		win->cont_length = 0;
+		win->block_length = win->length_size / win->length;
+		while (++x < win->length_size && win->cont_length < win->length)
 		{
-			color_win(img, map, x, y);
-			if (x >= map->block_length)
+			color_win(img, win, x, y);
+			if (x >= win->block_length)
 			{
-				map->block_length += lgen;
-				map->cont_length++;
+				win->block_length += lgen;
+				win->cont_length++;
 				//ft_printf("x = %i, y = %i\n", x, y);
 			}
-			if (y >= map->block_heigth)
+			if (y >= win->block_heigth)
 			{
-				map->block_heigth += hegn;
-				map->cont_heigth++;
+				win->block_heigth += hegn;
+				win->cont_heigth++;
 				//ft_printf("cont_length -> %i\ncont_heigth -> %i\n",
-				//	map->cont_length, map->cont_heigth);
+				//	win->cont_length, win->cont_heigth);
 				//ft_printf("x = %i, y = %i\n", x, y);
 			}
-			if (map->cont_heigth >= map->heigth)
+			if (win->cont_heigth >= win->heigth)
 				break ;
 		}
 	}
-	ft_printf("length->%i\nheigth->%i\n", map->length, map->heigth);
+	ft_printf("length->%i\nheigth->%i\n", win->length, win->heigth);
 	ft_printf("block_length->%i\nblock_heigth->%i\n", lgen, hegn);
 	ft_printf("x = %i, y = %i\n", x, y);
 	return (img);
 }
 
-t_data	paint_wind(t_win *win, t_data img, t_map *map)
+t_data	paint_wind(t_win *win, t_data img)
 {
-	map->length = ft_strlen(map->mapa[0]);
-	map->heigth = 0;
-	while (map->mapa[map->heigth])
-		map->heigth++;
-	map->block_length = win->length_size / map->length;
-	map->block_heigth = win->heigth_size / map->heigth;
-	map->cont_heigth = 0;
-	img = pain_block(win, img, map);
+	win->length = ft_strlen(win->mapa[0]);
+	win->heigth = 0;
+	while (win->mapa[win->heigth])
+		win->heigth++;
+	win->block_length = win->length_size / win->length;
+	win->block_heigth = win->heigth_size / win->heigth;
+	win->cont_heigth = 0;
+	img = pain_block(win, img);
 	mlx_put_image_to_window(win->mlx, win->mlx_win, img.img, 0, 0);
 	return (img);
 }
 
-t_data	create_image(t_win win, t_map map)
+t_data	create_image(t_win win)
 {
 	t_data	img;
 
 	img.img = mlx_new_image(win.mlx, win.length_size, win.heigth_size);
 	img.addr = mlx_get_data_addr(img.img,
 			&img.bits_per_pixel, &img.line_length, &img.endian);
-	img = paint_wind(&win, img, &map);
+	img = paint_wind(&win, img);
 	ft_printf("IMAGE CREATED\n");
 	return (img);
 }

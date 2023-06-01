@@ -6,7 +6,7 @@
 #    By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 15:36:42 by lwencesl          #+#    #+#              #
-#    Updated: 2023/06/01 14:11:30 by lwencesl         ###   ########.fr        #
+#    Updated: 2023/06/01 18:12:29 by lwencesl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = so_long
 TEXTURE_C = 
 ANIMATION_C = test1.c
 MAP_C = map_parser.c read_map.c
-EVENTS_C = base_arrow_movs.c
+EVENTS_C = base_arrow_movs.c keycode.c
 INTERFACE_C = window.c\
 			colors.c
 
@@ -27,7 +27,7 @@ MLX_HEADER = $(MLX_DIRECTORY)mlx.h
 MLX = $(MLX_DIRECTORY)libmlx.a
 
 HEADERS_LIST = so_long.h
-HEADER_DIRECTORY = includes/
+HEADER_DIRECTORY = srcs/
 HEADERS =$(addprefix $(HEADER_DIRECTORY), $(HEADERS_LIST))
 
 TEXTURES_LIST = $(TEXTURE_C)
@@ -38,17 +38,14 @@ MAP_LIST = $(MAP_C)
 MAP_DIRECTORY = map/
 MAP = $(addprefix $(MAP_DIRECTORY), $(MAP_LIST))
 
-EVENTS_LIST = $(EVENTS_C)
 EVENTS_DIRECTORY = events/
-EVENTS = $(addprefix $(EVENTS_DIRECTORY), $(EVENTS_LIST))
+EVENTS = $(addprefix $(EVENTS_DIRECTORY), $(EVENTS_C))
 
-ANIMATION_LIST = $(ANIMATION_C)
 ANIMATION_DIRECTORY = animation/
-ANIMATION = $(addprefix $(ANIMATION_DIRECTORY), $(ANIMATION_LIST))
+ANIMATION = $(addprefix $(ANIMATION_DIRECTORY), $(ANIMATION_C))
 
-INTERFACE_LIST = $(INTERFACE_C)
 INTERFACE_DIRECTORY = interface/
-INTERFACE = $(addprefix $(INTERFACE_DIRECTORY), $(INTERFACE_LIST))
+INTERFACE = $(addprefix $(INTERFACE_DIRECTORY), $(INTERFACE_C))
 
 SRCS_LIST = $(EVENTS) $(MAP) $(TEXTURES) $(ANIMATION) $(INTERFACE) main.c
 SRCS_DIRECTORY = srcs/
