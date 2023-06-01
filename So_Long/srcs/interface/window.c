@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 18:46:12 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/05/31 15:27:01 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/05/31 17:59:47 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,10 @@ mlx_new_image() ->
 mlx_loop() -> initiate the window rendering.
 ==============================================*/
 
-t_win	window_init(void)
+t_win	window_init(t_win win)
 {
-	t_win	win;
-
 	win.mlx = mlx_init();
-	win.mlx_win = mlx_new_window(win.mlx, 1280, 720, "Hello world");
+	win.mlx_win = mlx_new_window(win.mlx, win.length_size, win.heigth_size, "Hello world");
 	ft_printf("WINDOOW CREATED\n");
 	return (win);
 }
@@ -55,49 +53,40 @@ t_data	color_win(t_data img, t_map *map, int x, int y)
 	return (img);
 }
 
-t_data	pain_block(t_data img, t_map *map)
+t_data	pain_block(t_win *win, t_data img, t_map *map)
 {
 	int	x;
 	int	y;
 	int	lgen;
 	int	hegn;
-	int	a;
 
-	a = 0;
 	lgen = map->block_length;
 	hegn = map->block_heigth;
 	ft_printf("length->%i\nheigth->%i\n", map->length, map->heigth);
 	ft_printf("block_length->%i\nblock_heigth->%i\n",
 		map->block_length, map->block_heigth);
 	y = -1;
-	while (++y < 1080 && map->cont_heigth < map->heigth)
+	while (++y < win->heigth_size && map->cont_heigth < map->heigth)
 	{
 		x = -1;
 		map->cont_length = 0;
-		map->block_length = 1280 / map->length;
-		if (1080 % map->length >= 5 && a == 0)
-		{
-			map->block_length++;
-			a = 1;
-		}
-		if (1080 % map->length >= 5 && a == 1)
-			a = 0;
-		while (++x < 1920 && map->cont_length < map->length)
+		map->block_length = win->length_size / map->length;
+		while (++x < win->length_size && map->cont_length < map->length)
 		{
 			color_win(img, map, x, y);
 			if (x >= map->block_length)
 			{
 				map->block_length += lgen;
 				map->cont_length++;
-				ft_printf("x = %i, y = %i\n", x, y);
+				//ft_printf("x = %i, y = %i\n", x, y);
 			}
 			if (y >= map->block_heigth)
 			{
 				map->block_heigth += hegn;
 				map->cont_heigth++;
-				ft_printf("cont_length -> %i\ncont_heigth -> %i\n",
-					map->cont_length, map->cont_heigth);
-				ft_printf("x = %i, y = %i\n", x, y);
+				//ft_printf("cont_length -> %i\ncont_heigth -> %i\n",
+				//	map->cont_length, map->cont_heigth);
+				//ft_printf("x = %i, y = %i\n", x, y);
 			}
 			if (map->cont_heigth >= map->heigth)
 				break ;
@@ -115,14 +104,10 @@ t_data	paint_wind(t_win *win, t_data img, t_map *map)
 	map->heigth = 0;
 	while (map->mapa[map->heigth])
 		map->heigth++;
-	map->block_length = 1280 / map->length;
-	if (1080 % map->length >= 5)
-		map->block_length++;
-	map->block_heigth = 720 / map->heigth;
-	if (720 % map->heigth >= 5)
-		map->block_heigth++;
+	map->block_length = win->length_size / map->length;
+	map->block_heigth = win->heigth_size / map->heigth;
 	map->cont_heigth = 0;
-	img = pain_block(img, map);
+	img = pain_block(win, img, map);
 	mlx_put_image_to_window(win->mlx, win->mlx_win, img.img, 0, 0);
 	return (img);
 }
@@ -131,7 +116,7 @@ t_data	create_image(t_win win, t_map map)
 {
 	t_data	img;
 
-	img.img = mlx_new_image(win.mlx, 1920, 1080);
+	img.img = mlx_new_image(win.mlx, win.length_size, win.heigth_size);
 	img.addr = mlx_get_data_addr(img.img,
 			&img.bits_per_pixel, &img.line_length, &img.endian);
 	img = paint_wind(&win, img, &map);

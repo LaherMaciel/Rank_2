@@ -6,7 +6,7 @@
 #    By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 15:36:42 by lwencesl          #+#    #+#              #
-#    Updated: 2023/05/31 15:35:22 by lwencesl         ###   ########.fr        #
+#    Updated: 2023/06/01 14:11:30 by lwencesl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = so_long
 TEXTURE_C = 
 ANIMATION_C = test1.c
 MAP_C = map_parser.c read_map.c
-MOVEMENT_C =
+EVENTS_C = base_arrow_movs.c
 INTERFACE_C = window.c\
 			colors.c
 
@@ -38,9 +38,9 @@ MAP_LIST = $(MAP_C)
 MAP_DIRECTORY = map/
 MAP = $(addprefix $(MAP_DIRECTORY), $(MAP_LIST))
 
-MOVEMENT_LIST = $(MOVEMENT_C)
-MOVEMENT_DIRECTORY = movement/
-MOVEMENT = $(addprefix $(MOVEMENT_DIRECTORY), $(MOVEMENT_LIST))
+EVENTS_LIST = $(EVENTS_C)
+EVENTS_DIRECTORY = events/
+EVENTS = $(addprefix $(EVENTS_DIRECTORY), $(EVENTS_LIST))
 
 ANIMATION_LIST = $(ANIMATION_C)
 ANIMATION_DIRECTORY = animation/
@@ -50,7 +50,7 @@ INTERFACE_LIST = $(INTERFACE_C)
 INTERFACE_DIRECTORY = interface/
 INTERFACE = $(addprefix $(INTERFACE_DIRECTORY), $(INTERFACE_LIST))
 
-SRCS_LIST = $(MOVEMENT) $(MAP) $(TEXTURES) $(ANIMATION) $(INTERFACE) main.c
+SRCS_LIST = $(EVENTS) $(MAP) $(TEXTURES) $(ANIMATION) $(INTERFACE) main.c
 SRCS_DIRECTORY = srcs/
 SRCS = $(addprefix $(SRCS_DIRECTORY), $(SRCS_LIST))
 
@@ -70,7 +70,7 @@ $(NAME): $(LIBFT) $(MLX) $(OBJECTS_DIRECTORY) $(OBJECTS)
 $(OBJECTS_DIRECTORY):
 	mkdir -p $(OBJECTS_DIRECTORY)
 	mkdir -p $(OBJECTS_DIRECTORY)$(TEXTURES_DIRECTORY)
-	mkdir -p $(OBJECTS_DIRECTORY)$(MOVEMENT_DIRECTORY)
+	mkdir -p $(OBJECTS_DIRECTORY)$(EVENTS_DIRECTORY)
 	mkdir -p $(OBJECTS_DIRECTORY)$(MAP_DIRECTORY)
 	mkdir -p $(OBJECTS_DIRECTORY)$(ANIMATION_DIRECTORY)
 	mkdir -p $(OBJECTS_DIRECTORY)$(INTERFACE_DIRECTORY)
