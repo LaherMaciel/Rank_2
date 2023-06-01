@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:19:10 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/01 20:44:47 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/01 21:26:46 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	window_start(t_win win)
 {
+	void	*wall;
 	t_data	img;
 	int		i;
 
@@ -31,6 +32,8 @@ void	window_start(t_win win)
 	img = create_image(win);
 	win.mapa = win.mapa;
 	mlx_hook(win.mlx_win, 2, 1L<<0, keycode_decisions, &win);
+	//mlx_key_hook()
+	wall = mlx_xpm_file_to_image(win.mlx, "path/to/file", 64, 64);
 	win.mapa = win.mapa;
 	//mlx_loop_hook(win.mlx, create_image, &win);
 	mlx_loop(win.mlx);
