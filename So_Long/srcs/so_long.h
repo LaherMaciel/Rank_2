@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:19:36 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/01 20:08:50 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/02 16:51:35 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ typedef struct s_win
 	int		player;
 	int		walls;
 	int		floor;
-	int		collectibles;
+	int			;
 	int		exit;
 	int		length;
 	int		heigth;
@@ -63,6 +63,7 @@ int	mov_left(t_win *win);
 int	mov_right(t_win *win);
 int	mov_up(t_win *win);
 int	mov_down(t_win *win);
+int	mouse_handler(int mousekey, int x, int y, t_win *win);
 
 //CREAT_MAP
 char	**creat_map(void);

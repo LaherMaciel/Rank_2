@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 14:08:25 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/01 19:24:05 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/02 15:20:13 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	mov_up(t_win *win)
 				if (win->mapa[i - 1][j] != '1')
 				{
 					win->mapa[i - 1][j] = 'p';
-					win->mapa[i][j] = '0';	
+					win->mapa[i][j] = '0';
 				}
 			}
 		}
