@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 18:12:35 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/05 23:44:21 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/06 16:16:55 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	get_b(int trgb)
 	return (trgb & 0xFF);
 }
 
-t_data	color_win(t_data img, t_win *win, int x, int y)
+/*t_data	color_win(t_data img, t_win *win, int x, int y)
 {
 	if (win->mapa[win->cont_heigth][win->cont_length] == '1')
 		my_mlx_pixel_put(&img, x, y, 0x00005AFF);
@@ -66,4 +66,4 @@ t_data	color_win(t_data img, t_win *win, int x, int y)
 	else if (win->mapa[win->cont_heigth][win->cont_length] == 'e')
 		my_mlx_pixel_put(&img, x, y, 0x00FF0000);
 	return (img);
-}
+}*/

@@ -6,17 +6,16 @@
 #    By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 15:36:42 by lwencesl          #+#    #+#              #
-#    Updated: 2023/06/05 23:41:49 by lwencesl         ###   ########.fr        #
+#    Updated: 2023/06/06 16:14:38 by lwencesl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 TEXTURE_C = 
-ANIMATION_C = test1.c
+ANIMATION_C = 
 MAP_C = map_parser.c read_map.c
 EVENTS_C = base_movs.c keycode.c mousecode.c
-INTERFACE_C = window2.c\
-			colors.c
+INTERFACE_C = window2.c colors.c
 
 LIBFT_DIRECTORY = libft/
 LIBFT_HEADER = $(LIBFT_DIRECTORY)libft.h

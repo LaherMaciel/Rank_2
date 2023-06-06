@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 23:36:13 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/05 23:43:22 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/06 16:15:23 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,12 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
+/*
 t_data	paint_wind(t_win *win, t_data img)
 {
 	
 }
+*/
 
 t_data	create_image(t_win win)
 {
