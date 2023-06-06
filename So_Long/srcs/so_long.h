@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:19:36 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/06 15:21:36 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/06 19:08:33 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,7 @@ typedef struct s_win
 	int		colors;
 	char	**mapa;
 	int		player;
-	int		player_walk_left;
-	int		player_walk_rigth;
+	int		player_walk;
 	int		walls;
 	int		floor;
 	int		collectibles;
