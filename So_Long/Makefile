@@ -6,16 +6,16 @@
 #    By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 15:36:42 by lwencesl          #+#    #+#              #
-#    Updated: 2023/06/06 21:13:17 by lwencesl         ###   ########.fr        #
+#    Updated: 2023/06/06 23:17:03 by lwencesl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 TEXTURE_C = 
 ANIMATION_C = player_look.c player_walk.c collectibles_animations.c \
-	floor_animations.c Wall_animations.c
+	floor_animations.c wall_animations.c
 MAP_C = map_parser.c read_map.c
-EVENTS_C = base_movs.c keycode.c mousecode.c
+EVENTS_C = base_movs.c keycode.c destroy_window.c
 INTERFACE_C = window2.c colors.c images.c
 
 LIBFT_DIRECTORY = libft/

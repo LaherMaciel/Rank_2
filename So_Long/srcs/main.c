@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:19:10 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/06 20:55:34 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/06 22:59:33 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	window_start(t_win win)
 {
-	//void	*wall;
 	t_data	img;
 	int		i;
 
@@ -29,13 +28,10 @@ void	window_start(t_win win)
 	}
 	ft_printf("%s\n\n", win.mapa[0]);
 	win = window_init(win);
-	img = create_image(win);
+	img = create_image(win, player_image(&win));
 	mlx_hook(win.mlx_win, 2, 1L<<0, keycode_decisions, &win);
 	mlx_hook(win.mlx_win, 17, 1L, window_destroy, &win);
-	//mlx_key_hook(win.mlx_win, mouse_hook, &win);
-	//wall = mlx_xpm_file_to_image(win.mlx, "path/to/file", 64, 64);
 	win.mapa = win.mapa;
-	//mlx_loop_hook(win.mlx, create_image, &win);
 	mlx_loop(win.mlx);
 	ft_printf("img: %p\n", img);
 	i = -1;
@@ -50,8 +46,8 @@ int	main(void)
 
 	win.length_size = 1920;
 	win.heigth_size = 1080;
-	win.block_heigth = 64;
-	win.block_length = 64;
+	win.image_heigth = 64;
+	win.image_length = 64;
 	window_start(win);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 23:36:13 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/06 21:10:35 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/06 23:20:02 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ mlx_loop() -> initiate the window rendering.
 t_win	window_init(t_win win)
 {
 	win.mlx = mlx_init();
-	win.mlx_win = mlx_new_window(win.mlx, win.length_size, win.heigth_size, "Hello world");
+	win.mlx_win = mlx_new_window(win.mlx,
+			win.length_size, win.heigth_size, "Hello world");
 	ft_printf("WINDOOW CREATED\n");
 	return (win);
 }
@@ -40,109 +41,53 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 
 t_data	color_win(t_data img, t_win *win, int x, int y)
 {
-	if (win->mapa[win->cont_heigth][win->cont_length] == '1')
+	if (win->mapa[win->i][win->j] == '1')
 		mlx_put_image_to_window(win->mlx, win->mlx_win, img.img_wall, x, y);
-	else if (win->mapa[win->cont_heigth][win->cont_length] == '0')
+	else if (win->mapa[win->i][win->j] == '0')
 		mlx_put_image_to_window(win->mlx, win->mlx_win, img.img_floor, x, y);
-	else if (win->mapa[win->cont_heigth][win->cont_length] == 'p')
+	else if (win->mapa[win->i][win->j] == 'p')
 		mlx_put_image_to_window(win->mlx, win->mlx_win, img.img_player, x, y);
-	else if (win->mapa[win->cont_heigth][win->cont_length] == 'c')
-		mlx_put_image_to_window(win->mlx, win->mlx_win, img.img_collectibles, x, y);
-	else if (win->mapa[win->cont_heigth][win->cont_length] == 'e')
+	else if (win->mapa[win->i][win->j] == 'c')
+		mlx_put_image_to_window(win->mlx, win->mlx_win,
+			img.img_collectibles, x, y);
+	else if (win->mapa[win->i][win->j] == 'e')
 		mlx_put_image_to_window(win->mlx, win->mlx_win, img.img_exit, x, y);
+	win->i++;
+	win->j++;
 	return (img);
 }
 
-t_data	pain_block(t_win *win, t_data img)
+t_data	images_on_window(t_win *win, t_data img)
 {
 	int	x;
 	int	y;
-	int	lgen;
-	int	hegn;
-	int	in;
 
-	lgen = win->block_length;
-	hegn = win->block_heigth;
-	ft_printf("length->%i\nheigth->%i\n", win->length, win->heigth);
-	ft_printf("block_length->%i\nblock_heigth->%i\n",
-		win->block_length, win->block_heigth);
+	win->i = 0;
+	win->j = 0;
 	y = -1;
-	in = 0;
-	while (++y < win->heigth_size && win->cont_heigth < win->heigth)
+	while (++y < win->heigth_size && win->mapa[win->i])
 	{
 		x = -1;
-		win->cont_length = 0;
-		win->block_length = win->length_size / win->length;
-		while (++x < win->length_size && win->cont_length < win->length)
+		while (++x < win->length_size && win->mapa[win->i][win->j])
 		{
-			if (in == 0)
-			{
+			if (x == 0
+				|| (x % win->image_length == 0 && y % win->image_heigth == 0))
 				color_win(img, win, x, y);
-				in = 1;
-			}
-			if (x >= win->block_length)
-			{
-				win->block_length += lgen;
-				win->cont_length++;
-				in = 0;
-				//ft_printf("x = %i, y = %i\n", x, y);
-			}
-			if (y >= win->block_heigth)
-			{
-				win->block_heigth += hegn;
-				win->cont_heigth++;
-				in = 0;
-				//ft_printf("cont_length -> %i\ncont_heigth -> %i\n",
-				//	win->cont_length, win->cont_heigth);
-				//ft_printf("x = %i, y = %i\n", x, y);
-			}
-			if (win->cont_heigth >= win->heigth)
-				break ;
 		}
 	}
-	ft_printf("length->%i\nheigth->%i\n", win->length, win->heigth);
-	ft_printf("block_length->%i\nblock_heigth->%i\n", lgen, hegn);
-	ft_printf("x = %i, y = %i\n", x, y);
 	return (img);
 }
 
-t_data	create_image(t_win win)
+t_data	create_image(t_win win, void *img_player)
 {
 	t_data	img;
 
 	img.img_wall = wall_image(&win);
-	img.img_player = player_image(&win);
+	img.img_player = img_player;
 	img.img_floor = floor_image(&win);
 	img.img_collectibles = collectibles_image(&win);
 	img.img_exit = exit_image(&win);
-	win.length = ft_strlen(win.mapa[0]);
-	win.heigth = 0;
-	while (win.mapa[win.heigth])
-		win.heigth++;
-	win.cont_heigth = 0;
-	img = pain_block(&win, img);
+	img = images_on_window(&win, img);
 	ft_printf("IMAGE CREATED\n");
 	return (img);
-}
-
-void	destroy_map(t_win *win)
-{
-	int	i;
-
-	i = 0;
-	while (win->mapa[i])
-	{
-		free(win->mapa[i]);
-		i++;
-	}
-	free(win->mapa);
-}
-
-int	window_destroy(t_win *win)
-{
-	mlx_destroy_window(win->mlx, win->mlx_win);
-	mlx_destroy_display(win->mlx);
-	destroy_map(win);
-	free(win->mlx);
-	exit(0);
 }

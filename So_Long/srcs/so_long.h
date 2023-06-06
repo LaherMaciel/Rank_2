@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:19:36 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/06 21:11:17 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/06 23:15:04 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ typedef struct s_win
 	int		colors;
 	char	**mapa;
 	int		player;
+	int		player_x;
+	int		player_y;
 	int		player_walk;
 	int		player_look;
 	int		walls;
@@ -53,18 +55,13 @@ typedef struct s_win
 	int		exit;
 	int		image_length;
 	int		image_heigth;
-	int		block_length;
-	int		block_heigth;
-	int		cont_length;
-	int		cont_heigth;
-	int		length;
-	int		heigth;
+	int		i;
+	int		j;
 	int		x;
 	int		y;
 }		t_win;
 
 //EVENTS
-//int	keycode_decisions(int keycode);
 int		keycode_decisions(int keycode, t_win *win);
 int		my_close(t_win *win);
 void	mov_left(t_win *win);
@@ -72,6 +69,7 @@ void	mov_right(t_win *win);
 void	mov_up(t_win *win);
 void	mov_down(t_win *win);
 int		mouse_handler(int mousekey, int x, int y, t_win *win);
+int		window_destroy(t_win *win);
 
 //CREAT_MAP
 char	**creat_map(void);
@@ -81,9 +79,8 @@ int		map_base_check(t_win map);
 //WINDOWS
 char	**creat_map_mod(void);
 t_win	window_init(t_win win);
-t_data	create_image(t_win win);
+t_data	create_image(t_win win, void *img_player);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-int		window_destroy(t_win *win);
 
 //IMAGE
 void	*wall_image(t_win *win);
@@ -95,10 +92,14 @@ void	*exit_image(t_win *win);
 //COLORS
 t_data	color_win(t_data img, t_win *win, int x, int y);
 
-//PALYER_WALK
+//ANIMATIONS
 void	*walk_up(t_win *win);
 void	*walk_down(t_win *win);
 void	*walk_left(t_win *win);
 void	*walk_right(t_win *win);
+void	*look_up(t_win *win);
+void	*look_down(t_win *win);
+void	*look_left(t_win *win);
+void	*look_right(t_win *win);
 
 #endif // !SO_LONG_H
