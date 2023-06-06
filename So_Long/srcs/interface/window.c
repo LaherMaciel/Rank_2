@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 18:46:12 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/05 23:37:14 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/06 20:56:04 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ t_data	pain_block(t_win *win, t_data img)
 
 	lgen = win->block_length;
 	hegn = win->block_heigth;
-	ft_printf("length->%i\nheigth->%i\n", win->length, win->heigth);
 	ft_printf("block_length->%i\nblock_heigth->%i\n",
 		win->block_length, win->block_heigth);
 	y = -1;

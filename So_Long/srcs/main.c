@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:19:10 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/05 23:31:32 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/06 20:55:34 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ int	main(void)
 
 	win.length_size = 1920;
 	win.heigth_size = 1080;
+	win.block_heigth = 64;
+	win.block_length = 64;
 	window_start(win);
 	return (0);
 }

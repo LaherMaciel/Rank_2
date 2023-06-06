@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 15:26:48 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/06 19:15:30 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/06 20:14:38 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,34 +16,34 @@
 	HERE WILL DEAL WITH THE IMAGE OF WHERE THE PLAYER LOOK
 */
 
-t_data	*look_up(t_win *win)
+void	*look_up(t_win *win)
 {
-	t_data	img;
+	void	*img_player;
 
-	img = mlx_xpm_file_to_image(mlx, "/character2/tile012.xpm", &win->image_length, &win->image_heigth);
-	return (img);
+	img_player = mlx_xpm_file_to_image(win->mlx, "/character2/tile012.xpm", &win->image_length, &win->image_heigth);
+	return (img_player);
 }
 
-t_data	*look_down(t_win win, t_data img)
+void	*look_down(t_win *win)
 {
-	t_data	img;
+	void	*img_player;
 
-	img = mlx_xpm_file_to_image(mlx, "/character2/tile000.xpm", &win->image_length, &win->image_heigth);
-	return (img);
+	img_player = mlx_xpm_file_to_image(win->mlx, "/character2/tile000.xpm", &win->image_length, &win->image_heigth);
+	return (img_player);
 }
 
-t_data	*look_left(t_win win, t_data img)
+void	*look_left(t_win *win)
 {
-	t_data	img;
+	void	*img_player;
 
-	img = mlx_xpm_file_to_image(mlx, "/character2/tile004.xpm", &win->image_length, &win->image_heigth);
-	return (img);
+	img_player = mlx_xpm_file_to_image(win->mlx, "/character2/tile004.xpm", &win->image_length, &win->image_heigth);
+	return (img_player);
 }
 
-t_data	*look_rigth(t_win win, t_data img)
+void	*look_right(t_win *win)
 {
-	t_data	img;
+	void	*img_player;
 
-	img = mlx_xpm_file_to_image(mlx, "/character2/tile008.xpm", &win->image_length, &win->image_heigth);
-	return (img);
+	img_player = mlx_xpm_file_to_image(win->mlx, "/character2/tile008.xpm", &win->image_length, &win->image_heigth);
+	return (img_player);
 }

@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   base_arrow_movs.c                                  :+:      :+:    :+:   */
+/*   base_movs.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 14:08:25 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/02 15:20:13 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/06 21:09:10 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-int	mov_left(t_win *win)
+void	mov_left(t_win *win)
 {
-	int	i;
-	int	j;
+	t_data	img;
+	int		i;
+	int		j;
 
 	i = 0;
 	while (win->mapa[++i])
@@ -31,17 +32,20 @@ int	mov_left(t_win *win)
 				{
 					win->mapa[i][j - 1] = 'p';
 					win->mapa[i][j] = '0';
+					win->player_look = 2;
+					img.img_wall = walk_left(win);
+					mlx_put_image_to_window(win->mlx, win->mlx_win, img.img_player, i, j);
 				}
 			}
 		}
 	}
-	return (0);
 }
 
-int	mov_right(t_win *win)
+void	mov_right(t_win *win)
 {
-	int	i;
-	int	j;
+	t_data	img;
+	int		i;
+	int		j;
 
 	i = 0;
 	while (win->mapa[++i])
@@ -57,18 +61,21 @@ int	mov_right(t_win *win)
 				{
 					win->mapa[i][j + 1] = 'p';
 					win->mapa[i][j] = '0';
+					win->player_look = 3;
 					j++;
+					img.img_wall = walk_right(win);
+					mlx_put_image_to_window(win->mlx, win->mlx_win, img.img_player, i, j);
 				}
 			}
 		}
 	}
-	return (0);
 }
 
-int	mov_up(t_win *win)
+void	mov_up(t_win *win)
 {
-	int	i;
-	int	j;
+	t_data	img;
+	int		i;
+	int		j;
 
 	i = 0;
 	while (win->mapa[++i])
@@ -84,17 +91,20 @@ int	mov_up(t_win *win)
 				{
 					win->mapa[i - 1][j] = 'p';
 					win->mapa[i][j] = '0';
+					win->player_look = 0;
+					img.img_wall = walk_up(win);
+					mlx_put_image_to_window(win->mlx, win->mlx_win, img.img_player, i, j);
 				}
 			}
 		}
 	}
-	return (0);
 }
 
-int	mov_down(t_win *win)
+void	mov_down(t_win *win)
 {
-	int	i;
-	int	j;
+	t_data	img;
+	int		i;
+	int		j;
 
 	i = 0;
 	while (win->mapa[++i])
@@ -110,11 +120,12 @@ int	mov_down(t_win *win)
 				{
 					win->mapa[i + 1][j] = 'p';
 					win->mapa[i][j] = '0';
+					win->player_look = 1;
 					i++;
+					img.img_wall = walk_down(win);
+					mlx_put_image_to_window(win->mlx, win->mlx_win, img.img_player, i, j);
 				}
 			}
 		}
 	}
-	return (0);
 }
-

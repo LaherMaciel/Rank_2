@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:19:36 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/06 19:08:33 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/06 21:11:17 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,11 @@
 # include "../libft/libft.h"
 
 typedef struct s_data{
-	void	*img;
+	void	*img_wall;
+	void	*img_floor;
+	void	*img_exit;
+	void	*img_player;
+	void	*img_collectibles;
 	char	*addr;
 	int		bits_per_pixel;
 	int		line_length;
@@ -42,12 +46,19 @@ typedef struct s_win
 	char	**mapa;
 	int		player;
 	int		player_walk;
+	int		player_look;
 	int		walls;
 	int		floor;
 	int		collectibles;
 	int		exit;
 	int		image_length;
 	int		image_heigth;
+	int		block_length;
+	int		block_heigth;
+	int		cont_length;
+	int		cont_heigth;
+	int		length;
+	int		heigth;
 	int		x;
 	int		y;
 }		t_win;
@@ -56,10 +67,10 @@ typedef struct s_win
 //int	keycode_decisions(int keycode);
 int		keycode_decisions(int keycode, t_win *win);
 int		my_close(t_win *win);
-int		mov_left(t_win *win);
-int		mov_right(t_win *win);
-int		mov_up(t_win *win);
-int		mov_down(t_win *win);
+void	mov_left(t_win *win);
+void	mov_right(t_win *win);
+void	mov_up(t_win *win);
+void	mov_down(t_win *win);
 int		mouse_handler(int mousekey, int x, int y, t_win *win);
 
 //CREAT_MAP
@@ -74,7 +85,20 @@ t_data	create_image(t_win win);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int		window_destroy(t_win *win);
 
+//IMAGE
+void	*wall_image(t_win *win);
+void	*player_image(t_win *win);
+void	*floor_image(t_win *win);
+void	*collectibles_image(t_win *win);
+void	*exit_image(t_win *win);
+
 //COLORS
 t_data	color_win(t_data img, t_win *win, int x, int y);
+
+//PALYER_WALK
+void	*walk_up(t_win *win);
+void	*walk_down(t_win *win);
+void	*walk_left(t_win *win);
+void	*walk_right(t_win *win);
 
 #endif // !SO_LONG_H
