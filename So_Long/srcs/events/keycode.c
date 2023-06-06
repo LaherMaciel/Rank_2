@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 15:39:12 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/01 19:23:50 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/05 23:34:09 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,18 @@ int	keycode_decisions(int keycode, t_win *win)
 	i = -1;
 	while (win->mapa[++i])
 		ft_printf("%s\n", win->mapa[i]);
-	if (keycode == 65363)
+	if (keycode == 100)
 		mov_right(win);
-	if (keycode == 65361)
+	if (keycode == 97)
 		mov_left(win);
-	if (keycode == 65362)
+	if (keycode == 119)
 		mov_up(win);
-	if (keycode == 65364)
+	if (keycode == 115)
 		mov_down(win);
 	if (keycode == 65307)
 		my_close(win);
 	ft_printf("keycode -> %i\n", keycode);
+	create_image(*win);
+	mlx_loop(win->mlx);
 	return (0);
 }

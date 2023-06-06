@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 18:46:12 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/01 23:18:28 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/05 23:37:14 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,4 +122,26 @@ t_data	create_image(t_win win)
 	img = paint_wind(&win, img);
 	ft_printf("IMAGE CREATED\n");
 	return (img);
+}
+
+void	destroy_map(t_win *win)
+{
+	int	i;
+
+	i = 0;
+	while (win->mapa[i])
+	{
+		free(win->mapa[i]);
+		i++;
+	}
+	free(win->mapa);
+}
+
+int	window_destroy(t_win *win)
+{
+	mlx_destroy_window(win->mlx, win->mlx_win);
+	mlx_destroy_display(win->mlx);
+	destroy_map(win);
+	free(win->mlx);
+	exit(0);
 }

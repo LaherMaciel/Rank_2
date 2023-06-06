@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 18:12:35 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/01 17:20:15 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/05 23:44:21 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,19 @@ int	get_g(int trgb)
 int	get_b(int trgb)
 {
 	return (trgb & 0xFF);
+}
+
+t_data	color_win(t_data img, t_win *win, int x, int y)
+{
+	if (win->mapa[win->cont_heigth][win->cont_length] == '1')
+		my_mlx_pixel_put(&img, x, y, 0x00005AFF);
+	else if (win->mapa[win->cont_heigth][win->cont_length] == '0')
+		my_mlx_pixel_put(&img, x, y, 0x00DDDDFF);
+	else if (win->mapa[win->cont_heigth][win->cont_length] == 'p')
+		my_mlx_pixel_put(&img, x, y, 0x0000FF00);
+	else if (win->mapa[win->cont_heigth][win->cont_length] == 'c')
+		my_mlx_pixel_put(&img, x, y, 0x00DDCC5F);
+	else if (win->mapa[win->cont_heigth][win->cont_length] == 'e')
+		my_mlx_pixel_put(&img, x, y, 0x00FF0000);
+	return (img);
 }
