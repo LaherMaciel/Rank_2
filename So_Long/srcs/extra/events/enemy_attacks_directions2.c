@@ -6,8 +6,8 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 03:13:09 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/07 03:31:24 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/07 04:14:02 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "../../so_long.h"

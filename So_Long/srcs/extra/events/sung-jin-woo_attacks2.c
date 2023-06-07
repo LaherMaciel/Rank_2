@@ -6,11 +6,11 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 02:18:32 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/07 03:34:16 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/07 04:13:04 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "../../so_long.h"
 
 void	consecutive_slashes(t_win *win, t_extras *extra)
 {

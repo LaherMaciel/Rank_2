@@ -6,11 +6,11 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 00:29:28 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/07 03:31:48 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/07 04:13:53 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "../../so_long.h"
 
 /*
 	ALL DAMAGE FROM BEHIND GIVE +1 OF DAMAGE;

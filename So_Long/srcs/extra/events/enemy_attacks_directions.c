@@ -6,11 +6,11 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 00:29:34 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/07 03:30:34 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/07 04:13:56 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "../../so_long.h"
 
 void	attack_direction_cut(t_win *win, t_extras *extra, int aux_x, int aux_y)
 {
