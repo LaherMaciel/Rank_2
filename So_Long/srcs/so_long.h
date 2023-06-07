@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:19:36 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/06 23:15:04 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/06/07 04:05:05 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,40 @@ typedef struct s_win
 	int		x;
 	int		y;
 }		t_win;
+
+typedef struct s_extras
+{
+	int		boss_x;
+	int		boss_y;
+	int		boss_walk;
+	int		boss_look;
+	int		boss_zone;
+	int		boss_slash;
+	int		boss_health;
+	int		boss_changes;
+	int		summon1_x;
+	int		summon2_x;
+	int		summon3_x;
+	int		summon1_y;
+	int		summon2_y;
+	int		summon3_y;
+	int		summon1_helth;
+	int		summon2_helth;
+	int		summon3_helth;
+	int		enemy_x;
+	int		enemy_y;
+	int		enemy_attack;
+	float	enemy_attack_delay;
+	float	enemy_attack_delay2;
+	int		enemy_attack_damage;
+	int		enemy_attack_damage2;
+	int		enemy_attack_direction;
+	int		enemy_attack_number_of_blocks_moved;
+	int		enemy_attack_number_of_blocks_moved2;
+	int		teleport;
+	int		last_attack;
+	int		player_health;
+}		t_extras;
 
 //EVENTS
 int		keycode_decisions(int keycode, t_win *win);
