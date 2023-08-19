@@ -6,141 +6,119 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 18:46:12 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/06 20:56:04 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/07/05 01:34:35 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
+/**
+ * @brief Set the window size of the 'win' object
+ *
+ * @param win The 'win' object
+ * @return The updated 'win' object with the window size set
+*/
+t_win	set_windowsize(t_win win)
+{
+	win.length_size = ft_strlen(win.mapa[0]);
+	win.heigth_size = 0;
+	while (win.mapa[win.heigth_size])
+		win.heigth_size++;
+	win.length_size = win.length_size * win.image_length;
+	win.heigth_size = win.heigth_size * win.image_heigth;
+	return (win);
+}
+
 /*=============================================
-include the 'mlx.h' on your '.h' project file
-mlx_init() -> used to inicialize the library. It returns a (void *)
-mlx_new_window(pointer_returned_by_mlx_init(),
-	width, heigth, "the_name_of_the_window") -> used to initialize a window.
-	return the (void *) to the new window created.  
-mlx_new_image() -> 
-mlx_loop() -> initiate the window rendering.
+include the 'mlx.h' on your '.h' project file mlx_init() -> used to inicialize
+the library. It returns a (void *)
+mlx_new_window(pointer_returned_by_mlx_init(), width, heigth,
+"the_name_of_the_window") -> used to initialize a window. return the (void *) to
+the new window created. mlx_new_image() -> mlx_loop() -> initiate the window
+rendering.
 ==============================================*/
 
-t_win	window_init(t_win win)
+/**
+ * @brief Initializes the game window based on the map size and image
+ * dimensions. This function calculates the dimensions of the window by
+ * multiplying the length and height of the map with the specified image
+ * dimensions. It then initializes the mlx structure using the mlx_init function
+ * and creates a new window with the calculated dimensions using the
+ * mlx_new_window function.
+ *
+ * @param boss Pointer to the main structure containing game data.
+ * @param win The window structure to be initialized.
+ * @return The updated window structure.
+*/
+t_win	window_init(t_main_struct *boss, t_win win)
 {
+	char	*window_name;
+	char	*tmp;
+
+	tmp = boss->extras.map_names[boss->win.current_map];
+	window_name = ft_substr(tmp, 0, ft_strlen(tmp) - 4);
+	if (boss->win.mapa == NULL)
+		window_destroy(boss);
+	win = set_windowsize(boss->win);
+	if (win.length_size > 1920 || win.heigth_size > 1080)
+	{
+		free(window_name);
+		error_call("Map too long. Map can't have more " \
+			"then 30 columns and 16 rows", boss);
+	}
 	win.mlx = mlx_init();
-	win.mlx_win = mlx_new_window(win.mlx, win.length_size, win.heigth_size, "Hello world");
+	win.mlx_win = mlx_new_window(win.mlx, win.length_size,
+			win.heigth_size, window_name);
+	boss->win.new_map = boss->win.current_map;
+	free(window_name);
 	ft_printf("WINDOOW CREATED\n");
 	return (win);
 }
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+/**
+ * @brief This function destroys the current game window, then initializes the
+ * image values, and initializes the window values using the corresponding
+ * initialization functions.
+ *
+ * @param boss
+ */
+void	fresh_start(t_main_struct *boss)
 {
-	char	*dst;
-
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
+	window_destroy(boss);
+	boss->img = img_vals_init(boss->img);
+	boss->win = win_vals_init(boss->win);
 }
 
-t_data	color_win(t_data img, t_win *win, int x, int y)
+/**
+ * @brief Create a new game window. This function takes a pointer to the main
+ * structure (boss) as input and creates a new game window. It performs the
+ * necessary steps to initialize the window, map, image, and other components of
+ * the game. It sets the current map based on the new_map value in the window
+ * structure, creates the map using the creat_map function, validates the map
+ * using the validate_map function, initializes the window using the window_init
+ * function, and starts the image using the start_image function. It also sets
+ * up event hooks for keyboard input and window closure. Finally, it enters the
+ * event loop using the mlx_loop function to start the game.
+ *
+ * @param boss Pointer to the main structure.
+*/
+void	new_window(t_main_struct *boss)
 {
-	if (win->mapa[win->cont_heigth][win->cont_length] == '1')
-		my_mlx_pixel_put(&img, x, y, 0x00005AFF);
-	else if (win->mapa[win->cont_heigth][win->cont_length] == '0')
-		my_mlx_pixel_put(&img, x, y, 0x00DDDDFF);
-	else if (win->mapa[win->cont_heigth][win->cont_length] == 'p')
-		my_mlx_pixel_put(&img, x, y, 0x0000FF00);
-	else if (win->mapa[win->cont_heigth][win->cont_length] == 'c')
-		my_mlx_pixel_put(&img, x, y, 0x00DDCC5F);
-	else if (win->mapa[win->cont_heigth][win->cont_length] == 'e')
-		my_mlx_pixel_put(&img, x, y, 0x00FF0000);
-	return (img);
-}
+	int	n;
 
-t_data	pain_block(t_win *win, t_data img)
-{
-	int	x;
-	int	y;
-	int	lgen;
-	int	hegn;
-
-	lgen = win->block_length;
-	hegn = win->block_heigth;
-	ft_printf("block_length->%i\nblock_heigth->%i\n",
-		win->block_length, win->block_heigth);
-	y = -1;
-	while (++y < win->heigth_size && win->cont_heigth < win->heigth)
-	{
-		x = -1;
-		win->cont_length = 0;
-		win->block_length = win->length_size / win->length;
-		while (++x < win->length_size && win->cont_length < win->length)
-		{
-			color_win(img, win, x, y);
-			if (x >= win->block_length)
-			{
-				win->block_length += lgen;
-				win->cont_length++;
-				//ft_printf("x = %i, y = %i\n", x, y);
-			}
-			if (y >= win->block_heigth)
-			{
-				win->block_heigth += hegn;
-				win->cont_heigth++;
-				//ft_printf("cont_length -> %i\ncont_heigth -> %i\n",
-				//	win->cont_length, win->cont_heigth);
-				//ft_printf("x = %i, y = %i\n", x, y);
-			}
-			if (win->cont_heigth >= win->heigth)
-				break ;
-		}
-	}
-	ft_printf("length->%i\nheigth->%i\n", win->length, win->heigth);
-	ft_printf("block_length->%i\nblock_heigth->%i\n", lgen, hegn);
-	ft_printf("x = %i, y = %i\n", x, y);
-	return (img);
-}
-
-t_data	paint_wind(t_win *win, t_data img)
-{
-	win->length = ft_strlen(win->mapa[0]);
-	win->heigth = 0;
-	while (win->mapa[win->heigth])
-		win->heigth++;
-	win->block_length = win->length_size / win->length;
-	win->block_heigth = win->heigth_size / win->heigth;
-	win->cont_heigth = 0;
-	img = pain_block(win, img);
-	mlx_put_image_to_window(win->mlx, win->mlx_win, img.img, 0, 0);
-	return (img);
-}
-
-t_data	create_image(t_win win)
-{
-	t_data	img;
-
-	img.img = mlx_new_image(win.mlx, win.length_size, win.heigth_size);
-	img.addr = mlx_get_data_addr(img.img,
-			&img.bits_per_pixel, &img.line_length, &img.endian);
-	img = paint_wind(&win, img);
-	ft_printf("IMAGE CREATED\n");
-	return (img);
-}
-
-void	destroy_map(t_win *win)
-{
-	int	i;
-
-	i = 0;
-	while (win->mapa[i])
-	{
-		free(win->mapa[i]);
-		i++;
-	}
-	free(win->mapa);
-}
-
-int	window_destroy(t_win *win)
-{
-	mlx_destroy_window(win->mlx, win->mlx_win);
-	mlx_destroy_display(win->mlx);
-	destroy_map(win);
-	free(win->mlx);
-	exit(0);
+	n = boss->win.new_map;
+	fresh_start(boss);
+	boss->win.current_map = n;
+	boss->win.mapa = creat_map(boss,
+			boss->extras.map_names[boss->win.current_map]);
+	boss->win = validate_map(boss, boss->win,
+			boss->extras.map_names[boss->win.current_map]);
+	boss->win = window_init(boss, boss->win);
+	boss->img = start_image(boss);
+	ft_printf(CLEAR"MAPA %i READY\n", (boss->win.current_map + 1));
+	my_prints(boss);
+	mlx_hook(boss->win.mlx_win, 2, 1L << 0, keycode_decisions, boss);
+	boss->img = upgrade_player(boss, 0);
+	mlx_hook(boss->win.mlx_win, 17, 1L, end_game, &boss);
+	mlx_loop(boss->win.mlx);
 }

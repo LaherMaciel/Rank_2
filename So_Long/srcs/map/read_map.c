@@ -6,143 +6,111 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 19:13:45 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/06/07 22:14:35 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/07/05 00:07:01 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-char	**creat_map_mod()
+char	**add_to_map(char *a, char **map, int i)
 {
-	char	*map_test;
-	char **map;
-
-	map_test = "11111111111111111111111\n1pce0000000000000000001\n10000000000000000000001\n10000000000000000000001\n10000000000000000000001\n11111111111111111111111";
-	/*map_test = "1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111\n\
-1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001\n\
-1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001\n\
-1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001\n\
-10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000c0000000000001\n\
-1000000000000000000000000000000000000p00000000c00000000000000000000000000000000000000000000000000000000000001\n\
-1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001\n\
-1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001\n\
-1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001\n\
-1000000000000000000000000111111111111111111111111111111111111111111111100000000000000000000000000000000000001\n\
-1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001\n\
-1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001\n\
-1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001\n\
-10000000000000000000000000000000000000000c0000000000000000000000000000000000000000000000000000000000000000001\n\
-1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001\n\
-1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001\n\
-1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001\n\
-1000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001\n\
-1000000000000000e00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001\n\
-1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111";*/
-	map = ft_split(map_test, '\n');
-	if (map == NULL)
-		return (0);
+	if (ft_strchr(a, '\n'))
+	{
+		map[i] = ft_substr(a, 0, ft_strlen(a) - 1);
+		free(a);
+	}
 	else
-		for (int i = 0; map[i] != NULL; i++)
-			printf("%s\n", map[i]);
+		map[i] = a;
 	return (map);
 }
 
-char	**creat_map(void)
+/**
+ * @brief Create a map array from the file specified.
+ * 
+ * This function reads the map file line by line and stores each line in the
+ * map array. The map array is dynamically allocated and terminated with a
+ * NULL pointer. The file descriptor is closed after reading.
+ * 
+ * @param boss The main game structure.
+ * @param file_name The name of the map file.
+ * @return char** The map array.
+*/
+char	**creat_map(t_main_struct *boss, char *file_name)
 {
 	int		fds;
 	char	*a;
 	char	**map;
-	char	**tmp;
 	int		i;
-	//int		cont;
 
-	//cont = 1;
-	i = 0;
-	a = NULL;
-	map = NULL;
-	fds = open("mapa2.txt", O_RDONLY);
+	a = "Hello";
+	map = malloc(10000 * sizeof(char *));
+	fds = open(file_name, O_RDONLY);
 	if (fds == -1)
+		error_call("Failed to read the map file", boss);
+	i = 0;
+	while (a != NULL)
 	{
-		ft_printf("ERROR\n");
-		return (NULL);
-	}
-	while ((a = get_next_line(fds)) != NULL)
-	{
-		//ft_printf("%i - %s", cont++, a);
-		tmp = realloc(map, (i + 1) * sizeof(char *));
-		if (tmp == NULL)
-		{
-			ft_printf("ERROR\n");
-			free(a);
-			close(fds);
-			return NULL;
-		}
-		map = tmp;
-		if (ft_strchr(a, '\n'))
-			map[i++] = ft_substr(a, 0, ft_strlen(a) - 1);
-		else
-			map[i++] = a;
+		a = get_next_line(fds);
+		if (a == NULL)
+			break ;
+		map = add_to_map(a, map, i);
+		i++;
 	}
 	map[i] = NULL;
-	ft_printf("\n");
 	close(fds);
 	return (map);
 }
 
-int	map_base_check(t_win win)
+/**
+ * @brief Check the file name for validity.
+ * 
+ * This function verifies if the file name has a valid termination.
+ * It checks if the file name ends with ".ber" and has exactly 4 characters.
+ * If the file name is invalid, an error is raised using the error_call function.
+ * 
+ * @param boss The main game structure.
+ * @param file_name The name of the file to be checked.
+*/
+void	check_file_name(t_main_struct *boss, char *file_name)
 {
-	int	x;
-	int	y;
-	int	x_max_len;
-	int	y_max_len;
-	int	base_max_y_len;
-	int	player;
-	int	exit;		
-	int	collectible;
+	char	*substring;
 
-	x = -1;
-	player = 0;
-	exit = 0;
-	collectible = 0;
-	x_max_len = 0;
-	while (win.mapa[++x])
-		x_max_len++;
-	x_max_len--;
-	x = -1;
-	base_max_y_len = ft_strlen(win.mapa[0]) - 1;
-	if (base_max_y_len <= x_max_len)
-		return (0);
-	if ((win.mapa[0][0] != '1') || (win.mapa[x_max_len][base_max_y_len] != '1'))
-		return (0);
-	while (++x < x_max_len)
+	substring = ft_strnstr(file_name, ".ber", ft_strlen(file_name));
+	if (substring == NULL || ft_strlen(substring) != 4)
+		error_call("Invalid file termination", boss);
+}
+
+/**
+ * @brief Read the map from the file names provided as arguments.
+ * 
+ * This function initializes the necessary structures and reads the map data
+ * from the files specified in the command line arguments. It iterates over
+ * the file names, checks their validity, and stores them in the map_names
+ * array of the extras structure. It then calls the creat_map function to
+ * create the map based on the first file. Finally, it validates the map
+ * using the validate_map function and returns the updated win structure.
+ * 
+ * @param boss The main game structure.
+ * @param argv The command line arguments containing the file names.
+ * @return The updated win structure.
+*/
+t_win	read_map(t_main_struct *boss, char *argv[])
+{
+	int	i;
+
+	boss->extras = extras_vals_init(boss->extras);
+	boss->img = img_vals_init(boss->img);
+	boss->win = win_vals_init(boss->win);
+	i = 0;
+	while (argv[++i])
 	{
-		y = -1;
-		y_max_len = ft_strlen(win.mapa[x]) - 1;
-		ft_printf("x_max_len -> %i\n", x_max_len);
-		ft_printf("y_max_len -> %i\n", y_max_len);
-		ft_printf("base_max_y_len -> %i\n", base_max_y_len);
-		if (base_max_y_len != y_max_len)
-			return (0);
-		while (win.mapa[x][++y])
-		{
-			ft_printf("%c", win.mapa[x][y]);
-			if ((win.mapa[0][y] != '1') || (win.mapa[x][0] != '1'))
-				return (0);
-			else if ((win.mapa[x_max_len][y] != '1')
-				|| (win.mapa[x][y_max_len] != '1'))
-				return (0);
-			else if (win.mapa[x][y] == 'p')
-				player++;
-			else if (win.mapa[x][y] == 'e')
-				exit++;
-			else if (win.mapa[x][y] == 'c')
-				collectible++;
-			else if (win.mapa[x][y] != '0' && win.mapa[x][y] != '1')
-				return (0);
-		}
-		ft_printf("\n");
+		check_file_name(boss, argv[i]);
+		if (boss->extras.map_names[i - 1])
+			free(boss->extras.map_names[i - 1]);
+		boss->extras.map_names[i - 1] = ft_substr(argv[i], 0, 0);
 	}
-	if (player != 1 || exit != 1 || collectible < 1)
-		return (0);
-	return (1);
+	boss->win.mapa = creat_map(boss, boss->extras.map_names[0]);
+	boss->win = validate_map(boss, boss->win,
+			boss->extras.map_names[0]);
+	return (boss->win);
 }
