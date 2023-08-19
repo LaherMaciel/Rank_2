@@ -6,7 +6,7 @@
 #    By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/28 19:50:00 by lwencesl          #+#    #+#              #
-#    Updated: 2023/08/19 12:12:39 by lwencesl         ###   ########.fr        #
+#    Updated: 2023/08/19 13:23:02 by lwencesl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ CC = cc
 CFLAGS = -g -Wall -Werror -Wextra #-fsanitize=address
 
 LIBS = -L$(LIBFT_DIRECTORY) -lft
-INCLUDES = -I$(HEADER_DIRECTORY) -I$(LIBFT_DIRECTORY)libft
+INCLUDES = -I./srcs -I./libft/
 
 
 # COLORS
@@ -42,13 +42,13 @@ YELLOW  = \033[0;33m
 RESET   = \033[0m
 
 $(NAME): $(LIBFT) $(OBJECTS_DIRECTORY) $(OBJECTS)
-	@if $(CC) $(CFLAGS) $(INCLUDES) $(LIBS) $(OBJECTS) -o $(NAME); \
+	@if $(CC) $(CFLAGS) $(OBJECTS) $(INCLUDES) $(LIBS) -o $(NAME); \
 	then \
 		make norm -s; \
 		echo "[" "$(GREEN)OK$(RESET)" "] | pipex created!"; \
 	else \
 		echo "[" "$(RED)Error$(RESET)" "] | An error occurred while creating pipex."; \
-		#make fclean > /dev/null 2>&1; \
+		make fclean > /dev/null 2>&1; \
 		echo "[" "$(RED)Error$(RESET)" "] | All objects Cleaned."; \
 	fi
 
@@ -62,7 +62,7 @@ $(OBJECTS_DIRECTORY)%.o : $(SRCS_DIRECTORY)%.c
 
 $(LIBFT):
 	@echo "[" "$(YELLOW)..$(RESET)" "] | Compiling libft..."
-	@make -sC $(LIBFT_DIRECTORY)	
+	@make -sC $(LIBFT_DIRECTORY)  > /dev/null 2>&1
 	@echo "[" "$(GREEN)OK$(RESET)" "] | Libft ready!"
 
 clean:
