@@ -6,7 +6,7 @@
 /*   By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 19:37:15 by lwencesl          #+#    #+#             */
-/*   Updated: 2023/08/19 11:28:01 by lwencesl         ###   ########.fr       */
+/*   Updated: 2023/08/19 14:07:27 by lwencesl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,6 @@ int	main(void)
 	int	i;
 
 	i = 30;
-	printf("HELLO, Is digit? %i\n", ft_isdigit(i));
+	ft_printf("HELLO, Is digit? %i\n", ft_isdigit(i));
 	return (0);
 }

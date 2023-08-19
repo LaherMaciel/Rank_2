@@ -6,7 +6,7 @@
 #    By: lwencesl <lwencesl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/28 19:50:00 by lwencesl          #+#    #+#              #
-#    Updated: 2023/08/19 13:23:02 by lwencesl         ###   ########.fr        #
+#    Updated: 2023/08/19 14:08:45 by lwencesl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,13 +42,13 @@ YELLOW  = \033[0;33m
 RESET   = \033[0m
 
 $(NAME): $(LIBFT) $(OBJECTS_DIRECTORY) $(OBJECTS)
-	@if $(CC) $(CFLAGS) $(OBJECTS) $(INCLUDES) $(LIBS) -o $(NAME); \
+	@@if $(CC) $(CFLAGS) $(OBJECTS) $(INCLUDES) $(LIBS) -o $(NAME); \
 	then \
 		make norm -s; \
-		echo "[" "$(GREEN)OK$(RESET)" "] | pipex created!"; \
+		echo "[" "$(GREEN)OK$(RESET)" "] | $(NAME) created!"; \
 	else \
 		echo "[" "$(RED)Error$(RESET)" "] | An error occurred while creating pipex."; \
-		make fclean > /dev/null 2>&1; \
+		make fclean; \
 		echo "[" "$(RED)Error$(RESET)" "] | All objects Cleaned."; \
 	fi
 
@@ -91,7 +91,7 @@ re: fclean
 	clear && make -s
 
 run: re
-	./pipex
+	./$(NAME)
 
 val:re
 	valgrind ./pipex
